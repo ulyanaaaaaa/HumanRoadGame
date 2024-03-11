@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Ulyana\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Ulyana\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_HumanRoad.920446051.00" t="ExcludeRecursive" />
+    <e p="D:\BSUIR\HumanRoad" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="CartoonLowPolyCityLite" t="Include">
+          <e p="Materials" t="Include" />
+          <e p="Models" t="Include" />
+          <e p="Prefabs" t="Include" />
+          <e p="Scenes" t="Include" />
+          <e p="Textures" t="Include" />
+        </e>
+        <e p="Low Poly Buildings Full Pack" t="Include">
+          <e p="Low Poly Buildings" t="Include">
+            <e p="Models" t="Include">
+              <e p="Materials" t="Include">
+                <e p="Textures" t="Include" />
+              </e>
+            </e>
+            <e p="Prefabs" t="Include" />
+            <e p="Read me.txt" t="Include" />
+          </e>
+          <e p="Low Poly Buildings Additional Models" t="Include">
+            <e p="Fbx" t="Include">
+              <e p="Materials" t="Include">
+                <e p="Textures" t="Include" />
+              </e>
+            </e>
+            <e p="Prefabs" t="Include" />
+          </e>
+          <e p="Low Poly Buildings City" t="Include">
+            <e p="Fbx" t="Include">
+              <e p="Materials" t="Include">
+                <e p="Textures" t="Include" />
+              </e>
+            </e>
+            <e p="Prefabs" t="Include" />
+            <e p="ReadMe.txt" t="Include" />
+            <e p="Scenes" t="Include" />
+          </e>
+        </e>
+        <e p="Materials" t="Include" />
+        <e p="Persons" t="Include" />
+        <e p="Resources" t="Include" />
+        <e p="Scenes" t="Include" />
+        <e p="Scripts" t="Include">
+          <e p="Building.cs" t="Include" />
+          <e p="EntryPoint.cs" t="Include" />
+          <e p="KeyboardInput.cs" t="Include" />
+          <e p="Player.cs" t="Include" />
+          <e p="PlayerMovement.cs" t="Include" />
+          <e p="TerrainGererator.cs" t="Include" />
+        </e>
+        <e p="Terrains" t="Include" />
+      </e>
+      <e p="HumanRoad.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp\Bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
