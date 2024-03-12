@@ -7,18 +7,24 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Building.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/KeyboardInput.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/EntryPoint.cs" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
+      <option value="$PROJECT_DIR$/Assets/Scripts/KeyboardInput.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/TerrainGererator.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/TerrainFactory.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EntryPoint.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Building.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/KeyboardInput.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CarFactory.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Barriers.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CarSpawner.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Barrier.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/TerrainSpawner.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/LogFactory.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Log.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Car.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/LogSpawner.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Water.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
     </changedPaths>
   </component>
@@ -52,6 +58,8 @@
       <workItem from="1710146563979" duration="2409000" />
       <workItem from="1710155690043" duration="3437000" />
       <workItem from="1710165096257" duration="1396000" />
+      <workItem from="1710185777743" duration="3610000" />
+      <workItem from="1710239417256" duration="13024000" />
     </task>
     <servers />
   </component>

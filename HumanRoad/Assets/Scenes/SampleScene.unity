@@ -133,8 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
-  - component: {fileID: 705507997}
   - component: {fileID: 705507996}
+  - component: {fileID: 705507999}
+  - component: {fileID: 705507998}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -232,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerStartPosition: {x: 3, y: 0.5, z: 0.005}
---- !u!114 &705507997
+--- !u!114 &705507998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,11 +242,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 705507993}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c6b9c00dba90474fb929811ecd5bc4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 459a931ca3c8f4a479797aa17e189364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxTerrains: 25
-  _saveZoneSize: 4
+  _maxTerrains: 30
+  _saveZoneSize: 5
+--- !u!114 &705507999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48ace972c63b7644b95121acc25d5896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _terrains:
   - {fileID: 2378640388726164651, guid: c348752015eb7494ea4083faa4a3fcce, type: 3}
   - {fileID: 7870157798067460293, guid: bd8f887352af460419f636efc9e9c36a, type: 3}
