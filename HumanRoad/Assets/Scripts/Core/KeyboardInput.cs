@@ -7,12 +7,16 @@ public class KeyboardInput : MonoBehaviour
     public Action OnLeftCliked;
     public Action OnBackCliKed;
     public Action OnRunCliked;
+    public Action<float> OnScoreChanged;
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
+        {
             OnRunCliked?.Invoke();
-        
+            OnScoreChanged?.Invoke(transform.position.x);
+        }
+
         if(Input.GetKeyDown(KeyCode.D))
             OnRightCliked?.Invoke();
         

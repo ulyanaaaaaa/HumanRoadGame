@@ -4,7 +4,7 @@ using UnityEngine;
 public class TerrainSpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _terrains = new List<GameObject>();
-    private Vector3 _currentPosition = new Vector3(0, 0, 0);
+    private Vector3 _currentPosition = new Vector3(1, 0, 0);
     private KeyboardInput _keyboardInput;
 
     public void Setup(KeyboardInput keyboardInput)
