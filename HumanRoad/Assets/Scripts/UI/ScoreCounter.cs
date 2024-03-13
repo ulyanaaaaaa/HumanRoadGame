@@ -27,7 +27,20 @@ public class ScoreCounter : MonoBehaviour
     {
         if (count > _score)
             _score = count;
+
         _counter.text = _score.ToString();
+        CompareScore(_score);
+    }
+
+    private void CompareScore(int score)
+    {
+        if (PlayerPrefs.HasKey("BestScore"))
+        {
+            int lastScore = PlayerPrefs.GetInt("BestScore");
+
+            if (score > lastScore)
+                PlayerPrefs.SetInt("BestScore", score);
+        }
     }
 
 }

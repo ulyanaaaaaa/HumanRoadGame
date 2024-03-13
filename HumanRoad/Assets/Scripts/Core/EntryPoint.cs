@@ -98,10 +98,10 @@ public class EntryPoint : MonoBehaviour
         _menuCreated.GetComponent<RectTransform>().localPosition =
             _menu.GetComponent<RectTransform>().localPosition;
         
+        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += DestroyMenu;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreatePlayer;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateScoreCounter;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateHurts;
-        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += DestroyMenu;
     }
 
     private void DestroyMenu()
@@ -111,9 +111,13 @@ public class EntryPoint : MonoBehaviour
 
     private void DestroyLevel()
     {
-        Destroy(_scoreCounterCreated.gameObject);
-        Destroy(_hurtCreated.gameObject);
-        Destroy(_looseHurtCreated.gameObject);
+        if (_hurtCreated)
+            Destroy(_hurtCreated.gameObject);
+        
+        if (_looseHurtCreated)
+            Destroy(_looseHurtCreated.gameObject);
+        
         Destroy(_playerCreated.gameObject);
+        Destroy(_scoreCounterCreated.gameObject);
     }
 }

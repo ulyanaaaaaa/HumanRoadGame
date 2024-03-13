@@ -108,6 +108,7 @@
             <e p="Water.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
+            <e p="BestScoreCounter.cs" t="Include" />
             <e p="HealthCounter.cs" t="Include" />
             <e p="Hurt.cs" t="Include" />
             <e p="LooseHurt.cs" t="Include" />
