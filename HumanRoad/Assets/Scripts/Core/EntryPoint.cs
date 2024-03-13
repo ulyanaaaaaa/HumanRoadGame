@@ -8,6 +8,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private Canvas _canvas;
     [SerializeField] private Vector3 _playerStartPosition;
 
+    private TerrainSpawner _terrainSpawner;
     private Menu _menu;
     private Menu _menuCreated;
     private Hurt _hurt;
@@ -16,7 +17,6 @@ public class EntryPoint : MonoBehaviour
     private LooseHurt _looseHurtCreated;
     private Player _player;
     private Player _playerCreated;
-    private TerrainSpawner _terrainSpawner;
     private ScoreCounter _scoreCounter;
     private ScoreCounter _scoreCounterCreated;
 
@@ -26,8 +26,8 @@ public class EntryPoint : MonoBehaviour
         _looseHurt = Resources.Load<LooseHurt>("LooseHurt");
         _hurt = Resources.Load<Hurt>("Hurt");
         _scoreCounter = Resources.Load<ScoreCounter>("ScoreCounter");
-        _terrainSpawner = GetComponent<TerrainSpawner>();
         _player = Resources.Load<Player>("Player");
+        _terrainSpawner = GetComponent<TerrainSpawner>();
         CreateMenu();
     }
 
@@ -37,7 +37,7 @@ public class EntryPoint : MonoBehaviour
         _terrainSpawner.Setup(_playerCreated.GetComponent<KeyboardInput>());
         _playerCreated.OnLooseHurt += CreateLooseHurt;
         _playerCreated.IsDie += CreateMenu;
-        _playerCreated.IsDie += RestartLevel;
+        _playerCreated.IsDie += DestroyLevel;
     }
 
     private void CreateScoreCounter()
@@ -97,18 +97,19 @@ public class EntryPoint : MonoBehaviour
             _canvas.transform);
         _menuCreated.GetComponent<RectTransform>().localPosition =
             _menu.GetComponent<RectTransform>().localPosition;
+        
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreatePlayer;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateScoreCounter;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateHurts;
-        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += DisableMenu;
+        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += DestroyMenu;
     }
 
-    private void DisableMenu()
+    private void DestroyMenu()
     {
         Destroy(_menuCreated.gameObject);
     }
 
-    private void RestartLevel()
+    private void DestroyLevel()
     {
         Destroy(_scoreCounterCreated.gameObject);
         Destroy(_hurtCreated.gameObject);

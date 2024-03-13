@@ -10,10 +10,6 @@ public class TerrainSpawner : MonoBehaviour
     public void Setup(KeyboardInput keyboardInput)
     {
         _keyboardInput = keyboardInput;
-    }
-    
-    private void Start()
-    {
         _keyboardInput.OnRunCliked += CreateTerrain;
     }
     

@@ -134,8 +134,8 @@ GameObject:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
   - component: {fileID: 705507996}
-  - component: {fileID: 705507999}
   - component: {fileID: 705507998}
+  - component: {fileID: 705507997}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -235,7 +235,7 @@ MonoBehaviour:
   Hurts: []
   _canvas: {fileID: 1491811873}
   _playerStartPosition: {x: 3, y: 0.5, z: 0.005}
---- !u!114 &705507998
+--- !u!114 &705507997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SaveZoneSize>k__BackingField: 5
   _maxTerrains: 30
---- !u!114 &705507999
+--- !u!114 &705507998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

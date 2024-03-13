@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerMovement))]
 public class Player : MonoBehaviour
