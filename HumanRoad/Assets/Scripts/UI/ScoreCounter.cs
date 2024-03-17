@@ -20,10 +20,10 @@ public class ScoreCounter : MonoBehaviour
     private void Start()
     {
         _keyboardInput.OnScoreChanged += (score => 
-            ChangeCounter((int)_keyboardInput.transform.position.x));
+            ChangedCounter((int)_keyboardInput.transform.position.x));
     }
 
-    private void ChangeCounter(int count)
+    private void ChangedCounter(int count)
     {
         if (count > _score)
             _score = count;

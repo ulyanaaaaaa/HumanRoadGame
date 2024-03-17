@@ -8,9 +8,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Shop/Coin.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ShopButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/CoinsCounter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Shop/ShopItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/HealthCounter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/LooseHurt.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Wallet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/BestScoreCounter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerWallet.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -32,18 +38,25 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Water.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Core/KeyboardInput.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Terrain/TerrainFactory.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/HealthCounter.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/LooseHurt.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Hurt.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PlayButton.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Terrain/Water.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Terrain/TerrainSpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/BestScoreCounter.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Shop/Coin.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ScoreCounter.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/CoinsCounter.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWallet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Core/EntryPoint.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/ShopButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/Wallet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Shop/ShopItem.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Shop/ShopItemViewer.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2dVjOzq5G4Rjw2T8gZCNq9cP2EK" />
@@ -82,7 +95,10 @@
       <workItem from="1710322187955" duration="4682000" />
       <workItem from="1710331234322" duration="1352000" />
       <workItem from="1710335668561" duration="2973000" />
-      <workItem from="1710365497500" duration="2910000" />
+      <workItem from="1710365497500" duration="3089000" />
+      <workItem from="1710491148880" duration="1084000" />
+      <workItem from="1710494188226" duration="4887000" />
+      <workItem from="1710687442375" duration="9897000" />
     </task>
     <servers />
   </component>

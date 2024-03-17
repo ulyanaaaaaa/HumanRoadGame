@@ -8,6 +8,8 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private Canvas _canvas;
     [SerializeField] private Vector3 _playerStartPosition;
 
+    private Wallet _wallet;
+    private Wallet _walletCreated;
     private TerrainSpawner _terrainSpawner;
     private Menu _menu;
     private Menu _menuCreated;
@@ -19,12 +21,13 @@ public class EntryPoint : MonoBehaviour
     private Player _playerCreated;
     private ScoreCounter _scoreCounter;
     private ScoreCounter _scoreCounterCreated;
+    private CoinsCounter _coinsCounter;
+    private CoinsCounter _coinsCounterCreated;
 
     private void Awake()
     {
+        _coinsCounter = Resources.Load<CoinsCounter>("CoinsCounter");
         _menu = Resources.Load<Menu>("Menu");
-        _looseHurt = Resources.Load<LooseHurt>("LooseHurt");
-        _hurt = Resources.Load<Hurt>("Hurt");
         _scoreCounter = Resources.Load<ScoreCounter>("ScoreCounter");
         _player = Resources.Load<Player>("Player");
         _terrainSpawner = GetComponent<TerrainSpawner>();
@@ -40,6 +43,27 @@ public class EntryPoint : MonoBehaviour
         _playerCreated.IsDie += DestroyLevel;
     }
 
+    private void CreateWallet()
+    {
+        _walletCreated = Instantiate(_wallet,
+            _wallet.GetComponent<RectTransform>().localPosition,
+            Quaternion.identity,
+            _canvas.transform);
+        _walletCreated.GetComponent<RectTransform>().localPosition =
+            _wallet.GetComponent<RectTransform>().localPosition;
+    }
+
+    private void CreateCoinsCounter()
+    {
+        _coinsCounterCreated = Instantiate(_coinsCounter,
+            _coinsCounter.GetComponent<RectTransform>().localPosition,
+            Quaternion.identity,
+            _canvas.transform);
+        _coinsCounterCreated.Setup(_playerCreated);
+        _coinsCounterCreated.GetComponent<RectTransform>().localPosition =
+            _coinsCounter.GetComponent<RectTransform>().localPosition;
+    }
+
     private void CreateScoreCounter()
     {
         _scoreCounterCreated = Instantiate(_scoreCounter,
@@ -53,33 +77,23 @@ public class EntryPoint : MonoBehaviour
 
     private void CreateHurts()
     {
-        _hurtCreated = Instantiate(_hurt,
-            _hurt.GetComponent<RectTransform>().localPosition,
-            Quaternion.identity,
-            _canvas.transform);
-        _hurtCreated.GetComponent<RectTransform>().localPosition =
-            _hurt.GetComponent<RectTransform>().localPosition;
-        Hurts.Add(_hurtCreated);
+        _hurt = Resources.Load<Hurt>("Hurt");
         
-        _hurtCreated = Instantiate(_hurt,
-            _hurt.GetComponent<RectTransform>().localPosition + new Vector3(135f, 0, 0),
-            Quaternion.identity,
-            _canvas.transform);
-        _hurtCreated.GetComponent<RectTransform>().localPosition = 
-            _hurt.GetComponent<RectTransform>().localPosition + new Vector3(135f, 0, 0);
-        Hurts.Add(_hurtCreated);
-        
-        _hurtCreated = Instantiate(_hurt,
-            _hurt.GetComponent<RectTransform>().localPosition + new Vector3(270f, 0, 0),
-            Quaternion.identity,
-            _canvas.transform);
-        _hurtCreated.GetComponent<RectTransform>().localPosition = 
-            _hurt.GetComponent<RectTransform>().localPosition + new Vector3(270f, 0, 0);
-        Hurts.Add(_hurtCreated);
+        for (int i = 0; i < 3; i++)
+        {
+            _hurtCreated = Instantiate(_hurt,
+                _hurt.GetComponent<RectTransform>().localPosition + new Vector3(135f * i, 0, 0),
+                Quaternion.identity,
+                _canvas.transform);
+            _hurtCreated.GetComponent<RectTransform>().localPosition =
+                _hurt.GetComponent<RectTransform>().localPosition + new Vector3(135f * i, 0, 0);
+            Hurts.Add(_hurtCreated);
+        }
     }
 
     private void CreateLooseHurt()
     {
+        _looseHurt = Resources.Load<LooseHurt>("LooseHurt");
         _looseHurtCreated = Instantiate(_looseHurt,
             Hurts[0].GetComponent<RectTransform>().localPosition,
             Quaternion.identity,
@@ -97,11 +111,12 @@ public class EntryPoint : MonoBehaviour
             _canvas.transform);
         _menuCreated.GetComponent<RectTransform>().localPosition =
             _menu.GetComponent<RectTransform>().localPosition;
-        
+
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += DestroyMenu;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreatePlayer;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateScoreCounter;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateHurts;
+        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateCoinsCounter;
     }
 
     private void DestroyMenu()
@@ -112,12 +127,18 @@ public class EntryPoint : MonoBehaviour
     private void DestroyLevel()
     {
         if (_hurtCreated)
-            Destroy(_hurtCreated.gameObject);
-        
+        {
+            foreach (Hurt hurt in Hurts)
+                Destroy(hurt.gameObject);
+            
+            Hurts.Clear();
+        }
+
         if (_looseHurtCreated)
             Destroy(_looseHurtCreated.gameObject);
         
         Destroy(_playerCreated.gameObject);
         Destroy(_scoreCounterCreated.gameObject);
+        Destroy(_coinsCounterCreated.gameObject);
     }
 }

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerWallet))]
 public class Player : MonoBehaviour
 {
     public Action OnLooseHurt;

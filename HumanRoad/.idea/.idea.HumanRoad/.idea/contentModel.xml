@@ -80,7 +80,9 @@
             </e>
           </e>
         </e>
-        <e p="Resources" t="Include" />
+        <e p="Resources" t="Include">
+          <e p="SkinPictures" t="Include" />
+        </e>
         <e p="Scenes" t="Include" />
         <e p="Scripts" t="Include">
           <e p="Car" t="Include">
@@ -100,6 +102,12 @@
           <e p="Player" t="Include">
             <e p="Player.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
+            <e p="PlayerWallet.cs" t="Include" />
+          </e>
+          <e p="Shop" t="Include">
+            <e p="Coin.cs" t="Include" />
+            <e p="ShopItem.cs" t="Include" />
+            <e p="ShopItemViewer.cs" t="Include" />
           </e>
           <e p="Terrain" t="Include">
             <e p="Barrier.cs" t="Include" />
@@ -109,12 +117,15 @@
           </e>
           <e p="UI" t="Include">
             <e p="BestScoreCounter.cs" t="Include" />
+            <e p="CoinsCounter.cs" t="Include" />
             <e p="HealthCounter.cs" t="Include" />
             <e p="Hurt.cs" t="Include" />
             <e p="LooseHurt.cs" t="Include" />
             <e p="Menu.cs" t="Include" />
             <e p="PlayButton.cs" t="Include" />
             <e p="ScoreCounter.cs" t="Include" />
+            <e p="ShopButton.cs" t="Include" />
+            <e p="Wallet.cs" t="Include" />
           </e>
         </e>
         <e p="Terrains" t="Include" />
@@ -206,6 +217,18 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
             <e p="EmojiOne.json" t="Include" />
           </e>
+        </e>
+        <e p="Yeopjeon" t="Include">
+          <e p="Demo" t="Include">
+            <e p="HDRI" t="Include" />
+            <e p="Materials" t="Include" />
+            <e p="Scenes" t="Include" />
+            <e p="Settings" t="Include" />
+          </e>
+          <e p="Materials" t="Include" />
+          <e p="Meshes" t="Include" />
+          <e p="Prefabs" t="Include" />
+          <e p="Textures" t="Include" />
         </e>
       </e>
       <e p="HumanRoad.sln" t="IncludeFlat" />

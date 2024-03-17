@@ -41,10 +41,10 @@ public class PlayerMovement : MonoBehaviour
 
    private void Move(Vector3 difference)
    {
-       if (transform.position.x % 1 == 0)
-       {
+      // if (transform.position.x % 1 == 0)
+       //{
            _animator.SetTrigger("IsJump");
            transform.DOJump(transform.position + difference, 1f, 1, 0.2f);
-       }
+       //}
    }
 }
