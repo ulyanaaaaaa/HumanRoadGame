@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
 {
-    [SerializeField] public List<Hurt> Hurts;
+    [SerializeField] private List<Hurt> _hurts;
 
     [SerializeField] private Canvas _canvas;
     [SerializeField] private Vector3 _playerStartPosition;
@@ -23,6 +23,10 @@ public class EntryPoint : MonoBehaviour
     private ScoreCounter _scoreCounterCreated;
     private CoinsCounter _coinsCounter;
     private CoinsCounter _coinsCounterCreated;
+    private ShopButton _shopButton;
+    private Shop _shop;
+    private Shop _shopCreated;
+    
 
     private void Awake()
     {
@@ -30,6 +34,7 @@ public class EntryPoint : MonoBehaviour
         _menu = Resources.Load<Menu>("Menu");
         _scoreCounter = Resources.Load<ScoreCounter>("ScoreCounter");
         _player = Resources.Load<Player>("Player");
+        _shop = Resources.Load<Shop>("Shop");
         _terrainSpawner = GetComponent<TerrainSpawner>();
         CreateMenu();
     }
@@ -87,7 +92,7 @@ public class EntryPoint : MonoBehaviour
                 _canvas.transform);
             _hurtCreated.GetComponent<RectTransform>().localPosition =
                 _hurt.GetComponent<RectTransform>().localPosition + new Vector3(135f * i, 0, 0);
-            Hurts.Add(_hurtCreated);
+            _hurts.Add(_hurtCreated);
         }
     }
 
@@ -95,12 +100,12 @@ public class EntryPoint : MonoBehaviour
     {
         _looseHurt = Resources.Load<LooseHurt>("LooseHurt");
         _looseHurtCreated = Instantiate(_looseHurt,
-            Hurts[0].GetComponent<RectTransform>().localPosition,
+            _hurts[0].GetComponent<RectTransform>().localPosition,
             Quaternion.identity,
             _canvas.transform);
         _looseHurtCreated.GetComponent<RectTransform>().localPosition =
-            Hurts[0].GetComponent<RectTransform>().localPosition;
-        Hurts.RemoveAt(0);
+            _hurts[0].GetComponent<RectTransform>().localPosition;
+        _hurts.RemoveAt(0);
     }
 
     private void CreateMenu()
@@ -112,11 +117,30 @@ public class EntryPoint : MonoBehaviour
         _menuCreated.GetComponent<RectTransform>().localPosition =
             _menu.GetComponent<RectTransform>().localPosition;
 
+        _menuCreated.GetComponentInChildren<ShopButton>().OnPlay += CreateShop;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += DestroyMenu;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreatePlayer;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateScoreCounter;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateHurts;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateCoinsCounter;
+    }
+
+    private void CreateShop()
+    {
+        _shopCreated = Instantiate(_shop,
+            _shop.GetComponent<Transform>().localPosition,
+            Quaternion.identity,
+            _canvas.transform);
+        _shopCreated.Setup(_menuCreated.GetComponentInChildren<Wallet>());
+        _shopCreated.GetComponent<Transform>().localPosition =
+            _shop.GetComponent<Transform>().localPosition;
+
+        _shopCreated.GetComponentInChildren<ExitButton>().OnExit += CloseShop;
+    }
+
+    private void CloseShop()
+    {
+        Destroy(_shopCreated.gameObject);
     }
 
     private void DestroyMenu()
@@ -128,10 +152,10 @@ public class EntryPoint : MonoBehaviour
     {
         if (_hurtCreated)
         {
-            foreach (Hurt hurt in Hurts)
+            foreach (Hurt hurt in _hurts)
                 Destroy(hurt.gameObject);
             
-            Hurts.Clear();
+            _hurts.Clear();
         }
 
         if (_looseHurtCreated)

@@ -1,4 +1,4 @@
-using System.ComponentModel;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -6,50 +6,50 @@ using UnityEngine;
 public class Wallet : MonoBehaviour
 {
     private TextMeshProUGUI _counter;
-    private int _coinsCount;
+    public int CoinsCount { get; private set; }
     
     private void Awake()
     {
         _counter = GetComponent<TextMeshProUGUI>();
         
         if (PlayerPrefs.HasKey("Wallet"))
-            _coinsCount = PlayerPrefs.GetInt("Wallet");
+            CoinsCount = PlayerPrefs.GetInt("Wallet");
         
         if (PlayerPrefs.HasKey("Coins"))
-            _coinsCount += PlayerPrefs.GetInt("Coins");
+            CoinsCount += PlayerPrefs.GetInt("Coins");
         
         UpdateCounter();
     }
     
     public bool TrySpend(int value)
     {
-        if (value < _coinsCount)
+        if (value < CoinsCount)
         {
             RemoveCoins(value);
             return true;
         }
         else
         {
-            throw new WarningException("Not enough coins!");
+            throw new Exception("Not enough coins!");
             return false;
         }
     }
 
     private void RemoveCoins(int value)
     {
-        _coinsCount -= value;
+        CoinsCount -= value;
         UpdateCounter();
     }
     
     private void AddCoins(int value)
     {
-        _coinsCount += value;
+        CoinsCount += value;
         UpdateCounter();
     }
 
     private void UpdateCounter()
     {
-        _counter.text = "Wallet: " + _coinsCount;
-        PlayerPrefs.SetInt("Wallet", _coinsCount);
+        _counter.text = "Wallet: " + CoinsCount;
+        PlayerPrefs.SetInt("Wallet", CoinsCount);
     }
 }

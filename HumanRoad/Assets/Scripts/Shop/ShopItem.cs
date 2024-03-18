@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,12 +7,15 @@ using UnityEngine.UI;
 public class ShopItem : MonoBehaviour
 {
     [field: SerializeField] public int Price { get; private set; }
-    
+    [SerializeField] private TextMeshProUGUI _skinName;
     private Wallet _wallet;
+    private Shop _shop;
     private Button _button;
-    
-    private void Awake()
+
+    private void Start()
     {
+        _shop = GetComponentInParent<Shop>();
+        _wallet = _shop.Wallet;
         _button = GetComponent<Button>();
         _button.onClick.AddListener(TryBuy);
     }
@@ -18,7 +23,8 @@ public class ShopItem : MonoBehaviour
     private void TryBuy()
     {
         if (_wallet.TrySpend(Price)) {
-            //изменение скина Player
+            Debug.Log("Buy");
+            PlayerPrefs.SetString("Skin", _skinName.ToString());
         }
     }
 }

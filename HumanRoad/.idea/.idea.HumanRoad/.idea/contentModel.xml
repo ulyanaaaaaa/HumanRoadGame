@@ -106,6 +106,7 @@
           </e>
           <e p="Shop" t="Include">
             <e p="Coin.cs" t="Include" />
+            <e p="Shop.cs" t="Include" />
             <e p="ShopItem.cs" t="Include" />
             <e p="ShopItemViewer.cs" t="Include" />
           </e>
@@ -118,6 +119,7 @@
           <e p="UI" t="Include">
             <e p="BestScoreCounter.cs" t="Include" />
             <e p="CoinsCounter.cs" t="Include" />
+            <e p="ExitButton.cs" t="Include" />
             <e p="HealthCounter.cs" t="Include" />
             <e p="Hurt.cs" t="Include" />
             <e p="LooseHurt.cs" t="Include" />
