@@ -121,6 +121,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light_01 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 5939302621924827289, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d4a27c82d6d237409ed9701e581bbe4, type: 2}
     - target: {fileID: 8082565330314397969, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -287,6 +291,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light_01 (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 5939302621924827289, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d4a27c82d6d237409ed9701e581bbe4, type: 2}
     - target: {fileID: 8082565330314397969, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -383,6 +391,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light_01 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 5939302621924827289, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d4a27c82d6d237409ed9701e581bbe4, type: 2}
     - target: {fileID: 8082565330314397969, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -479,6 +491,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light_01 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 5939302621924827289, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d4a27c82d6d237409ed9701e581bbe4, type: 2}
     - target: {fileID: 8082565330314397969, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -575,6 +591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light_01 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 5939302621924827289, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d4a27c82d6d237409ed9701e581bbe4, type: 2}
     - target: {fileID: 8082565330314397969, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -741,6 +761,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light_01 (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 5939302621924827289, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d4a27c82d6d237409ed9701e581bbe4, type: 2}
     - target: {fileID: 8082565330314397969, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -907,6 +931,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light_01 (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 5939302621924827289, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d4a27c82d6d237409ed9701e581bbe4, type: 2}
     - target: {fileID: 8082565330314397969, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1003,6 +1031,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light_01 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5939302621924827289, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d4a27c82d6d237409ed9701e581bbe4, type: 2}
     - target: {fileID: 8082565330314397969, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1099,6 +1131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light_01 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 5939302621924827289, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d4a27c82d6d237409ed9701e581bbe4, type: 2}
     - target: {fileID: 8082565330314397969, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1195,6 +1231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light_01 (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 5939302621924827289, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d4a27c82d6d237409ed9701e581bbe4, type: 2}
     - target: {fileID: 8082565330314397969, guid: cf29fabe5be425d4fa58702a405410ec, type: 3}
       propertyPath: m_RootOrder
       value: 9

@@ -116,6 +116,7 @@
             <e p="TerrainSpawner.cs" t="Include" />
             <e p="Water.cs" t="Include" />
           </e>
+          <e p="Timer.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="BestScoreCounter.cs" t="Include" />
             <e p="CoinsCounter.cs" t="Include" />
@@ -127,6 +128,7 @@
             <e p="PlayButton.cs" t="Include" />
             <e p="ScoreCounter.cs" t="Include" />
             <e p="ShopButton.cs" t="Include" />
+            <e p="SoundButton.cs" t="Include" />
             <e p="Wallet.cs" t="Include" />
           </e>
         </e>

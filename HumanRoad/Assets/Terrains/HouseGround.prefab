@@ -119,6 +119,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_01
       objectReference: {fileID: 0}
+    - target: {fileID: 916590980331435344, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5848551b07816f14096c97c4086ab090, type: 2}
     - target: {fileID: 1420943568377158471, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -224,6 +228,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 916590980331435344, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5848551b07816f14096c97c4086ab090, type: 2}
     - target: {fileID: 1420943568377158471, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -329,6 +337,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 916590980331435344, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5848551b07816f14096c97c4086ab090, type: 2}
     - target: {fileID: 1420943568377158471, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -574,6 +586,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_01 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 916590980331435344, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5848551b07816f14096c97c4086ab090, type: 2}
     - target: {fileID: 1420943568377158471, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -749,6 +765,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_01 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 916590980331435344, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5848551b07816f14096c97c4086ab090, type: 2}
     - target: {fileID: 1420943568377158471, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -854,6 +874,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 916590980331435344, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5848551b07816f14096c97c4086ab090, type: 2}
     - target: {fileID: 1420943568377158471, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -959,6 +983,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 916590980331435344, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5848551b07816f14096c97c4086ab090, type: 2}
     - target: {fileID: 1420943568377158471, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1064,6 +1092,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_01 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 916590980331435344, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5848551b07816f14096c97c4086ab090, type: 2}
     - target: {fileID: 1420943568377158471, guid: 2557362e4e8bcfe4486030fd8a78182a, type: 3}
       propertyPath: m_RootOrder
       value: 6

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class ShopItemViewer : MonoBehaviour
 {
+    public Action OnUpdatePrice;
+    
     [SerializeField] private TextMeshProUGUI _text;
     private Wallet _wallet;
     private Image _background;
@@ -17,6 +20,15 @@ public class ShopItemViewer : MonoBehaviour
         _shop = GetComponentInParent<Shop>();
         _wallet = _shop.Wallet;
         _background = GetComponent<Image>();
+    }
+
+    private void OnEnable()
+    {
+        OnUpdatePrice += UpdatePrice;
+    }
+
+    private void UpdatePrice()
+    {
         _text.text = "Price: " + _shopItem.Price;
     }
 

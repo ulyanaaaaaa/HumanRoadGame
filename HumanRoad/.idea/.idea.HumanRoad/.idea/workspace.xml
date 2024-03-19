@@ -12,6 +12,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ShopButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/CoinsCounter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Shop/ShopItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/SoundButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ExitButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/HealthCounter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/LooseHurt.cs" root0="FORCE_HIGHLIGHTING" />
@@ -57,10 +58,11 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Shop/Shop.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Wallet.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ExitButton.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Shop/ShopItemViewer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Core/EntryPoint.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Shop/ShopItemViewer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Shop/ShopItem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/SoundButton.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2dVjOzq5G4Rjw2T8gZCNq9cP2EK" />
@@ -105,6 +107,9 @@
       <workItem from="1710687442375" duration="9897000" />
       <workItem from="1710759661034" duration="4899000" />
       <workItem from="1710769748657" duration="3802000" />
+      <workItem from="1710780403393" duration="483000" />
+      <workItem from="1710792934936" duration="3163000" />
+      <workItem from="1710839402199" duration="2544000" />
     </task>
     <servers />
   </component>
