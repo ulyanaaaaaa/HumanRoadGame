@@ -104,6 +104,10 @@
             <e p="PlayerMovement.cs" t="Include" />
             <e p="PlayerWallet.cs" t="Include" />
           </e>
+          <e p="Save" t="Include">
+            <e p="ISaveData.cs" t="Include" />
+            <e p="SaveService.cs" t="Include" />
+          </e>
           <e p="Shop" t="Include">
             <e p="Coin.cs" t="Include" />
             <e p="Shop.cs" t="Include" />
@@ -114,9 +118,9 @@
             <e p="Barrier.cs" t="Include" />
             <e p="TerrainFactory.cs" t="Include" />
             <e p="TerrainSpawner.cs" t="Include" />
+            <e p="TimeCoin.cs" t="Include" />
             <e p="Water.cs" t="Include" />
           </e>
-          <e p="Timer.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="BestScoreCounter.cs" t="Include" />
             <e p="CoinsCounter.cs" t="Include" />
@@ -129,6 +133,8 @@
             <e p="ScoreCounter.cs" t="Include" />
             <e p="ShopButton.cs" t="Include" />
             <e p="SoundButton.cs" t="Include" />
+            <e p="Timer.cs" t="Include" />
+            <e p="TimerViewer.cs" t="Include" />
             <e p="Wallet.cs" t="Include" />
           </e>
         </e>

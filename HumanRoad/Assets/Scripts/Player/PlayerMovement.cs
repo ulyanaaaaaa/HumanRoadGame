@@ -3,7 +3,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(KeyboardInput))]
-[RequireComponent(typeof(Animator))]
 public class PlayerMovement : MonoBehaviour
 {
    private KeyboardInput _keyboardInput;
@@ -12,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
    private void Awake()
    {
        _keyboardInput = GetComponent<KeyboardInput>();
-       _animator = GetComponent<Animator>();
+       _animator = GetComponentInChildren<Animator>();
        _keyboardInput.OnLeftCliked += LeftStep;
        _keyboardInput.OnRightCliked += RightStep;
        _keyboardInput.OnRunCliked += Run;

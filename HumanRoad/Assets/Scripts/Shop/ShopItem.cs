@@ -11,7 +11,14 @@ public class ShopItem : MonoBehaviour
     private ShopItemViewer _shopItemViewer;
     private Shop _shop;
     private Button _button;
-
+    [SerializeField] private SaveService _saveService;
+    
+    public void Save()
+    {
+        Debug.Log("ShopItem: " + _skinName.text);
+        _saveService.SaveData.AddData("Player", new PlayerSaveData("Player", typeof(Player), _skinName.text));
+    }
+    
     private void Start()
     {
         _shop = GetComponentInParent<Shop>();
@@ -20,6 +27,7 @@ public class ShopItem : MonoBehaviour
         _button = GetComponent<Button>();
         _button.onClick.AddListener(TryBuy);
         _shopItemViewer.OnUpdatePrice?.Invoke();
+        _saveService = _shop.SaveService;
     }
     
     private void TryBuy()
@@ -28,7 +36,7 @@ public class ShopItem : MonoBehaviour
         {
             Price = 0;
             _shopItemViewer.OnUpdatePrice?.Invoke();
-            PlayerPrefs.SetString("Skin", _skinName.text);
+            Save();
         }
     }
 }

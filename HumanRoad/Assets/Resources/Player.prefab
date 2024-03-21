@@ -1945,6 +1945,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7706761822932928833}
+  - component: {fileID: 2178390808441756541}
   m_Layer: 0
   m_Name: Bob
   m_TagString: Untagged
@@ -1975,6 +1976,27 @@ Transform:
   m_Father: {fileID: 8416300785090907724}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2178390808441756541
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107773716764786806}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 54a60758ae0bb4645ba02eb31270e343, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3124741169864226001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5662,6 +5684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9016493840078775184}
+  - component: {fileID: 1737220431885847514}
   m_Layer: 0
   m_Name: Remy
   m_TagString: Untagged
@@ -5693,6 +5716,27 @@ Transform:
   m_Father: {fileID: 8416300785090907724}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1737220431885847514
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8532867519710820650}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 54a60758ae0bb4645ba02eb31270e343, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8556971972619830831
 GameObject:
   m_ObjectHideFlags: 0
@@ -5989,7 +6033,6 @@ GameObject:
   - component: {fileID: 5344176961973370163}
   - component: {fileID: 722492872160157769}
   - component: {fileID: 385369879985584411}
-  - component: {fileID: 7646294542364571077}
   - component: {fileID: 6491123946370881163}
   m_Layer: 0
   m_Name: Player
@@ -6086,27 +6129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47aec2e66fa021d45a2c2de76cbbf348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &7646294542364571077
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9189423878233855222}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 54a60758ae0bb4645ba02eb31270e343, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6491123946370881163
 MonoBehaviour:
   m_ObjectHideFlags: 0

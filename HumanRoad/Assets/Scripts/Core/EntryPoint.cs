@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SaveService))]
 public class EntryPoint : MonoBehaviour
 {
     [SerializeField] private List<Hurt> _hurts;
@@ -26,10 +27,15 @@ public class EntryPoint : MonoBehaviour
     private ShopButton _shopButton;
     private Shop _shop;
     private Shop _shopCreated;
+    private Timer _timer;
+    private Timer _timerCreated;
+    private SaveService _saveService;
     
 
     private void Awake()
     {
+        _saveService = GetComponent<SaveService>();
+        _timer = Resources.Load<Timer>("Timer");
         _coinsCounter = Resources.Load<CoinsCounter>("CoinsCounter");
         _menu = Resources.Load<Menu>("Menu");
         _scoreCounter = Resources.Load<ScoreCounter>("ScoreCounter");
@@ -44,8 +50,8 @@ public class EntryPoint : MonoBehaviour
         _playerCreated = Instantiate(_player, _playerStartPosition, Quaternion.Euler(0,90,0));
         _terrainSpawner.Setup(_playerCreated.GetComponent<KeyboardInput>());
         _playerCreated.OnLooseHurt += CreateLooseHurt;
-        _playerCreated.IsDie += CreateMenu;
-        _playerCreated.IsDie += DestroyLevel;
+        _playerCreated.OnDie += CreateMenu;
+        _playerCreated.OnDie += DestroyLevel;
     }
 
     private void CreateWallet()
@@ -78,6 +84,18 @@ public class EntryPoint : MonoBehaviour
         _scoreCounterCreated.GetComponent<RectTransform>().localPosition =
             _scoreCounter.GetComponent<RectTransform>().localPosition;
         _scoreCounterCreated.Setup(_playerCreated.GetComponent<KeyboardInput>());
+    }
+
+    private void CreateTimer()
+    {
+        _timerCreated = Instantiate(_timer,
+            _timer.GetComponent<RectTransform>().localPosition,
+            Quaternion.identity,
+            _canvas.transform);
+        _timerCreated.GetComponent<RectTransform>().localPosition =
+            _timer.GetComponent<RectTransform>().localPosition;
+        _timerCreated.Setup(_playerCreated);
+        _playerCreated.Setup(_timerCreated, _saveService);
     }
 
     private void CreateHurts()
@@ -123,6 +141,8 @@ public class EntryPoint : MonoBehaviour
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateScoreCounter;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateHurts;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateCoinsCounter;
+        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateTimer;
+        _menuCreated.GetComponentInChildren<Wallet>().Setup(_saveService);
     }
 
     private void CreateShop()
@@ -131,7 +151,7 @@ public class EntryPoint : MonoBehaviour
             _shop.GetComponent<Transform>().localPosition,
             Quaternion.identity,
             _canvas.transform);
-        _shopCreated.Setup(_menuCreated.GetComponentInChildren<Wallet>());
+        _shopCreated.Setup(_menuCreated.GetComponentInChildren<Wallet>(), _saveService);
         _shopCreated.GetComponent<Transform>().localPosition =
             _shop.GetComponent<Transform>().localPosition;
 
@@ -164,5 +184,6 @@ public class EntryPoint : MonoBehaviour
         Destroy(_playerCreated.gameObject);
         Destroy(_scoreCounterCreated.gameObject);
         Destroy(_coinsCounterCreated.gameObject);
+        Destroy(_timerCreated.gameObject);
     }
 }

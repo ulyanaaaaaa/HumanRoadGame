@@ -6,7 +6,7 @@ public class Water : MonoBehaviour
     {
         if (collider.gameObject.TryGetComponent(out Player player))
         {
-            player?.IsDie();
+            player?.OnDie();
         }
     }
 }
