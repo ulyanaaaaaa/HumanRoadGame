@@ -30,11 +30,17 @@ public class EntryPoint : MonoBehaviour
     private Timer _timer;
     private Timer _timerCreated;
     private SaveService _saveService;
+    private Pause _pause;
+    private Pause _pauseCreated;
+    private PauseMenu _pauseMenu;
+    private PauseMenu _pauseMenuCreated;
     
 
     private void Awake()
     {
         _saveService = GetComponent<SaveService>();
+        _pause = Resources.Load<Pause>("Pause");
+        _pauseMenu = Resources.Load<PauseMenu>("PauseMenu");
         _timer = Resources.Load<Timer>("Timer");
         _coinsCounter = Resources.Load<CoinsCounter>("CoinsCounter");
         _menu = Resources.Load<Menu>("Menu");
@@ -140,9 +146,37 @@ public class EntryPoint : MonoBehaviour
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreatePlayer;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateScoreCounter;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateHurts;
+        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreatePause;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateCoinsCounter;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateTimer;
         _menuCreated.GetComponentInChildren<Wallet>().Setup(_saveService);
+    }
+
+    private void CreatePause()
+    {
+        _pauseCreated = Instantiate(_pause,
+            _pause.GetComponent<RectTransform>().localPosition,
+            Quaternion.identity,
+            _canvas.transform);
+        _pauseCreated.GetComponent<RectTransform>().localPosition =
+            _pause.GetComponent<RectTransform>().localPosition;
+        _pauseCreated.OnPause += CreatePauseMenu;
+    }
+
+    private void CreatePauseMenu()
+    {
+        _pauseMenuCreated = Instantiate(_pauseMenu,
+            _pauseMenu.GetComponent<RectTransform>().localPosition,
+            Quaternion.identity,
+            _canvas.transform);
+        _pauseMenuCreated.GetComponent<RectTransform>().localPosition =
+            _pauseMenu.GetComponent<RectTransform>().localPosition;
+        _pauseMenuCreated.OnPlay += ClosePauseMenu;
+    }
+
+    private void ClosePauseMenu()
+    {
+        Destroy(_pauseMenuCreated.gameObject);
     }
 
     private void CreateShop()
@@ -185,5 +219,6 @@ public class EntryPoint : MonoBehaviour
         Destroy(_scoreCounterCreated.gameObject);
         Destroy(_coinsCounterCreated.gameObject);
         Destroy(_timerCreated.gameObject);
+        Destroy(_pauseCreated.gameObject);
     }
 }

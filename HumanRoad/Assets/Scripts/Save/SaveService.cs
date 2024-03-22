@@ -13,7 +13,7 @@ public class SaveService : MonoBehaviour
     private void OnEnable()
     {
         _filePath = Application.persistentDataPath + "/Save.json";
-        Save();
+        Load();
     }
     
     public void Save()

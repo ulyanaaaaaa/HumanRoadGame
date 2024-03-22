@@ -129,6 +129,8 @@
             <e p="Hurt.cs" t="Include" />
             <e p="LooseHurt.cs" t="Include" />
             <e p="Menu.cs" t="Include" />
+            <e p="Pause.cs" t="Include" />
+            <e p="PauseMenu.cs" t="Include" />
             <e p="PlayButton.cs" t="Include" />
             <e p="ScoreCounter.cs" t="Include" />
             <e p="ShopButton.cs" t="Include" />

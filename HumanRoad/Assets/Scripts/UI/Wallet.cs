@@ -9,7 +9,7 @@ public class Wallet : MonoBehaviour, ISaveData
     
     private TextMeshProUGUI _counter;
     private SaveService _saveService;
-    public int CoinsCount { get; private set; }
+    [field: SerializeField] public int CoinsCount { get; private set; }
 
     public void Setup(SaveService saveService)
     {
