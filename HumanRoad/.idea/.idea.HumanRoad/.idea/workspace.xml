@@ -21,6 +21,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Shop/ShopItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Save/ISaveData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Shop/Shop.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/SoundMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Wallet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Save/SaveService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerWallet.cs" root0="FORCE_HIGHLIGHTING" />
@@ -56,7 +57,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Shop/Coin.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ScoreCounter.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/CoinsCounter.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWallet.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ShopButton.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ExitButton.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Shop/ShopItemViewer.cs" />
@@ -70,9 +70,11 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Shop/ShopItem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Save/SaveService.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/Wallet.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Pause.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWallet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/Wallet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/SoundMenu.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Core/EntryPoint.cs" />
     </changedPaths>
   </component>
@@ -126,6 +128,7 @@
       <workItem from="1710967689466" duration="1209000" />
       <workItem from="1711044480329" duration="11416000" />
       <workItem from="1711131440224" duration="3962000" />
+      <workItem from="1711208260587" duration="2723000" />
     </task>
     <servers />
   </component>

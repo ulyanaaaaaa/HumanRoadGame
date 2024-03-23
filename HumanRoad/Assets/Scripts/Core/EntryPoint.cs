@@ -34,11 +34,14 @@ public class EntryPoint : MonoBehaviour
     private Pause _pauseCreated;
     private PauseMenu _pauseMenu;
     private PauseMenu _pauseMenuCreated;
+    private SoundMenu _soundMenu;
+    private SoundMenu _soundMenuCreated;
     
 
     private void Awake()
     {
         _saveService = GetComponent<SaveService>();
+        _soundMenu = Resources.Load<SoundMenu>("SoundMenu");
         _pause = Resources.Load<Pause>("Pause");
         _pauseMenu = Resources.Load<PauseMenu>("PauseMenu");
         _timer = Resources.Load<Timer>("Timer");
@@ -68,6 +71,17 @@ public class EntryPoint : MonoBehaviour
             _canvas.transform);
         _walletCreated.GetComponent<RectTransform>().localPosition =
             _wallet.GetComponent<RectTransform>().localPosition;
+    }
+
+    private void CreateSoundMenu()
+    {
+        _soundMenuCreated = Instantiate(_soundMenu,
+            _soundMenu.GetComponent<RectTransform>().localPosition,
+            Quaternion.identity,
+            _canvas.transform);
+        _soundMenuCreated.GetComponent<RectTransform>().localPosition =
+            _soundMenu.GetComponent<RectTransform>().localPosition;
+        _soundMenuCreated.GetComponentInChildren<ExitButton>().OnExit += CloseSoundMenu;
     }
 
     private void CreateCoinsCounter()
@@ -149,6 +163,7 @@ public class EntryPoint : MonoBehaviour
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreatePause;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateCoinsCounter;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateTimer;
+        _menuCreated.GetComponentInChildren<SoundButton>().OnPlay += CreateSoundMenu;
         _menuCreated.GetComponentInChildren<Wallet>().Setup(_saveService);
     }
 
@@ -195,6 +210,11 @@ public class EntryPoint : MonoBehaviour
     private void CloseShop()
     {
         Destroy(_shopCreated.gameObject);
+    }
+    
+    private void CloseSoundMenu()
+    {
+        Destroy(_soundMenuCreated.gameObject);
     }
 
     private void DestroyMenu()

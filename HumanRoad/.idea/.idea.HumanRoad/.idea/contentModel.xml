@@ -135,6 +135,7 @@
             <e p="ScoreCounter.cs" t="Include" />
             <e p="ShopButton.cs" t="Include" />
             <e p="SoundButton.cs" t="Include" />
+            <e p="SoundMenu.cs" t="Include" />
             <e p="Timer.cs" t="Include" />
             <e p="TimerViewer.cs" t="Include" />
             <e p="Wallet.cs" t="Include" />

@@ -48,7 +48,7 @@ public class Wallet : MonoBehaviour, ISaveData
     
     public bool TrySpend(int value)
     {
-        if (value < CoinsCount)
+        if (value <= CoinsCount)
         {
             RemoveCoins(value);
             return true;
