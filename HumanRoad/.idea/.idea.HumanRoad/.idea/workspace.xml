@@ -17,6 +17,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/TimerViewer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/BestScoreCounter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Shop/Coin.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/SwipeDetection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/CoinsCounter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Shop/ShopItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Save/ISaveData.cs" root0="FORCE_HIGHLIGHTING" />
@@ -45,7 +46,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/LogSpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Water.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Core/KeyboardInput.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Terrain/TerrainFactory.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/HealthCounter.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/LooseHurt.cs" />
@@ -61,21 +61,23 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ExitButton.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Shop/ShopItemViewer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/SoundButton.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/TimerViewer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/Timer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Terrain/TimeCoin.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Save/ISaveData.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Shop/Shop.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Shop/ShopItem.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Save/SaveService.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Pause.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWallet.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/Wallet.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/SoundMenu.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Core/EntryPoint.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/Timer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Save/SaveService.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/Wallet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Core/KeyboardInput.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Core/SwipeDetection.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2dVjOzq5G4Rjw2T8gZCNq9cP2EK" />
@@ -129,6 +131,8 @@
       <workItem from="1711044480329" duration="11416000" />
       <workItem from="1711131440224" duration="3962000" />
       <workItem from="1711208260587" duration="2723000" />
+      <workItem from="1711379058248" duration="3900000" />
+      <workItem from="1711478059391" duration="8385000" />
     </task>
     <servers />
   </component>

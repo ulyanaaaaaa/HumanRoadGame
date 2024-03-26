@@ -6,6 +6,7 @@ public class Timer : MonoBehaviour
 {
     public Action OnDie;
     public Action<float,float> OnDurationChanged;
+    public bool IsTook { get; private set; }
 
     [SerializeField] private float _duration;
     private float _startDuration;
@@ -25,9 +26,11 @@ public class Timer : MonoBehaviour
 
     public IEnumerator StopTimerCoroutine(float time)
     {
+        IsTook = true;
         StopCoroutine(_timerTick);
         yield return new WaitForSeconds(time);
-        StartCoroutine(TimerTick());
+        IsTook = false;
+        _timerTick = StartCoroutine(TimerTick());
     }
 
     private IEnumerator TimerTick()

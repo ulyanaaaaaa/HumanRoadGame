@@ -17,13 +17,13 @@ public class KeyboardInput : MonoBehaviour
             OnScoreChanged?.Invoke(transform.position.x);
         }
 
-        if(Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
             OnRightCliked?.Invoke();
-        
-        if(Input.GetKeyDown(KeyCode.A))
+
+        if (Input.GetKeyDown(KeyCode.A))
             OnLeftCliked?.Invoke();
-        
-        if(Input.GetKeyDown(KeyCode.S))
+
+        if (Input.GetKeyDown(KeyCode.S))
             OnBackCliKed?.Invoke();
     }
 }

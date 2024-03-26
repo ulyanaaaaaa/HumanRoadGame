@@ -34,6 +34,7 @@ public class Player : MonoBehaviour, ISaveData
     {
         _saveService.SaveData.AddData(Id, new PlayerSaveData(Id, typeof(Player), _currentSkin));
         Debug.Log("SavePLayer " + _currentSkin);
+        _saveService.Save();
     }
 
     public void Load()

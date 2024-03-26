@@ -93,6 +93,7 @@
           <e p="Core" t="Include">
             <e p="EntryPoint.cs" t="Include" />
             <e p="KeyboardInput.cs" t="Include" />
+            <e p="SwipeDetection.cs" t="Include" />
           </e>
           <e p="Log" t="Include">
             <e p="Log.cs" t="Include" />

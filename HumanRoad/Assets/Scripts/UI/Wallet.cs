@@ -20,6 +20,7 @@ public class Wallet : MonoBehaviour, ISaveData
     {
         _saveService.SaveData.AddData(Id, new WalletSaveData(Id, typeof(Wallet), CoinsCount));
         Debug.Log("SaveWallet " + CoinsCount);
+        _saveService.Save();
     }
 
     public void Load()
