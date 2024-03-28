@@ -13,7 +13,8 @@ public class SaveService : MonoBehaviour
     private void OnEnable()
     {
         _filePath = Application.persistentDataPath + "/Save.json";
-        Save();
+        Debug.Log(_filePath);
+        Load();
     }
     
     public void Save()
@@ -30,7 +31,6 @@ public class SaveService : MonoBehaviour
         {
             object loadedData = new BinaryFormatter().Deserialize(file);
             SaveData = (GameSaveData)loadedData;
-            Debug.Log(_filePath);
         }
     }
 }

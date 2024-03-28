@@ -41,15 +41,15 @@ public class EntryPoint : MonoBehaviour
     private void Awake()
     {
         _saveService = GetComponent<SaveService>();
-        _soundMenu = Resources.Load<SoundMenu>("SoundMenu");
-        _pause = Resources.Load<Pause>("Pause");
-        _pauseMenu = Resources.Load<PauseMenu>("PauseMenu");
-        _timer = Resources.Load<Timer>("Timer");
-        _coinsCounter = Resources.Load<CoinsCounter>("CoinsCounter");
-        _menu = Resources.Load<Menu>("Menu");
-        _scoreCounter = Resources.Load<ScoreCounter>("ScoreCounter");
-        _player = Resources.Load<Player>("Player");
-        _shop = Resources.Load<Shop>("Shop");
+        _soundMenu = Resources.Load<SoundMenu>(ObjectsPath.SoundMenu);
+        _pause = Resources.Load<Pause>(ObjectsPath.Pause);
+        _pauseMenu = Resources.Load<PauseMenu>(ObjectsPath.PauseMenu);
+        _timer = Resources.Load<Timer>(ObjectsPath.Timer);
+        _coinsCounter = Resources.Load<CoinsCounter>(ObjectsPath.CoinsCounter);
+        _menu = Resources.Load<Menu>(ObjectsPath.Menu);
+        _scoreCounter = Resources.Load<ScoreCounter>(ObjectsPath.ScoreCounter);
+        _player = Resources.Load<Player>(ObjectsPath.Player);
+        _shop = Resources.Load<Shop>(ObjectsPath.Shop);
         _terrainSpawner = GetComponent<TerrainSpawner>();
         CreateMenu();
     }
@@ -109,18 +109,17 @@ public class EntryPoint : MonoBehaviour
     private void CreateTimer()
     {
         _timerCreated = Instantiate(_timer,
-            _timer.GetComponent<RectTransform>().localPosition,
+            new Vector3(2500, 700, 0), //???
             Quaternion.identity,
             _canvas.transform);
-        _timerCreated.GetComponent<RectTransform>().localPosition =
-            _timer.GetComponent<RectTransform>().localPosition;
-        _timerCreated.Setup(_playerCreated);
+        
+        _timerCreated.Setup(_playerCreated); 
         _playerCreated.Setup(_timerCreated, _saveService);
     }
 
     private void CreateHurts()
     {
-        _hurt = Resources.Load<Hurt>("Hurt");
+        _hurt = Resources.Load<Hurt>(ObjectsPath.Hurt);
         
         for (int i = 0; i < 3; i++)
         {
@@ -136,7 +135,7 @@ public class EntryPoint : MonoBehaviour
 
     private void CreateLooseHurt()
     {
-        _looseHurt = Resources.Load<LooseHurt>("LooseHurt");
+        _looseHurt = Resources.Load<LooseHurt>(ObjectsPath.LooseHurt);
         _looseHurtCreated = Instantiate(_looseHurt,
             _hurts[0].GetComponent<RectTransform>().localPosition,
             Quaternion.identity,

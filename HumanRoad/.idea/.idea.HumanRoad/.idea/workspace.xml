@@ -25,11 +25,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/SoundMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Wallet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Save/SaveService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/ObjectsPath.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerWallet.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/KeyboardInput.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/TerrainGererator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/TerrainFactory.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EntryPoint.cs" />
@@ -68,16 +68,19 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Shop/ShopItem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Pause.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWallet.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/SoundMenu.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Core/EntryPoint.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Timer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Save/SaveService.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/Wallet.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Core/KeyboardInput.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Core/SwipeDetection.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWallet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Save/SaveService.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/Wallet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Core/EntryPoint.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Car/CarFactory.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Core/ObjectsPath.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Log/LogFactory.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2dVjOzq5G4Rjw2T8gZCNq9cP2EK" />
@@ -132,7 +135,9 @@
       <workItem from="1711131440224" duration="3962000" />
       <workItem from="1711208260587" duration="2723000" />
       <workItem from="1711379058248" duration="3900000" />
-      <workItem from="1711478059391" duration="8385000" />
+      <workItem from="1711478059391" duration="11392000" />
+      <workItem from="1711555392085" duration="1153000" />
+      <workItem from="1711609966347" duration="5672000" />
     </task>
     <servers />
   </component>

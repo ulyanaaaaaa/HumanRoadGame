@@ -81,7 +81,15 @@
           </e>
         </e>
         <e p="Resources" t="Include">
+          <e p="Coin" t="Include" />
+          <e p="LevelItems" t="Include" />
+          <e p="Menu" t="Include" />
+          <e p="Player" t="Include" />
+          <e p="Shop" t="Include" />
           <e p="SkinPictures" t="Include" />
+          <e p="UI" t="Include">
+            <e p="Counters" t="Include" />
+          </e>
         </e>
         <e p="Scenes" t="Include" />
         <e p="Scripts" t="Include">
@@ -93,6 +101,7 @@
           <e p="Core" t="Include">
             <e p="EntryPoint.cs" t="Include" />
             <e p="KeyboardInput.cs" t="Include" />
+            <e p="ObjectsPath.cs" t="Include" />
             <e p="SwipeDetection.cs" t="Include" />
           </e>
           <e p="Log" t="Include">
@@ -142,6 +151,7 @@
             <e p="Wallet.cs" t="Include" />
           </e>
         </e>
+        <e p="Sounds" t="Include" />
         <e p="Terrains" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Documentation" t="Include" />

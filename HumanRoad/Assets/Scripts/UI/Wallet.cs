@@ -18,32 +18,30 @@ public class Wallet : MonoBehaviour, ISaveData
     
     public void Save()
     {
-        _saveService.SaveData.AddData(Id, new WalletSaveData(Id, typeof(Wallet), CoinsCount));
-        Debug.Log("SaveWallet " + CoinsCount);
+        _saveService.SaveData.AddData(Id, new WalletSaveData(Id, typeof(Wallet), CoinsCount)); //не сохраняет
+        Debug.Log("Cохраненные монеты                 " + CoinsCount);
         _saveService.Save();
     }
 
     public void Load()
-    {
-        Debug.Log("LoadWallet");
+    {  
+        _saveService.Load();
         if (_saveService.SaveData.TryGetData(Id, out WalletSaveData walletSaveData))
         {
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + walletSaveData.CoinsCount);
-            CoinsCount = walletSaveData.CoinsCount;
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + CoinsCount);
+            CoinsCount = walletSaveData.CoinsCount + 1 + PlayerPrefs.GetInt("Coins");
+            Debug.Log("Загруженные монеты из уровня  " + PlayerPrefs.GetInt("Coins"));
+            Debug.Log("Загруженные монеты из сохранения  " + walletSaveData.CoinsCount);
         }
+      
     }
-    
+
     private void Start()
     {
         Id = "Wallet";
-        _counter = GetComponent<TextMeshProUGUI>();
-        
         Load();
         
-        if (PlayerPrefs.HasKey("Coins"))
-            CoinsCount += PlayerPrefs.GetInt("Coins");
-        
+        _counter = GetComponent<TextMeshProUGUI>();
+
         UpdateCounter();
     }
     
@@ -88,5 +86,6 @@ public class WalletSaveData : SaveData
     public WalletSaveData(string id, Type type, int coinsCount) : base(id, type)
     {
         CoinsCount = coinsCount;
+        Debug.Log("WalletSaveData      "+CoinsCount);
     }
 }
