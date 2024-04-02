@@ -26,7 +26,9 @@ public class ScoreCounter : MonoBehaviour
     private void ChangedCounter(int count)
     {
         if (count > _score)
+        {
             _score = count;
+        }
 
         _counter.text = _score.ToString();
         CompareScore(_score);

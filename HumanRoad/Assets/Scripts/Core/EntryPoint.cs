@@ -9,6 +9,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private Canvas _canvas;
     [SerializeField] private Vector3 _playerStartPosition;
 
+    private Translator _translator;
     private Wallet _wallet;
     private Wallet _walletCreated;
     private TerrainSpawner _terrainSpawner;
@@ -36,10 +37,13 @@ public class EntryPoint : MonoBehaviour
     private PauseMenu _pauseMenuCreated;
     private SoundMenu _soundMenu;
     private SoundMenu _soundMenuCreated;
-    
+    private LanguageMenu _languageMenu;
+    private LanguageMenu _languageMenuCreated;
 
     private void Awake()
     {
+        _terrainSpawner = GetComponent<TerrainSpawner>();
+        _translator = GetComponent<Translator>();
         _saveService = GetComponent<SaveService>();
         _soundMenu = Resources.Load<SoundMenu>(ObjectsPath.SoundMenu);
         _pause = Resources.Load<Pause>(ObjectsPath.Pause);
@@ -50,7 +54,7 @@ public class EntryPoint : MonoBehaviour
         _scoreCounter = Resources.Load<ScoreCounter>(ObjectsPath.ScoreCounter);
         _player = Resources.Load<Player>(ObjectsPath.Player);
         _shop = Resources.Load<Shop>(ObjectsPath.Shop);
-        _terrainSpawner = GetComponent<TerrainSpawner>();
+        _languageMenu = Resources.Load<LanguageMenu>(ObjectsPath.LanguageMenu);
         CreateMenu();
     }
 
@@ -82,6 +86,7 @@ public class EntryPoint : MonoBehaviour
         _soundMenuCreated.GetComponent<RectTransform>().localPosition =
             _soundMenu.GetComponent<RectTransform>().localPosition;
         _soundMenuCreated.GetComponentInChildren<ExitButton>().OnExit += CloseSoundMenu;
+        _soundMenuCreated.Setup(_translator);
     }
 
     private void CreateCoinsCounter()
@@ -109,10 +114,11 @@ public class EntryPoint : MonoBehaviour
     private void CreateTimer()
     {
         _timerCreated = Instantiate(_timer,
-            new Vector3(2500, 700, 0), //???
+            _timer.GetComponent<RectTransform>().position, //???
             Quaternion.identity,
             _canvas.transform);
-        
+
+        _timerCreated.GetComponent<RectTransform>().position = _timer.GetComponent<RectTransform>().position;
         _timerCreated.Setup(_playerCreated); 
         _playerCreated.Setup(_timerCreated, _saveService);
     }
@@ -162,7 +168,22 @@ public class EntryPoint : MonoBehaviour
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreatePause;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateCoinsCounter;
         _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateTimer;
+        
+        _menuCreated.GetComponentInChildren<PlayButton>().GetComponent<TextTranslator>().
+            Setup(_translator);
+        _menuCreated.GetComponentInChildren<BestScoreCounter>().GetComponent<TextTranslator>().
+            Setup(_translator);
+        _menuCreated.GetComponentInChildren<Wallet>().GetComponent<TextTranslator>().
+            Setup(_translator);
+        _menuCreated.GetComponentInChildren<ShopButton>().GetComponent<TextTranslator>().
+            Setup(_translator);
+        _menuCreated.GetComponentInChildren<SoundButton>().GetComponent<TextTranslator>().
+            Setup(_translator);
+        _menuCreated.GetComponentInChildren<LanguageButton>().GetComponent<TextTranslator>().
+            Setup(_translator);
+        
         _menuCreated.GetComponentInChildren<SoundButton>().OnPlay += CreateSoundMenu;
+        _menuCreated.GetComponentInChildren<LanguageButton>().OnClick += CreateLanguageMenu;
         _menuCreated.GetComponentInChildren<Wallet>().Setup(_saveService);
     }
 
@@ -186,6 +207,24 @@ public class EntryPoint : MonoBehaviour
         _pauseMenuCreated.GetComponent<RectTransform>().localPosition =
             _pauseMenu.GetComponent<RectTransform>().localPosition;
         _pauseMenuCreated.OnPlay += ClosePauseMenu;
+        _pauseMenuCreated.GetComponentInChildren<TextTranslator>().Setup(_translator);
+    }
+
+    private void CreateLanguageMenu()
+    {
+        _languageMenuCreated = Instantiate(_languageMenu,
+            _languageMenu.GetComponent<RectTransform>().localPosition,
+            Quaternion.identity,
+            _canvas.transform);
+        _languageMenuCreated.GetComponent<RectTransform>().localPosition =
+            _languageMenu.GetComponent<RectTransform>().localPosition;
+        _languageMenuCreated.Setup(_translator);
+        _languageMenuCreated.GetComponentInChildren<ExitButton>().OnExit += CloseLanguageMenu;
+    }
+
+    private void CloseLanguageMenu()
+    {
+        Destroy(_languageMenuCreated.gameObject);
     }
 
     private void ClosePauseMenu()
@@ -199,7 +238,7 @@ public class EntryPoint : MonoBehaviour
             _shop.GetComponent<Transform>().localPosition,
             Quaternion.identity,
             _canvas.transform);
-        _shopCreated.Setup(_menuCreated.GetComponentInChildren<Wallet>(), _saveService);
+        _shopCreated.Setup(_menuCreated.GetComponentInChildren<Wallet>(), _saveService, _translator);
         _shopCreated.GetComponent<Transform>().localPosition =
             _shop.GetComponent<Transform>().localPosition;
 

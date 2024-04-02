@@ -1,18 +1,22 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    private Button _button;
     public Action OnPlay;
+    public Translator Translator;
+
+    public void Setup(Translator translator)
+    {
+        Translator = translator;
+    }
 
     private void Start()
     {
-        _button = GetComponentInChildren<Button>();
+        GetComponentInChildren<TextTranslator>().SetId("go");
     }
 
-    public void OnClick()
+    public void Click()
     {
         Time.timeScale = 1;
         OnPlay?.Invoke();

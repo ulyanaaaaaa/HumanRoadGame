@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 13.19, y: 0}
+  m_AnchoredPosition: {x: 13.189941, y: 0}
   m_SizeDelta: {x: -1821.2, y: -979.8016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2992543089073079592
@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 7269898856002629212}
   - component: {fileID: 7003836696541677254}
   - component: {fileID: 6921525799657899853}
+  - component: {fileID: 7953571422225128675}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -164,8 +165,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 15.87977, y: 27.20474}
+  m_AnchoredPosition: {x: 0.18012, y: -0.1}
+  m_SizeDelta: {x: 40.73218, y: 63.08344}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7269898856002629212
 CanvasRenderer:
@@ -251,7 +252,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2992543089073079592}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: OnClick
+        m_MethodName: Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -261,6 +262,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7953571422225128675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641011502545460393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e767be7969e1fd4d9ad071f751f536e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _language: 0
+  _translator: {fileID: 0}
+  _id: 
 --- !u!1 &8490258717964090847
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,8 +312,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.5, y: -4.2}
-  m_SizeDelta: {x: 18.80234, y: 15.9863}
+  m_AnchoredPosition: {x: 0.20581, y: -1.3711799}
+  m_SizeDelta: {x: 30.1719, y: 19.86139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4262223942300443625
 CanvasRenderer:
@@ -361,8 +377,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -390,7 +406,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 1.6387205, w: 0.21491009}
+  m_margin: {x: -0.60813427, y: -1.4177499, z: -0.51993465, w: 0.21491009}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

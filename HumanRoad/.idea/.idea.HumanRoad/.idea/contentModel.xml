@@ -82,6 +82,7 @@
         </e>
         <e p="Resources" t="Include">
           <e p="Coin" t="Include" />
+          <e p="Dictionary.txt" t="Include" />
           <e p="LevelItems" t="Include" />
           <e p="Menu" t="Include" />
           <e p="Player" t="Include" />
@@ -103,6 +104,8 @@
             <e p="KeyboardInput.cs" t="Include" />
             <e p="ObjectsPath.cs" t="Include" />
             <e p="SwipeDetection.cs" t="Include" />
+            <e p="TextTranslator.cs" t="Include" />
+            <e p="Translator.cs" t="Include" />
           </e>
           <e p="Log" t="Include">
             <e p="Log.cs" t="Include" />
@@ -137,8 +140,11 @@
             <e p="ExitButton.cs" t="Include" />
             <e p="HealthCounter.cs" t="Include" />
             <e p="Hurt.cs" t="Include" />
+            <e p="LanguageButton.cs" t="Include" />
+            <e p="LanguageMenu.cs" t="Include" />
             <e p="LooseHurt.cs" t="Include" />
             <e p="Menu.cs" t="Include" />
+            <e p="MusicSlider.cs" t="Include" />
             <e p="Pause.cs" t="Include" />
             <e p="PauseMenu.cs" t="Include" />
             <e p="PlayButton.cs" t="Include" />
@@ -146,6 +152,7 @@
             <e p="ShopButton.cs" t="Include" />
             <e p="SoundButton.cs" t="Include" />
             <e p="SoundMenu.cs" t="Include" />
+            <e p="SoundSlider.cs" t="Include" />
             <e p="Timer.cs" t="Include" />
             <e p="TimerViewer.cs" t="Include" />
             <e p="Wallet.cs" t="Include" />

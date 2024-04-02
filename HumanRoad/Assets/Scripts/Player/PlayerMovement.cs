@@ -29,6 +29,19 @@ public class PlayerMovement : MonoBehaviour
        _swipeDetection.OnRightSwipe += RightStep;
    }
    
+   private void OnDisable()
+   {
+       _keyboardInput.OnLeftCliked -= LeftStep;
+       _keyboardInput.OnRightCliked -= RightStep;
+       _keyboardInput.OnRunCliked -= Run;
+       _keyboardInput.OnBackCliKed -= GoBack;
+
+       _swipeDetection.OnBackSwipe -= GoBack;
+       _swipeDetection.OnRunSwipe -= Run;
+       _swipeDetection.OnLeftSwipe -= LeftStep;
+       _swipeDetection.OnRightSwipe -= RightStep;
+   }
+   
    private void Run()
    {
        Move(new Vector3(1,0,0));

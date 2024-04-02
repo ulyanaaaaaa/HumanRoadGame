@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
+[RequireComponent(typeof(TextTranslator))]
 public class Wallet : MonoBehaviour, ISaveData
 {
     public string Id { get; set; }
@@ -37,7 +38,8 @@ public class Wallet : MonoBehaviour, ISaveData
 
     private void Start()
     {
-        Id = "Wallet";
+        Id = "wallet";
+        GetComponent<TextTranslator>().SetId(Id);
         Load();
         
         _counter = GetComponent<TextMeshProUGUI>();
@@ -73,7 +75,7 @@ public class Wallet : MonoBehaviour, ISaveData
 
     private void UpdateCounter()
     {
-        _counter.text = "Wallet: " + CoinsCount;
+        _counter.text = "Wallet: " + CoinsCount; // TODO: _translate.Translate(wallet) + 
         Save();
     }
 }

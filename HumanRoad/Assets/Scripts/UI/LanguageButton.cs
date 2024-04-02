@@ -4,17 +4,17 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
 [RequireComponent(typeof(TextTranslator))]
-public class PlayButton : MonoBehaviour
+public class LanguageButton : MonoBehaviour
 {
-    public Action OnPlay;
+    public Action OnClick;
 
     public void Click()
     {
-        OnPlay?.Invoke();
+        OnClick?.Invoke();
     }
-
+    
     private void Awake()
     {
-        GetComponent<TextTranslator>().SetId("main_play");
+        GetComponent<TextTranslator>().SetId("language_button");
     }
 }

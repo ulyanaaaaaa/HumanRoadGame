@@ -5,7 +5,7 @@ public class ExitButton : MonoBehaviour
 {
     public Action OnExit;
 
-    public void OnClick()
+    public void Click()
     {
         OnExit?.Invoke();
     }

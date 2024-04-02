@@ -13,4 +13,6 @@ public static class ObjectsPath
     public static string LooseHurt = "UI/LooseHurt";
     public static string Hurt = "UI/Hurt";
     public static string Log = "LevelItems/Log";
+    public static string Dictionary = "Dictionary";
+    public static string LanguageMenu = "Menu/LanguageMenu";
 }

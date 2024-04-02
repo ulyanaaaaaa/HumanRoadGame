@@ -1,12 +1,20 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(Button))]
+[RequireComponent(typeof(TextTranslator))]
 public class SoundButton : MonoBehaviour
 {
     public Action OnPlay;
 
-    public void OnClick()
+    public void Click()
     {
         OnPlay?.Invoke();
+    }
+    
+    private void Awake()
+    {
+        GetComponent<TextTranslator>().SetId("sound_button");
     }
 }

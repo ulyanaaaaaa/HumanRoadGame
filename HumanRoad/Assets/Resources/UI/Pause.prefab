@@ -98,7 +98,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1808998248650256378}
         m_TargetAssemblyTypeName: Pause, Assembly-CSharp
-        m_MethodName: OnClick
+        m_MethodName: Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

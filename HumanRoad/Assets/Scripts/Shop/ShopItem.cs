@@ -12,13 +12,13 @@ public class ShopItem : MonoBehaviour
     private Shop _shop;
     private Button _button;
     [SerializeField] private SaveService _saveService;
-    
+
     public void Save()
     {
         Debug.Log("ShopItem: " + _skinName.text);
         _saveService.SaveData.AddData("Player", new PlayerSaveData("Player", typeof(Player), _skinName.text));
     }
-    
+
     private void Start()
     {
         _shop = GetComponentInParent<Shop>();

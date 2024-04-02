@@ -1,0 +1,15 @@
+id	Ru	Eng
+main_play	ИГРАТЬ	PLAY
+shop	МАГАЗИН	SHOP
+language_button	язык	language
+sound_button	звуки	sound
+wallet	КОШЕЛЕК WALLET
+best_score	ТВОЙ ЛУЧШИЙ РЕЗУЛЬТАТ:	YOUR BEST SCORE:
+go	ВПЕРЕД	GO
+music	Музыка	Music
+sound	�����	Sound
+price	����: 	price:
+Bob_name	���	Bob
+Remy_name	����	Remy
+russian	�������	Russian
+english	����������	English
