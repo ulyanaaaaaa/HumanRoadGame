@@ -10,6 +10,7 @@ public class Wallet : MonoBehaviour, ISaveData
     
     private TextMeshProUGUI _counter;
     private SaveService _saveService;
+    private TextTranslator _textTranslator;
     [field: SerializeField] public int CoinsCount { get; private set; }
 
     public void Setup(SaveService saveService)
@@ -35,11 +36,17 @@ public class Wallet : MonoBehaviour, ISaveData
         }
       
     }
+    
+    private void Awake()
+    {
+        _textTranslator = GetComponent<TextTranslator>();
+        _textTranslator.TranslateText += UpdateCounter;
+    }
 
     private void Start()
     {
         Id = "wallet";
-        GetComponent<TextTranslator>().SetId(Id);
+        GetComponent<TextTranslator>().Id = Id;
         Load();
         
         _counter = GetComponent<TextMeshProUGUI>();
@@ -75,7 +82,7 @@ public class Wallet : MonoBehaviour, ISaveData
 
     private void UpdateCounter()
     {
-        _counter.text = "Wallet: " + CoinsCount; // TODO: _translate.Translate(wallet) + 
+        _counter.text = _textTranslator.Translate(Id) + '\n'+ CoinsCount;  
         Save();
     }
 }

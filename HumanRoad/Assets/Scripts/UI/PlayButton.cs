@@ -15,6 +15,6 @@ public class PlayButton : MonoBehaviour
 
     private void Awake()
     {
-        GetComponent<TextTranslator>().SetId("main_play");
+        GetComponent<TextTranslator>().Id = "main_play";
     }
 }

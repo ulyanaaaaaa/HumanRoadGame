@@ -13,7 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        GetComponentInChildren<TextTranslator>().SetId("go");
+        GetComponentInChildren<TextTranslator>().Id = "go";
     }
 
     public void Click()

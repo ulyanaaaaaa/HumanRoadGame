@@ -15,6 +15,6 @@ public class SoundButton : MonoBehaviour
     
     private void Awake()
     {
-        GetComponent<TextTranslator>().SetId("sound_button");
+        GetComponent<TextTranslator>().Id = "sound_button";
     }
 }

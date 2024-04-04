@@ -8,6 +8,9 @@ public class EntryPoint : MonoBehaviour
 
     [SerializeField] private Canvas _canvas;
     [SerializeField] private Vector3 _playerStartPosition;
+    [SerializeField] private RectTransform _timerPosition;
+    [SerializeField] private RectTransform _hurtsPosition;
+    [SerializeField] private RectTransform _pausePosition;
 
     private Translator _translator;
     private Wallet _wallet;
@@ -114,11 +117,10 @@ public class EntryPoint : MonoBehaviour
     private void CreateTimer()
     {
         _timerCreated = Instantiate(_timer,
-            _timer.GetComponent<RectTransform>().position, //???
+            _timerPosition.GetComponent<RectTransform>().position, 
             Quaternion.identity,
             _canvas.transform);
-
-        _timerCreated.GetComponent<RectTransform>().position = _timer.GetComponent<RectTransform>().position;
+        
         _timerCreated.Setup(_playerCreated); 
         _playerCreated.Setup(_timerCreated, _saveService);
     }
@@ -130,11 +132,9 @@ public class EntryPoint : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             _hurtCreated = Instantiate(_hurt,
-                _hurt.GetComponent<RectTransform>().localPosition + new Vector3(135f * i, 0, 0),
+                _hurtsPosition.GetComponent<RectTransform>().position - new Vector3(135f * i, 0, 0),
                 Quaternion.identity,
                 _canvas.transform);
-            _hurtCreated.GetComponent<RectTransform>().localPosition =
-                _hurt.GetComponent<RectTransform>().localPosition + new Vector3(135f * i, 0, 0);
             _hurts.Add(_hurtCreated);
         }
     }
@@ -143,11 +143,9 @@ public class EntryPoint : MonoBehaviour
     {
         _looseHurt = Resources.Load<LooseHurt>(ObjectsPath.LooseHurt);
         _looseHurtCreated = Instantiate(_looseHurt,
-            _hurts[0].GetComponent<RectTransform>().localPosition,
+            _hurts[0].GetComponent<RectTransform>().position,
             Quaternion.identity,
             _canvas.transform);
-        _looseHurtCreated.GetComponent<RectTransform>().localPosition =
-            _hurts[0].GetComponent<RectTransform>().localPosition;
         _hurts.RemoveAt(0);
     }
 
@@ -190,11 +188,9 @@ public class EntryPoint : MonoBehaviour
     private void CreatePause()
     {
         _pauseCreated = Instantiate(_pause,
-            _pause.GetComponent<RectTransform>().localPosition,
+            _pausePosition.GetComponent<RectTransform>().position,
             Quaternion.identity,
             _canvas.transform);
-        _pauseCreated.GetComponent<RectTransform>().localPosition =
-            _pause.GetComponent<RectTransform>().localPosition;
         _pauseCreated.OnPause += CreatePauseMenu;
     }
 

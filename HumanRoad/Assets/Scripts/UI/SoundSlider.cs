@@ -10,7 +10,7 @@ public class SoundSlider : MonoBehaviour
     
     private void Awake()
     {
-        GetComponent<TextTranslator>().SetId("sound");
+        GetComponent<TextTranslator>().Id = "sound";
         _audioSource = GetComponent<AudioSource>();
         _slider = GetComponentInChildren<Slider>();
         

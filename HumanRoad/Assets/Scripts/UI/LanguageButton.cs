@@ -15,6 +15,6 @@ public class LanguageButton : MonoBehaviour
     
     private void Awake()
     {
-        GetComponent<TextTranslator>().SetId("language_button");
+        GetComponent<TextTranslator>().Id = "language_button";
     }
 }

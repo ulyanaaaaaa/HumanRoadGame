@@ -15,6 +15,6 @@ public class ShopButton : MonoBehaviour
     
     private void Awake()
     {
-        GetComponent<TextTranslator>().SetId("shop");
+        GetComponent<TextTranslator>().Id = "shop";
     }
 }

@@ -58,31 +58,31 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Log/LogFactory.cs" />
       <option value="$PROJECT_DIR$/Assets/SettingsButton.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/SettingsButton.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/BestScoreCounter.cs" />
       <option value="$PROJECT_DIR$/Assets/MusicSlider.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Shop/ShopItem.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Shop/Shop.cs" />
       <option value="$PROJECT_DIR$/Assets/SoundSlider.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/SoundMenu.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/LanguageButton.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Core/ObjectsPath.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ExitButton.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PlayButton.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/ShopButton.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/SoundButton.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Core/Translator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/LanguageMenu.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Core/KeyboardInput.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ScoreCounter.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Pause.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/MusicSlider.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/SoundSlider.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Core/EntryPoint.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/Wallet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/LanguageButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/MusicSlider.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PlayButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/ShopButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/SoundButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/SoundSlider.cs" />
       <option value="$PROJECT_DIR$/Assets/Resources/Dictionary.txt" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Core/TextTranslator.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/Wallet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/BestScoreCounter.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2dVjOzq5G4Rjw2T8gZCNq9cP2EK" />
@@ -152,7 +152,12 @@
       <workItem from="1711915297086" duration="8000" />
       <workItem from="1711915349950" duration="6231000" />
       <workItem from="1711987233889" duration="2941000" />
-      <workItem from="1712075914016" duration="296000" />
+      <workItem from="1712075914016" duration="1869000" />
+      <workItem from="1712082518424" duration="178000" />
+      <workItem from="1712142078240" duration="1083000" />
+      <workItem from="1712148406147" duration="3182000" />
+      <workItem from="1712160298317" duration="1068000" />
+      <workItem from="1712258367223" duration="3882000" />
     </task>
     <servers />
   </component>

@@ -1,11 +1,14 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class TextTranslator : MonoBehaviour
 {
+    public Action TranslateText;
+    [SerializeField] private bool NotTranslateOnStart;
     [SerializeField] private Language _language;
     [SerializeField] private Translator _translator;
-    [SerializeField] private string _id;
+    [SerializeField] public string Id;
     private TextMeshProUGUI _textMesh;
     private string _result;
 
@@ -14,17 +17,12 @@ public class TextTranslator : MonoBehaviour
         _translator = translator;
     }
 
-    public void SetId(string id)
-    {
-        _id = id;
-    }
-
     private void Start()
     {
         if(_translator == null && GetComponentInParent<ShopItem>())
             _translator = GetComponentInParent<ShopItem>().GetComponentInParent<Shop>().Translator;
         
-        if(_translator == null &&  GetComponentInParent<LanguageMenu>())
+        if(_translator == null && GetComponentInParent<LanguageMenu>())
             _translator = GetComponentInParent<LanguageMenu>().Translator;
         
         if(_translator == null &&  GetComponentInParent<PauseMenu>())
@@ -35,7 +33,11 @@ public class TextTranslator : MonoBehaviour
         _translator.OnLanguageChanged += language =>
         {
             _language = language;
-            Translate();
+            
+            if (!NotTranslateOnStart)
+                Translate();
+            
+            TranslateText?.Invoke();
         };
         
         if (!_textMesh)
@@ -44,36 +46,61 @@ public class TextTranslator : MonoBehaviour
         if (!_textMesh)
             _textMesh = GetComponent<TextMeshProUGUI>();
         
-        if (_id == "")
+        if (Id == "")
             return;
         
         if(_textMesh == null)
             return;
-        
-        Translate();
+
+        if (!NotTranslateOnStart)
+            Translate();
     }
 
     private void Translate()
     {
-        if (_textMesh == null)
-            return;
-        
         TextAsset textAsset = Resources.Load<TextAsset>(ObjectsPath.Dictionary);
         string[] data = textAsset.text.Split(new char[] {'\n'});
         for (int i = 0; i < data.Length; i++)
         {
             string[] row = data[i].Split(new char[] {'\t'});
-            if (row[0] != "")
+            if (row.Length > 1 && !string.IsNullOrEmpty(row[0]) && row[0] == Id)
             {
-                if (row[0] == _id)
-                    _result = row[(int) _language + 1];
+                if ((int)_language + 1 < row.Length)
+                    _result = row[(int)_language + 1];
+                else
+                    Debug.Log($"Translation not found for language: {_language}");
+                break;
             }
         }
 
-        if (_result == "")
-            Debug.Log($"Id or word not found: id: {_id}");
+        if (string.IsNullOrEmpty(_result))
+            Debug.Log($"Id or word not found: id: {Id}");
 
         _textMesh.text = _result;
+    }
+
+    
+    public string Translate(string id)
+    {
+        TextAsset textAsset = Resources.Load<TextAsset>(ObjectsPath.Dictionary);
+        string[] data = textAsset.text.Split(new char[] {'\n'});
+        for (int i = 0; i < data.Length; i++)
+        {
+            string[] row = data[i].Split(new char[] {'\t'});
+            if (row.Length > 1 && !string.IsNullOrEmpty(row[0]) && row[0] == id)
+            {
+                if ((int)_language + 1 < row.Length)
+                    _result = row[(int)_language + 1];
+                else
+                    Debug.Log($"Translation not found for language: {_language}");
+                break;
+            }
+        }
+
+        if (string.IsNullOrEmpty(_result))
+            Debug.Log($"Id or word not found: id: {id}");
+
+        return _result;
     }
 }
 
