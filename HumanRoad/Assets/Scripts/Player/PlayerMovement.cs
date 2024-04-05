@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
    private KeyboardInput _keyboardInput;
    private SwipeDetection _swipeDetection;
    private Animator _animator;
+   
+   public Action<float> OnScoreChanged;
    
    private void Awake()
    {
@@ -45,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
    private void Run()
    {
        Move(new Vector3(1,0,0));
+       OnScoreChanged?.Invoke(transform.position.x);
    }
 
    private void LeftStep()

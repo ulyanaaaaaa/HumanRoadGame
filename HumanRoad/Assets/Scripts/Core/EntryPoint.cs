@@ -11,6 +11,8 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private RectTransform _timerPosition;
     [SerializeField] private RectTransform _hurtsPosition;
     [SerializeField] private RectTransform _pausePosition;
+    [SerializeField] private RectTransform _coinsCounterPosition;
+    [SerializeField] private RectTransform _scoreCounterPosition;
 
     private Translator _translator;
     private Wallet _wallet;
@@ -95,23 +97,19 @@ public class EntryPoint : MonoBehaviour
     private void CreateCoinsCounter()
     {
         _coinsCounterCreated = Instantiate(_coinsCounter,
-            _coinsCounter.GetComponent<RectTransform>().localPosition,
+            _coinsCounterPosition.GetComponent<RectTransform>().position,
             Quaternion.identity,
             _canvas.transform);
         _coinsCounterCreated.Setup(_playerCreated);
-        _coinsCounterCreated.GetComponent<RectTransform>().localPosition =
-            _coinsCounter.GetComponent<RectTransform>().localPosition;
     }
 
     private void CreateScoreCounter()
     {
         _scoreCounterCreated = Instantiate(_scoreCounter,
-            _scoreCounter.GetComponent<RectTransform>().localPosition,
+            _scoreCounterPosition.GetComponent<RectTransform>().position,
             Quaternion.identity,
             _canvas.transform);
-        _scoreCounterCreated.GetComponent<RectTransform>().localPosition =
-            _scoreCounter.GetComponent<RectTransform>().localPosition;
-        _scoreCounterCreated.Setup(_playerCreated.GetComponent<KeyboardInput>());
+        _scoreCounterCreated.Setup(_playerCreated.GetComponent<PlayerMovement>());
     }
 
     private void CreateTimer()

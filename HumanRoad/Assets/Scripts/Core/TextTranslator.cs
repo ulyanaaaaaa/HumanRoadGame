@@ -51,7 +51,7 @@ public class TextTranslator : MonoBehaviour
         
         if(_textMesh == null)
             return;
-
+        
         if (!NotTranslateOnStart)
             Translate();
     }
@@ -82,6 +82,7 @@ public class TextTranslator : MonoBehaviour
     
     public string Translate(string id)
     {
+        _language = _translator.Language;
         TextAsset textAsset = Resources.Load<TextAsset>(ObjectsPath.Dictionary);
         string[] data = textAsset.text.Split(new char[] {'\n'});
         for (int i = 0; i < data.Length; i++)

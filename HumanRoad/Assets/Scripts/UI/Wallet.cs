@@ -50,7 +50,7 @@ public class Wallet : MonoBehaviour, ISaveData
         Load();
         
         _counter = GetComponent<TextMeshProUGUI>();
-
+        
         UpdateCounter();
     }
     

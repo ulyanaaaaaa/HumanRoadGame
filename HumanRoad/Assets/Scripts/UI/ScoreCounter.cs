@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class ScoreCounter : MonoBehaviour
 {
+    private PlayerMovement _playerMovement;
     private KeyboardInput _keyboardInput;
     private TextMeshProUGUI _counter;
     private int _score;
 
-    public void Setup(KeyboardInput keyboardInput)
+    public void Setup(PlayerMovement playerMovement)
     {
-        _keyboardInput = keyboardInput;
+        _playerMovement = playerMovement;
     }
 
     private void Awake()
@@ -19,8 +20,8 @@ public class ScoreCounter : MonoBehaviour
 
     private void Start()
     {
-        _keyboardInput.OnScoreChanged += (score => 
-            ChangedCounter((int)_keyboardInput.transform.position.x));
+        _playerMovement.OnScoreChanged += (score => 
+            ChangedCounter((int)_playerMovement.transform.position.x));
     }
 
     private void ChangedCounter(int count)
