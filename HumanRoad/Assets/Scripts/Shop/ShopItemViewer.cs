@@ -9,13 +9,14 @@ public class ShopItemViewer : MonoBehaviour
     public Action OnUpdatePrice;
     
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private TextTranslator _textTranslator;
     private Wallet _wallet;
     private Image _background;
     private ShopItem _shopItem;
     private Shop _shop;
-    
+
     private void Start()
-    { 
+    {
         _shopItem = GetComponent<ShopItem>();
         _shop = GetComponentInParent<Shop>();
         _wallet = _shop.Wallet;
@@ -29,7 +30,7 @@ public class ShopItemViewer : MonoBehaviour
 
     private void UpdatePrice()
     {
-        _text.text = "Price: " + _shopItem.Price;
+        _text.text = _textTranslator.Translate(_textTranslator.Id) + '\t' + _shopItem.Price;
     }
 
     private void Update()

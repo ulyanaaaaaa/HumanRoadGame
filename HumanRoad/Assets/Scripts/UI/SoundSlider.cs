@@ -2,22 +2,35 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(TextTranslator))]
-[RequireComponent(typeof(AudioSource))]
 public class SoundSlider : MonoBehaviour
 {
     private Slider _slider;
     private AudioSource _audioSource;
+
+    public void Setup(AudioSource audioSource)
+    {
+        _audioSource = audioSource;
+    }
     
     private void Awake()
     {
         GetComponent<TextTranslator>().Id = "sound";
-        _audioSource = GetComponent<AudioSource>();
         _slider = GetComponentInChildren<Slider>();
+        _slider.onValueChanged.AddListener(delegate { ChangeSoundVolume(); });
         
         if (PlayerPrefs.HasKey("SoundVolume"))
         {
-            _audioSource.volume = PlayerPrefs.GetFloat("SoundVolume");
-            _slider.value = _audioSource.volume;
+            _slider.value = PlayerPrefs.GetFloat("SoundVolume");
+            ChangeSoundVolume(); 
         }
+    }
+    
+    public void ChangeSoundVolume()
+    {
+        if (_audioSource == null)
+            return;
+        
+        PlayerPrefs.SetFloat("SoundVolume", _slider.value);
+        _audioSource.volume = PlayerPrefs.GetFloat("SoundVolume");
     }
 }

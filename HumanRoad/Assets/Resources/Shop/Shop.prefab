@@ -283,6 +283,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopItem
       objectReference: {fileID: 0}
+    - target: {fileID: 1845794791809189159, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+      propertyPath: Id
+      value: price
+      objectReference: {fileID: 0}
+    - target: {fileID: 1845794791809189159, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+      propertyPath: NotTranslateOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3097140953420955256, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+      propertyPath: _textTranslator
+      value: 
+      objectReference: {fileID: 3465057782804053415}
+    - target: {fileID: 3456493410022919624, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6252041084391043659, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -367,8 +383,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7079371596648795592, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7419776990363896845, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+      propertyPath: Id
+      value: Bob_name
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+--- !u!114 &3465057782804053415 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1845794791809189159, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+  m_PrefabInstance: {fileID: 2993714133799630976}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e767be7969e1fd4d9ad071f751f536e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &9171713791106730699 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6252041084391043659, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
@@ -385,9 +420,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopItem (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1845794791809189159, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+      propertyPath: Id
+      value: price
+      objectReference: {fileID: 0}
+    - target: {fileID: 1845794791809189159, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+      propertyPath: NotTranslateOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3097140953420955256, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+      propertyPath: _textTranslator
+      value: 
+      objectReference: {fileID: 8167172447028045915}
     - target: {fileID: 3456493410022919624, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
       propertyPath: m_text
-      value: Remy
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6252041084391043659, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
       propertyPath: m_Pivot.x
@@ -473,10 +520,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7079371596648795592, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7272607669271686505, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 70a51200d2d7c4c43a909e5233bc2e53, type: 3}
+    - target: {fileID: 7419776990363896845, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+      propertyPath: Id
+      value: Remy_name
+      objectReference: {fileID: 0}
     - target: {fileID: 7419776990363896845, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
       propertyPath: _id
       value: Remy_name
@@ -488,3 +543,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6252041084391043659, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
   m_PrefabInstance: {fileID: 7550905470043254140}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8167172447028045915 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1845794791809189159, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+  m_PrefabInstance: {fileID: 7550905470043254140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e767be7969e1fd4d9ad071f751f536e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

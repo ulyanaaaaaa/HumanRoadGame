@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SaveService))]
+[RequireComponent(typeof(AudioSource))]
 public class EntryPoint : MonoBehaviour
 {
     [SerializeField] private List<Hurt> _hurts;
@@ -14,6 +15,8 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private RectTransform _coinsCounterPosition;
     [SerializeField] private RectTransform _scoreCounterPosition;
 
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _soundSource;
     private Translator _translator;
     private Wallet _wallet;
     private Wallet _walletCreated;
@@ -47,6 +50,7 @@ public class EntryPoint : MonoBehaviour
 
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
         _terrainSpawner = GetComponent<TerrainSpawner>();
         _translator = GetComponent<Translator>();
         _saveService = GetComponent<SaveService>();
@@ -91,6 +95,8 @@ public class EntryPoint : MonoBehaviour
         _soundMenuCreated.GetComponent<RectTransform>().localPosition =
             _soundMenu.GetComponent<RectTransform>().localPosition;
         _soundMenuCreated.GetComponentInChildren<ExitButton>().OnExit += CloseSoundMenu;
+        _soundMenuCreated.GetComponentInChildren<SoundSlider>().Setup(_soundSource);
+        _soundMenuCreated.GetComponentInChildren<MusicSlider>().Setup(_audioSource);
         _soundMenuCreated.Setup(_translator);
     }
 

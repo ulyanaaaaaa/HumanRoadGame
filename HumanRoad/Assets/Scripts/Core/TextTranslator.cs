@@ -19,9 +19,11 @@ public class TextTranslator : MonoBehaviour
 
     private void Start()
     {
-        if(_translator == null && GetComponentInParent<ShopItem>())
+        if (_translator == null && GetComponentInParent<ShopItem>())
+        {
             _translator = GetComponentInParent<ShopItem>().GetComponentInParent<Shop>().Translator;
-        
+        }
+
         if(_translator == null && GetComponentInParent<LanguageMenu>())
             _translator = GetComponentInParent<LanguageMenu>().Translator;
         
@@ -82,7 +84,13 @@ public class TextTranslator : MonoBehaviour
     
     public string Translate(string id)
     {
+        if (_translator == null && GetComponentInParent<ShopItem>())
+        {
+            _translator = GetComponentInParent<ShopItem>().GetComponentInParent<Shop>().Translator;
+        }
+        
         _language = _translator.Language;
+        
         TextAsset textAsset = Resources.Load<TextAsset>(ObjectsPath.Dictionary);
         string[] data = textAsset.text.Split(new char[] {'\n'});
         for (int i = 0; i < data.Length; i++)

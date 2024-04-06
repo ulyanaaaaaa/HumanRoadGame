@@ -103,6 +103,7 @@
             <e p="EntryPoint.cs" t="Include" />
             <e p="KeyboardInput.cs" t="Include" />
             <e p="ObjectsPath.cs" t="Include" />
+            <e p="SoundPlay.cs" t="Include" />
             <e p="SwipeDetection.cs" t="Include" />
             <e p="TextTranslator.cs" t="Include" />
             <e p="Translator.cs" t="Include" />

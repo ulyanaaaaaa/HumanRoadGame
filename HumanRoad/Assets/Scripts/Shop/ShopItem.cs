@@ -11,7 +11,7 @@ public class ShopItem : MonoBehaviour
     private ShopItemViewer _shopItemViewer;
     private Shop _shop;
     private Button _button;
-    [SerializeField] private SaveService _saveService;
+    [SerializeField] private SaveService _saveService; 
 
     public void Save()
     {
