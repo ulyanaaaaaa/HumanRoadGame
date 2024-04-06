@@ -17,6 +17,7 @@ public class EntryPoint : MonoBehaviour
 
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioSource _soundSource;
+    
     private Translator _translator;
     private Wallet _wallet;
     private Wallet _walletCreated;
