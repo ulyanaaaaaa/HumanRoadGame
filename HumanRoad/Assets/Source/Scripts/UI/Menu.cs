@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Menu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] public Translator Translator;
+    
+    [Inject]
+    public void Container(Translator translator)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Translator = translator;
     }
 }

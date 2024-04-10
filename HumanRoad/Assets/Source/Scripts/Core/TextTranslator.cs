@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 public class TextTranslator : MonoBehaviour
 {
@@ -12,23 +13,28 @@ public class TextTranslator : MonoBehaviour
     private TextMeshProUGUI _textMesh;
     private string _result;
 
-    public void Setup(Translator translator)
+    [Inject]
+    public void Container(Translator translator)
     {
         _translator = translator;
     }
 
     private void Start()
     {
-        if (_translator == null && GetComponentInParent<ShopItem>())
-        {
-            _translator = GetComponentInParent<ShopItem>().GetComponentInParent<Shop>().Translator;
-        }
+        if (_translator == null && GetComponentInParent<Menu>())
+            _translator = GetComponentInParent<Menu>().Translator;
 
+        if (_translator == null && GetComponentInParent<ShopItem>())
+            _translator = GetComponentInParent<ShopItem>().GetComponentInParent<Shop>().Translator;
+        
         if(_translator == null && GetComponentInParent<LanguageMenu>())
             _translator = GetComponentInParent<LanguageMenu>().Translator;
         
         if(_translator == null &&  GetComponentInParent<PauseMenu>())
             _translator = GetComponentInParent<PauseMenu>().Translator;
+        
+        if (_translator == null && GetComponentInParent<ShopItem>())
+            _translator = GetComponentInParent<ShopItem>().GetComponentInParent<Shop>().Translator;
         
         _language = _translator.Language;
         
@@ -60,7 +66,7 @@ public class TextTranslator : MonoBehaviour
 
     private void Translate()
     {
-        TextAsset textAsset = Resources.Load<TextAsset>(ObjectsPath.Dictionary);
+        TextAsset textAsset = Resources.Load<TextAsset>(AssetsPath.Dictionary);
         string[] data = textAsset.text.Split(new char[] {'\n'});
         for (int i = 0; i < data.Length; i++)
         {
@@ -84,14 +90,24 @@ public class TextTranslator : MonoBehaviour
     
     public string Translate(string id)
     {
+        if (_translator == null && GetComponentInParent<Menu>())
+            _translator = GetComponentInParent<Menu>().Translator;
+
         if (_translator == null && GetComponentInParent<ShopItem>())
-        {
             _translator = GetComponentInParent<ShopItem>().GetComponentInParent<Shop>().Translator;
-        }
+        
+        if(_translator == null && GetComponentInParent<LanguageMenu>())
+            _translator = GetComponentInParent<LanguageMenu>().Translator;
+        
+        if(_translator == null &&  GetComponentInParent<PauseMenu>())
+            _translator = GetComponentInParent<PauseMenu>().Translator;
+        
+        if (_translator == null && GetComponentInParent<ShopItem>())
+            _translator = GetComponentInParent<ShopItem>().GetComponentInParent<Shop>().Translator;
         
         _language = _translator.Language;
         
-        TextAsset textAsset = Resources.Load<TextAsset>(ObjectsPath.Dictionary);
+        TextAsset textAsset = Resources.Load<TextAsset>(AssetsPath.Dictionary);
         string[] data = textAsset.text.Split(new char[] {'\n'});
         for (int i = 0; i < data.Length; i++)
         {

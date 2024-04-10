@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 public class ScoreCounter : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class ScoreCounter : MonoBehaviour
     private TextMeshProUGUI _counter;
     private int _score;
 
-    public void Setup(PlayerMovement playerMovement)
+    [Inject]
+    public void Constructor(PlayerMovement playerMovement)
     {
         _playerMovement = playerMovement;
     }
@@ -22,6 +24,7 @@ public class ScoreCounter : MonoBehaviour
     {
         _playerMovement.OnScoreChanged += (score => 
             ChangedCounter((int)_playerMovement.transform.position.x));
+        _playerMovement.GetComponent<Player>().OnDie += Reset;
     }
 
     private void ChangedCounter(int count)
@@ -35,6 +38,12 @@ public class ScoreCounter : MonoBehaviour
         CompareScore(_score);
     }
 
+    private void Reset()
+    {
+        _score = 0;
+        ChangedCounter(0);
+    }
+
     private void CompareScore(int score)
     {
         if (PlayerPrefs.HasKey("BestScore"))
@@ -45,5 +54,4 @@ public class ScoreCounter : MonoBehaviour
                 PlayerPrefs.SetInt("BestScore", score);
         }
     }
-
 }

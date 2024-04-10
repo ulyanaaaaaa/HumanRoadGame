@@ -4,17 +4,19 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using Zenject;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerWallet))]
 public class Player : MonoBehaviour, ISaveData
 {
+    public Action OnLooseHurt;
+    public Action OnDie;
+    
     public string Id { get; set; }
     
     [SerializeField] private List<GameObject> _skins = new List<GameObject>();
     private string _currentSkin;
-    public Action OnLooseHurt;
-    public Action OnDie;
     
     [SerializeField] private int _health;
     [SerializeField] private int _maxHealth;
@@ -23,11 +25,14 @@ public class Player : MonoBehaviour, ISaveData
     private Vignette _vignette;
     private Timer _timer;
     private SaveService _saveService;
+    private GameInstaller _gameInstaller;
 
-    public void Setup(Timer timer, SaveService saveService)
+    [Inject]
+    public void Container(Timer timer, SaveService saveService, GameInstaller gameInstaller)
     {
         _saveService = saveService;
         _timer = timer;
+        _gameInstaller = gameInstaller;
     }
 
     public void Save()
@@ -46,6 +51,12 @@ public class Player : MonoBehaviour, ISaveData
             Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + _currentSkin);
         }
     }
+    
+    private void OnEnable()
+    {
+        OnDie += Save;
+        OnDie += Revival;
+    }
 
     private void Awake()
     {
@@ -58,13 +69,10 @@ public class Player : MonoBehaviour, ISaveData
 
     private void Start()
     {
+        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += () =>
+            transform.position = _gameInstaller.PlayerStartPosition.position;
         Load();
         ChangeSkin(_currentSkin);
-    }
-
-    private void OnEnable()
-    {
-        OnDie += Save;
     }
     
     private void ChangeSkin(string newSkin)
@@ -119,6 +127,11 @@ public class Player : MonoBehaviour, ISaveData
             StartCoroutine(_timer.StopTimerCoroutine(coin.Time));
             Destroy(coin.gameObject);
         }
+    }
+
+    private void Revival()
+    {
+        _health = 3;
     }
 }
 

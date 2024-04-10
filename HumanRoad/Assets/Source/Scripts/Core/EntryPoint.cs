@@ -1,45 +1,32 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(SaveService))]
 [RequireComponent(typeof(AudioSource))]
-public class EntryPoint : MonoBehaviour
+public class EntryPoint : WindowsBrain
 {
     [SerializeField] private List<Hurt> _hurts;
 
     [SerializeField] private Canvas _canvas;
-    [SerializeField] private Vector3 _playerStartPosition;
-    [SerializeField] private RectTransform _timerPosition;
     [SerializeField] private RectTransform _hurtsPosition;
     [SerializeField] private RectTransform _pausePosition;
     [SerializeField] private RectTransform _coinsCounterPosition;
     [SerializeField] private RectTransform _scoreCounterPosition;
-
-    [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioSource _soundSource;
+    [SerializeField] private RectTransform _menuPosition;
     
-    private Translator _translator;
-    private Wallet _wallet;
-    private Wallet _walletCreated;
-    private TerrainSpawner _terrainSpawner;
-    private Menu _menu;
-    private Menu _menuCreated;
+    [SerializeField] private AudioSource _soundSource;
+    [SerializeField] private GameInstaller _gameInstaller;
+
+    [SerializeField] private float _distanceBetweenHurts = 135f;
+  
     private Hurt _hurt;
     private Hurt _hurtCreated;
-    private LooseHurt _looseHurt;
-    private LooseHurt _looseHurtCreated;
-    private Player _player;
-    private Player _playerCreated;
-    private ScoreCounter _scoreCounter;
-    private ScoreCounter _scoreCounterCreated;
+    private Hurt _looseHurt;
+    private Hurt _looseHurtCreated;
     private CoinsCounter _coinsCounter;
     private CoinsCounter _coinsCounterCreated;
     private ShopButton _shopButton;
-    private Shop _shop;
-    private Shop _shopCreated;
-    private Timer _timer;
-    private Timer _timerCreated;
-    private SaveService _saveService;
     private Pause _pause;
     private Pause _pauseCreated;
     private PauseMenu _pauseMenu;
@@ -48,96 +35,60 @@ public class EntryPoint : MonoBehaviour
     private SoundMenu _soundMenuCreated;
     private LanguageMenu _languageMenu;
     private LanguageMenu _languageMenuCreated;
+    private DiContainer _container;
 
-    private void Awake()
+    [Inject]
+    public void Container(DiContainer container)
     {
-        _audioSource = GetComponent<AudioSource>();
-        _terrainSpawner = GetComponent<TerrainSpawner>();
-        _translator = GetComponent<Translator>();
-        _saveService = GetComponent<SaveService>();
-        _soundMenu = Resources.Load<SoundMenu>(ObjectsPath.SoundMenu);
-        _pause = Resources.Load<Pause>(ObjectsPath.Pause);
-        _pauseMenu = Resources.Load<PauseMenu>(ObjectsPath.PauseMenu);
-        _timer = Resources.Load<Timer>(ObjectsPath.Timer);
-        _coinsCounter = Resources.Load<CoinsCounter>(ObjectsPath.CoinsCounter);
-        _menu = Resources.Load<Menu>(ObjectsPath.Menu);
-        _scoreCounter = Resources.Load<ScoreCounter>(ObjectsPath.ScoreCounter);
-        _player = Resources.Load<Player>(ObjectsPath.Player);
-        _shop = Resources.Load<Shop>(ObjectsPath.Shop);
-        _languageMenu = Resources.Load<LanguageMenu>(ObjectsPath.LanguageMenu);
-        CreateMenu();
+        _container = container;
     }
 
-    private void CreatePlayer()
+    private void OnEnable()
     {
-        _playerCreated = Instantiate(_player, _playerStartPosition, Quaternion.Euler(0,90,0));
-        _terrainSpawner.Setup(_playerCreated.GetComponent<KeyboardInput>());
-        _playerCreated.OnLooseHurt += CreateLooseHurt;
-        _playerCreated.OnDie += CreateMenu;
-        _playerCreated.OnDie += DestroyLevel;
+        _gameInstaller.PlayerCreated.OnLooseHurt += CreateLooseHurt;
+        _gameInstaller.PlayerCreated.OnDie += () => OpenWindow(_gameInstaller.MenuCreated.gameObject);
+        _gameInstaller.PlayerCreated.OnDie += DestroyLevel;
     }
 
-    private void CreateWallet()
+    private void Start()
     {
-        _walletCreated = Instantiate(_wallet,
-            _wallet.GetComponent<RectTransform>().localPosition,
-            Quaternion.identity,
-            _canvas.transform);
-        _walletCreated.GetComponent<RectTransform>().localPosition =
-            _wallet.GetComponent<RectTransform>().localPosition;
+        DisableGame();
+        OpenWindow(_gameInstaller.MenuCreated.gameObject);
     }
-
+    
     private void CreateSoundMenu()
     {
-        _soundMenuCreated = Instantiate(_soundMenu,
+        _soundMenu = Resources.Load<SoundMenu>(AssetsPath.SoundMenu);
+        _soundMenuCreated = _container.InstantiatePrefabForComponent<SoundMenu>(_soundMenu,
             _soundMenu.GetComponent<RectTransform>().localPosition,
             Quaternion.identity,
-            _canvas.transform);
+            null);
+        _soundMenuCreated.transform.SetParent(_canvas.transform, false);
         _soundMenuCreated.GetComponent<RectTransform>().localPosition =
             _soundMenu.GetComponent<RectTransform>().localPosition;
-        _soundMenuCreated.GetComponentInChildren<ExitButton>().OnExit += CloseSoundMenu;
-        _soundMenuCreated.GetComponentInChildren<SoundSlider>().Setup(_soundSource);
-        _soundMenuCreated.GetComponentInChildren<MusicSlider>().Setup(_audioSource);
-        _soundMenuCreated.Setup(_translator);
+        _soundMenuCreated.GetComponentInChildren<ExitButton>().OnExit += 
+            () => CloseWindow( _soundMenuCreated.gameObject);
     }
 
     private void CreateCoinsCounter()
     {
-        _coinsCounterCreated = Instantiate(_coinsCounter,
-            _coinsCounterPosition.GetComponent<RectTransform>().position,
+        _coinsCounter = Resources.Load<CoinsCounter>(AssetsPath.CoinsCounter);
+        _coinsCounterCreated = _container.InstantiatePrefabForComponent<CoinsCounter>(_coinsCounter,
+            _coinsCounterPosition.GetComponent<RectTransform>().localPosition,
             Quaternion.identity,
-            _canvas.transform);
-        _coinsCounterCreated.Setup(_playerCreated);
-    }
-
-    private void CreateScoreCounter()
-    {
-        _scoreCounterCreated = Instantiate(_scoreCounter,
-            _scoreCounterPosition.GetComponent<RectTransform>().position,
-            Quaternion.identity,
-            _canvas.transform);
-        _scoreCounterCreated.Setup(_playerCreated.GetComponent<PlayerMovement>());
-    }
-
-    private void CreateTimer()
-    {
-        _timerCreated = Instantiate(_timer,
-            _timerPosition.GetComponent<RectTransform>().position, 
-            Quaternion.identity,
-            _canvas.transform);
-        
-        _timerCreated.Setup(_playerCreated); 
-        _playerCreated.Setup(_timerCreated, _saveService);
+            null);
+        _coinsCounterCreated.transform.SetParent(_canvas.transform, false);
+        _coinsCounterCreated.GetComponent<RectTransform>().localPosition =
+            _coinsCounterPosition.GetComponent<RectTransform>().localPosition;
     }
 
     private void CreateHurts()
     {
-        _hurt = Resources.Load<Hurt>(ObjectsPath.Hurt);
-        
         for (int i = 0; i < 3; i++)
         {
+            _hurt = Resources.Load<Hurt>(AssetsPath.Hurt);
             _hurtCreated = Instantiate(_hurt,
-                _hurtsPosition.GetComponent<RectTransform>().position - new Vector3(135f * i, 0, 0),
+                _hurtsPosition.GetComponent<RectTransform>().position - new Vector3(_distanceBetweenHurts * i, 0, 0),
                 Quaternion.identity,
                 _canvas.transform);
             _hurts.Add(_hurtCreated);
@@ -146,119 +97,84 @@ public class EntryPoint : MonoBehaviour
 
     private void CreateLooseHurt()
     {
-        _looseHurt = Resources.Load<LooseHurt>(ObjectsPath.LooseHurt);
+        _looseHurt = Resources.Load<Hurt>(AssetsPath.LooseHurt);
         _looseHurtCreated = Instantiate(_looseHurt,
-            _hurts[0].GetComponent<RectTransform>().position,
+        _hurts[0].GetComponent<RectTransform>().position,
             Quaternion.identity,
             _canvas.transform);
         _hurts.RemoveAt(0);
     }
 
-    private void CreateMenu()
+    private void SettingMenuButtons()
     {
-        _menuCreated = Instantiate(_menu,
-            _menu.GetComponent<RectTransform>().localPosition,
-            Quaternion.identity,
-            _canvas.transform);
-        _menuCreated.GetComponent<RectTransform>().localPosition =
-            _menu.GetComponent<RectTransform>().localPosition;
+        _gameInstaller.MenuCreated.GetComponentInChildren<ShopButton>().OnPlay += 
+            () => OpenWindow(_gameInstaller.ShopCreated.gameObject);
+        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
+            () => CloseWindow(_gameInstaller.MenuCreated.gameObject);
+        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
+            () => OpenWindow(_gameInstaller.PlayerCreated.gameObject);
+        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
+            () => OpenWindow(_gameInstaller.ScoreCounterCreated.gameObject);
 
-        _menuCreated.GetComponentInChildren<ShopButton>().OnPlay += CreateShop;
-        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += DestroyMenu;
-        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreatePlayer;
-        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateScoreCounter;
-        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateHurts;
-        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreatePause;
-        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateCoinsCounter;
-        _menuCreated.GetComponentInChildren<PlayButton>().OnPlay += CreateTimer;
+        foreach (Hurt hurt in _hurts)
+            _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay +=
+                () => OpenWindow(_hurt.gameObject);
         
-        _menuCreated.GetComponentInChildren<PlayButton>().GetComponent<TextTranslator>().
-            Setup(_translator);
-        _menuCreated.GetComponentInChildren<BestScoreCounter>().GetComponent<TextTranslator>().
-            Setup(_translator);
-        _menuCreated.GetComponentInChildren<Wallet>().GetComponent<TextTranslator>().
-            Setup(_translator);
-        _menuCreated.GetComponentInChildren<ShopButton>().GetComponent<TextTranslator>().
-            Setup(_translator);
-        _menuCreated.GetComponentInChildren<SoundButton>().GetComponent<TextTranslator>().
-            Setup(_translator);
-        _menuCreated.GetComponentInChildren<LanguageButton>().GetComponent<TextTranslator>().
-            Setup(_translator);
-        
-        _menuCreated.GetComponentInChildren<SoundButton>().OnPlay += CreateSoundMenu;
-        _menuCreated.GetComponentInChildren<LanguageButton>().OnClick += CreateLanguageMenu;
-        _menuCreated.GetComponentInChildren<Wallet>().Setup(_saveService);
+        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
+            () => OpenWindow(_pauseCreated.gameObject);
+        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
+            () => OpenWindow(_coinsCounterCreated.gameObject);
+        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
+            () => OpenWindow(_gameInstaller.TimerCreated.gameObject);
+        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay +=
+            () => CreateHurts();
+
+        _gameInstaller.MenuCreated.GetComponentInChildren<SoundButton>().OnPlay += 
+            () => OpenWindow(_soundMenuCreated.gameObject);
+        _gameInstaller.MenuCreated.GetComponentInChildren<LanguageButton>().OnClick += 
+            () => OpenWindow(_languageMenuCreated.gameObject);
     }
 
     private void CreatePause()
     {
+        _pause = Resources.Load<Pause>(AssetsPath.Pause);
         _pauseCreated = Instantiate(_pause,
             _pausePosition.GetComponent<RectTransform>().position,
             Quaternion.identity,
             _canvas.transform);
-        _pauseCreated.OnPause += CreatePauseMenu;
+        _pauseCreated.OnPause += () => OpenWindow(_pauseMenuCreated.gameObject);
     }
 
     private void CreatePauseMenu()
-    {
-        _pauseMenuCreated = Instantiate(_pauseMenu,
+    { 
+        _pauseMenu = Resources.Load<PauseMenu>(AssetsPath.PauseMenu);
+        _pauseMenuCreated = _container.InstantiatePrefabForComponent<PauseMenu>(_pauseMenu,
             _pauseMenu.GetComponent<RectTransform>().localPosition,
             Quaternion.identity,
-            _canvas.transform);
+            null);
+        _pauseMenuCreated.transform.SetParent(_canvas.transform, false);
         _pauseMenuCreated.GetComponent<RectTransform>().localPosition =
             _pauseMenu.GetComponent<RectTransform>().localPosition;
-        _pauseMenuCreated.OnPlay += ClosePauseMenu;
-        _pauseMenuCreated.GetComponentInChildren<TextTranslator>().Setup(_translator);
+        _pauseMenuCreated.OnPlay += () => CloseWindow(_pauseMenuCreated.gameObject);
     }
 
     private void CreateLanguageMenu()
     {
-        _languageMenuCreated = Instantiate(_languageMenu,
+        _languageMenu = Resources.Load<LanguageMenu>(AssetsPath.LanguageMenu);
+        _languageMenuCreated = _container.InstantiatePrefabForComponent<LanguageMenu>(_languageMenu,
             _languageMenu.GetComponent<RectTransform>().localPosition,
             Quaternion.identity,
-            _canvas.transform);
+            null);
+        _languageMenuCreated.transform.SetParent(_canvas.transform, false);
         _languageMenuCreated.GetComponent<RectTransform>().localPosition =
             _languageMenu.GetComponent<RectTransform>().localPosition;
-        _languageMenuCreated.Setup(_translator);
-        _languageMenuCreated.GetComponentInChildren<ExitButton>().OnExit += CloseLanguageMenu;
-    }
-
-    private void CloseLanguageMenu()
-    {
-        Destroy(_languageMenuCreated.gameObject);
-    }
-
-    private void ClosePauseMenu()
-    {
-        Destroy(_pauseMenuCreated.gameObject);
-    }
-
-    private void CreateShop()
-    {
-        _shopCreated = Instantiate(_shop,
-            _shop.GetComponent<Transform>().localPosition,
-            Quaternion.identity,
-            _canvas.transform);
-        _shopCreated.Setup(_menuCreated.GetComponentInChildren<Wallet>(), _saveService, _translator);
-        _shopCreated.GetComponent<Transform>().localPosition =
-            _shop.GetComponent<Transform>().localPosition;
-
-        _shopCreated.GetComponentInChildren<ExitButton>().OnExit += CloseShop;
+        _languageMenuCreated.GetComponentInChildren<ExitButton>().OnExit +=
+            () => CloseWindow(_languageMenuCreated.gameObject);
     }
 
     private void CloseShop()
     {
-        Destroy(_shopCreated.gameObject);
-    }
-    
-    private void CloseSoundMenu()
-    {
-        Destroy(_soundMenuCreated.gameObject);
-    }
-
-    private void DestroyMenu()
-    {
-        Destroy(_menuCreated.gameObject);
+        _gameInstaller.ShopCreated.GetComponentInChildren<ExitButton>().OnExit += () => CloseWindow(_gameInstaller.ShopCreated.gameObject);
     }
 
     private void DestroyLevel()
@@ -266,18 +182,51 @@ public class EntryPoint : MonoBehaviour
         if (_hurtCreated)
         {
             foreach (Hurt hurt in _hurts)
-                Destroy(hurt.gameObject);
+                CloseWindow(hurt.gameObject);
             
             _hurts.Clear();
         }
 
         if (_looseHurtCreated)
-            Destroy(_looseHurtCreated.gameObject);
+            CloseWindow(_looseHurtCreated.gameObject);
         
-        Destroy(_playerCreated.gameObject);
-        Destroy(_scoreCounterCreated.gameObject);
-        Destroy(_coinsCounterCreated.gameObject);
-        Destroy(_timerCreated.gameObject);
-        Destroy(_pauseCreated.gameObject);
+        CloseWindow(_gameInstaller.PlayerCreated.gameObject);
+        CloseWindow(_gameInstaller.ScoreCounterCreated.gameObject);
+        CloseWindow(_coinsCounterCreated.gameObject);
+        CloseWindow(_gameInstaller.TimerCreated.gameObject);
+        CloseWindow(_pauseCreated.gameObject);
+    }
+
+    public void CreateGame()
+    {
+        CreateHurts();
+        SettingMenuButtons();
+        CreatePause();
+        CloseShop();
+        CreateCoinsCounter();
+        CreateLanguageMenu();
+        CreateLooseHurt();
+        CreatePauseMenu();
+        CreateSoundMenu();
+    }
+
+    private void DisableGame()
+    {
+        CloseWindow(_gameInstaller.PlayerCreated.gameObject);
+
+        for (int i = 0; i < _hurts.Count; i++)
+        {
+            
+            CloseWindow(_hurts[i].gameObject);
+        }
+        CloseWindow(_pauseCreated.gameObject);
+        CloseWindow(_gameInstaller.ScoreCounterCreated.gameObject);
+        CloseWindow(_gameInstaller.ShopCreated.gameObject);
+        CloseWindow(_soundMenuCreated.gameObject);
+        CloseWindow(_coinsCounterCreated.gameObject);
+        CloseWindow(_languageMenuCreated.gameObject);
+        CloseWindow(_gameInstaller.MenuCreated.gameObject);
+        CloseWindow(_pauseMenuCreated.gameObject);
+        CloseWindow(_gameInstaller.TimerCreated.gameObject);
     }
 }

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="f5e55579-14ac-4cd4-b0b9-07093e2f1384" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -8,28 +11,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/53aac14d88ba4477acc998b039cfd73a15ae00/7e/042def82/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/76/d1cb475f/Action.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Editor/CompileFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Source/Scripts/Core/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Source/Scripts/Core/WindowsBrain.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/LogSpawner.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Water.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Terrain/TerrainFactory.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/HealthCounter.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/LooseHurt.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/Hurt.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Terrain/Water.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Terrain/TerrainSpawner.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Shop/Coin.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/CoinsCounter.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/TimerViewer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Terrain/TimeCoin.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Save/ISaveData.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/Timer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWallet.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Save/SaveService.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Car/CarFactory.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Log/LogFactory.cs" />
       <option value="$PROJECT_DIR$/Assets/SettingsButton.cs" />
@@ -63,26 +52,53 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/SoundSlider.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Core/EntryPoint.cs" />
       <option value="$PROJECT_DIR$/Assets/Editor/CompileFactory.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/Terrain/TerrainSpawner.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/UI/SoundMenu.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/UI/CoinsCounter.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/UI/LanguageMenu.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/UI/MusicSlider.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/UI/PauseMenu.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/UI/ScoreCounter.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/UI/SoundSlider.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/UI/Timer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/UI/Wallet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/Shop/Shop.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/Player/Player.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/UI/Menu.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/Core/TextTranslator.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/Core/AssetsPath.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/Core/WindowsBrain.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/Core/GameInstaller.cs" />
+      <option value="$PROJECT_DIR$/Assets/Source/Scripts/Core/EntryPoint.cs" />
     </changedPaths>
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2dVjOzq5G4Rjw2T8gZCNq9cP2EK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.smartKeys_rider",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\Ulyana\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Ulyana\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\Ulyana\\AppData\\Local\\Symbols\\src"
+    ]
+  }
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -140,6 +156,16 @@
       <workItem from="1712258367223" duration="6882000" />
       <workItem from="1712330501782" duration="9918000" />
       <workItem from="1712397589927" duration="9383000" />
+      <workItem from="1712433679550" duration="7225000" />
+      <workItem from="1712535836973" duration="119000" />
+      <workItem from="1712591997703" duration="15487000" />
+      <workItem from="1712618309451" duration="1063000" />
+      <workItem from="1712620462665" duration="22000" />
+      <workItem from="1712620504944" duration="34000" />
+      <workItem from="1712620553842" duration="66000" />
+      <workItem from="1712660493068" duration="8270000" />
+      <workItem from="1712736674289" duration="2451000" />
+      <workItem from="1712741702076" duration="17668000" />
     </task>
     <servers />
   </component>

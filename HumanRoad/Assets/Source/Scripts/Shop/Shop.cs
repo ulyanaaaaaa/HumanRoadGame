@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class Shop : MonoBehaviour
 {
@@ -6,7 +7,8 @@ public class Shop : MonoBehaviour
     public SaveService SaveService;
     public Translator Translator;
 
-    public void Setup(Wallet wallet, SaveService saveService, Translator translator)
+    [Inject]
+    public void Container(Wallet wallet, SaveService saveService, Translator translator)
     {
         Translator = translator;
         SaveService = saveService;

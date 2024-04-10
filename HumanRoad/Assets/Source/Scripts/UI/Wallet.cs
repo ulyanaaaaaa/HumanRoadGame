@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
 [RequireComponent(typeof(TextTranslator))]
@@ -9,11 +10,12 @@ public class Wallet : MonoBehaviour, ISaveData
     public string Id { get; set; }
     
     private TextMeshProUGUI _counter;
-    private SaveService _saveService;
+    [SerializeField] private SaveService _saveService;
     private TextTranslator _textTranslator;
     [field: SerializeField] public int CoinsCount { get; private set; }
 
-    public void Setup(SaveService saveService)
+    [Inject]
+    public void Container(SaveService saveService)
     {
         _saveService = saveService;
     }

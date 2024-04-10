@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 public class PauseMenu : MonoBehaviour
 {
     public Action OnPlay;
     public Translator Translator;
 
-    public void Setup(Translator translator)
+    [Inject]
+    public void Container(Translator translator)
     {
         Translator = translator;
     }

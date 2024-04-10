@@ -1,15 +1,17 @@
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class CoinsCounter : MonoBehaviour
 {
     private TextMeshProUGUI _counter;
-    private Player _player;
+    private GameInstaller _gameInstaller;
 
-    public void Setup(Player player)
+    [Inject]
+    public void Constructor(GameInstaller installer)
     {
-        _player = player;
+        _gameInstaller = installer;
     }
 
     private void Awake()
@@ -19,8 +21,14 @@ public class CoinsCounter : MonoBehaviour
 
     private void Start()
     {
-        _player.GetComponent<PlayerWallet>().OnChangeCoins += (coins => 
-            ChangedCounter(_player.GetComponent<PlayerWallet>().PlayerWalletCoins()));
+        _gameInstaller.PlayerCreated.GetComponent<PlayerWallet>().OnChangeCoins += (coins => 
+            ChangedCounter(_gameInstaller.PlayerCreated.GetComponent<PlayerWallet>().PlayerWalletCoins()));
+        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += Reset;
+    }
+
+    private void Reset()
+    {
+        ChangedCounter(-1);
     }
 
     private void ChangedCounter(int value)

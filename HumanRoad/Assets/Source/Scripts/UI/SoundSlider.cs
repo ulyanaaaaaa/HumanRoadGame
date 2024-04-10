@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 [RequireComponent(typeof(TextTranslator))]
 public class SoundSlider : MonoBehaviour
@@ -7,7 +8,8 @@ public class SoundSlider : MonoBehaviour
     private Slider _slider;
     private AudioSource _audioSource;
 
-    public void Setup(AudioSource audioSource)
+    [Inject]
+    public void Container(AudioSource audioSource)
     {
         _audioSource = audioSource;
     }

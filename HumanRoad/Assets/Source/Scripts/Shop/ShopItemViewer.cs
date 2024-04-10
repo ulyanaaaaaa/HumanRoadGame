@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 [RequireComponent(typeof(Image))]
 public class ShopItemViewer : MonoBehaviour
@@ -10,16 +11,14 @@ public class ShopItemViewer : MonoBehaviour
     
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private TextTranslator _textTranslator;
-    private Wallet _wallet;
-    private Image _background;
-    private ShopItem _shopItem;
-    private Shop _shop;
+    [SerializeField]private Wallet _wallet;
+    [SerializeField]private Image _background;
+    [SerializeField]private ShopItem _shopItem;
 
     private void Start()
     {
+        _wallet = GetComponentInParent<Shop>().Wallet;
         _shopItem = GetComponent<ShopItem>();
-        _shop = GetComponentInParent<Shop>();
-        _wallet = _shop.Wallet;
         _background = GetComponent<Image>();
     }
 

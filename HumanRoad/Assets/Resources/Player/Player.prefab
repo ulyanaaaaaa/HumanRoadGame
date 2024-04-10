@@ -426,7 +426,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1099376402488331881}
   - component: {fileID: 1099376402488331880}
-  - component: {fileID: 1099376402488331883}
   - component: {fileID: 1789996341658368103}
   - component: {fileID: 8529163508947646751}
   - component: {fileID: 1822909034339396811}
@@ -495,14 +494,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1099376402488331883
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099376402488331882}
-  m_Enabled: 1
 --- !u!95 &1789996341658368103
 Animator:
   serializedVersion: 5
@@ -6154,5 +6145,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104faddbc915db940b386f521ae935e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectSwipeAfterRelease: 0
-  SWIPE_THRESHOLD: 20

@@ -1,10 +1,12 @@
 using UnityEngine;
+using Zenject;
 
 public class LanguageMenu : MonoBehaviour
 {
     public Translator Translator;
 
-    public void Setup(Translator translator)
+    [Inject]
+    public void Container(Translator translator)
     {
         Translator = translator;
     }
