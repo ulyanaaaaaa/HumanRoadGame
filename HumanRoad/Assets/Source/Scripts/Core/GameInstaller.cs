@@ -103,7 +103,7 @@ public class GameInstaller : MonoInstaller
         MenuCreated.transform.SetParent(_canvas.transform, false);
         MenuCreated.transform.position = _menuPosition.GetComponent<RectTransform>().position;
         MenuCreated.Container(Container.Resolve<Translator>());
-        MenuCreated.GetComponentInChildren<Wallet>().Container(_saveService);
+        MenuCreated.GetComponentInChildren<Wallet>().Container(_saveService, this);
     }
 
     private void TimerBind()

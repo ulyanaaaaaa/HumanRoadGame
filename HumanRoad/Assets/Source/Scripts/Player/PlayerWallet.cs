@@ -14,7 +14,7 @@ public class PlayerWallet : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.SetInt("Coins", _coins.Count);
+        GetComponent<Player>().OnDie += () => _coins.Clear();
     }
 
     private void AddCoin(Coin coin)
@@ -30,7 +30,6 @@ public class PlayerWallet : MonoBehaviour
             AddCoin(coin);
             Destroy(coin.gameObject);
             PlayerPrefs.SetInt("Coins", _coins.Count);
-            Debug.Log(_coins.Count);
         }
     }
 }

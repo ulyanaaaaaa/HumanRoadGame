@@ -9,15 +9,17 @@ public class Wallet : MonoBehaviour, ISaveData
 {
     public string Id { get; set; }
     
-    private TextMeshProUGUI _counter;
+    [SerializeField]private TextMeshProUGUI _counter;
     [SerializeField] private SaveService _saveService;
-    private TextTranslator _textTranslator;
+    [SerializeField] private TextTranslator _textTranslator;
+    [SerializeField] private GameInstaller _gameInstaller;
     [field: SerializeField] public int CoinsCount { get; private set; }
 
     [Inject]
-    public void Container(SaveService saveService)
+    public void Container(SaveService saveService, GameInstaller installer)
     {
         _saveService = saveService;
+        _gameInstaller = installer;
     }
     
     public void Save()
@@ -32,28 +34,29 @@ public class Wallet : MonoBehaviour, ISaveData
         _saveService.Load();
         if (_saveService.SaveData.TryGetData(Id, out WalletSaveData walletSaveData))
         {
-            CoinsCount = walletSaveData.CoinsCount + 1 + PlayerPrefs.GetInt("Coins");
+            CoinsCount = walletSaveData.CoinsCount +  PlayerPrefs.GetInt("Coins");
             Debug.Log("Загруженные монеты из уровня  " + PlayerPrefs.GetInt("Coins"));
             Debug.Log("Загруженные монеты из сохранения  " + walletSaveData.CoinsCount);
+            UpdateCounter();
         }
-      
+        Save();
     }
-    
+
     private void Awake()
     {
         _textTranslator = GetComponent<TextTranslator>();
-        _textTranslator.TranslateText += UpdateCounter;
+        _counter = GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
     {
         Id = "wallet";
-        GetComponent<TextTranslator>().Id = Id;
+        _textTranslator.Id = Id;
         Load();
         
-        _counter = GetComponent<TextMeshProUGUI>();
-        
-        UpdateCounter();
+        _textTranslator.TranslateText += UpdateCounter;
+            _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += Save;
+        _gameInstaller.PlayerCreated.OnDie += Load;
     }
     
     public bool TrySpend(int value)
@@ -84,7 +87,7 @@ public class Wallet : MonoBehaviour, ISaveData
 
     private void UpdateCounter()
     {
-        _counter.text = _textTranslator.Translate(Id) + '\n'+ CoinsCount;  
+        _counter.text = _textTranslator.Translate(Id) + '\n'+ CoinsCount; 
         Save();
     }
 }
@@ -97,6 +100,6 @@ public class WalletSaveData : SaveData
     public WalletSaveData(string id, Type type, int coinsCount) : base(id, type)
     {
         CoinsCount = coinsCount;
-        Debug.Log("WalletSaveData      "+CoinsCount);
+        Debug.Log("WalletSaveData      " + CoinsCount);
     }
 }

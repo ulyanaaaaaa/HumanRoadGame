@@ -7,6 +7,7 @@ using Zenject;
 public class EntryPoint : WindowsBrain
 {
     [SerializeField] private List<Hurt> _hurts;
+    [SerializeField] private List<Hurt> _looseHurts;
 
     [SerializeField] private Canvas _canvas;
     [SerializeField] private RectTransform _hurtsPosition;
@@ -102,7 +103,9 @@ public class EntryPoint : WindowsBrain
         _hurts[0].GetComponent<RectTransform>().position,
             Quaternion.identity,
             _canvas.transform);
+        Destroy(_hurts[0].gameObject);
         _hurts.RemoveAt(0);
+        _looseHurts.Add(_looseHurtCreated);
     }
 
     private void SettingMenuButtons()
@@ -179,16 +182,13 @@ public class EntryPoint : WindowsBrain
 
     private void DestroyLevel()
     {
-        if (_hurtCreated)
-        {
-            foreach (Hurt hurt in _hurts)
-                CloseWindow(hurt.gameObject);
-            
-            _hurts.Clear();
-        }
+        foreach (Hurt hurt in _hurts)
+            Destroy(hurt.gameObject);
+        _hurts.Clear();
 
-        if (_looseHurtCreated)
-            CloseWindow(_looseHurtCreated.gameObject);
+        foreach (Hurt looseHurt in _looseHurts) 
+            Destroy(looseHurt.gameObject);
+        _looseHurts.Clear();
         
         CloseWindow(_gameInstaller.PlayerCreated.gameObject);
         CloseWindow(_gameInstaller.ScoreCounterCreated.gameObject);
@@ -199,13 +199,11 @@ public class EntryPoint : WindowsBrain
 
     public void CreateGame()
     {
-        CreateHurts();
         SettingMenuButtons();
         CreatePause();
         CloseShop();
         CreateCoinsCounter();
         CreateLanguageMenu();
-        CreateLooseHurt();
         CreatePauseMenu();
         CreateSoundMenu();
     }
@@ -213,12 +211,6 @@ public class EntryPoint : WindowsBrain
     private void DisableGame()
     {
         CloseWindow(_gameInstaller.PlayerCreated.gameObject);
-
-        for (int i = 0; i < _hurts.Count; i++)
-        {
-            
-            CloseWindow(_hurts[i].gameObject);
-        }
         CloseWindow(_pauseCreated.gameObject);
         CloseWindow(_gameInstaller.ScoreCounterCreated.gameObject);
         CloseWindow(_gameInstaller.ShopCreated.gameObject);

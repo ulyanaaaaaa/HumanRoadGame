@@ -38,17 +38,17 @@ public class Player : MonoBehaviour, ISaveData
     public void Save()
     {
         _saveService.SaveData.AddData(Id, new PlayerSaveData(Id, typeof(Player), _currentSkin));
-        Debug.Log("SavePLayer " + _currentSkin);
+        //Debug.Log("SavePLayer " + _currentSkin);
         _saveService.Save();
     }
 
     public void Load()
     {
-        Debug.Log("Load");
+        //Debug.Log("Load");
         if (_saveService.SaveData.TryGetData(Id, out PlayerSaveData playerSaveData))
         {
             _currentSkin = playerSaveData.Skin;
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + _currentSkin);
+            //Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + _currentSkin);
         }
     }
     
@@ -65,6 +65,7 @@ public class Player : MonoBehaviour, ISaveData
         
         if (_volume.profile.TryGet(out Vignette vignette))
             _vignette = vignette;
+        
     }
 
     private void Start()
@@ -72,12 +73,12 @@ public class Player : MonoBehaviour, ISaveData
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += () =>
             transform.position = _gameInstaller.PlayerStartPosition.position;
         Load();
-        ChangeSkin(_currentSkin);
+        //ChangeSkin(_currentSkin);
     }
     
     private void ChangeSkin(string newSkin)
     {
-        Debug.Log("nEWsKIN: " + newSkin);
+        //Debug.Log("nEWsKIN: " + newSkin);
         foreach (GameObject skin in _skins)
         {
             if (skin.name == newSkin)
