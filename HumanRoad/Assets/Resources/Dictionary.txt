@@ -9,8 +9,8 @@ go	ВПЕРЕД	GO
 music	Музыка	Music
 sound	Звуки	Sound
 price	цена: 	price:
-Bob_name	Боб	Bob
-Remy_name	Рэми	Remy
+Remy	Рэми	Remy
+Maria	Мария	Maria
 russian	Русский	Russian
 english	Английский	English
 

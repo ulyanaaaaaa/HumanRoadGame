@@ -28,7 +28,7 @@ public class ScoreCounter : MonoBehaviour
     }
 
     private void ChangedCounter(int count)
-    {
+    {               
         if (count > _score)
         {
             _score = count;

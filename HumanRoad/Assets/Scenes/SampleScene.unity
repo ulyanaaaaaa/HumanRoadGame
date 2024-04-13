@@ -231,7 +231,6 @@ GameObject:
   - component: {fileID: 705507996}
   - component: {fileID: 705507998}
   - component: {fileID: 705507997}
-  - component: {fileID: 705507999}
   - component: {fileID: 705508000}
   - component: {fileID: 705508001}
   - component: {fileID: 705508002}
@@ -336,6 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hurts: []
+  _looseHurts: []
   _canvas: {fileID: 1491811873}
   _hurtsPosition: {fileID: 1093868628}
   _pausePosition: {fileID: 37821780}
@@ -382,18 +382,6 @@ MonoBehaviour:
   - {fileID: 860489201201965994, guid: e903c21a48c0e86438727eb4701232bd, type: 3}
   - {fileID: 1833245748396694024, guid: 3abbc993f6dd8c24789e6353bc2a1d28, type: 3}
   _keyboardInput: {fileID: 0}
---- !u!114 &705507999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705507993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 143bd76307e8fb846b15cf26f09aac67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &705508000
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,11 +3,13 @@ using Zenject;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] public Translator Translator;
+    public Translator Translator;
+    public GameInstaller GameInstaller;
     
     [Inject]
-    public void Container(Translator translator)
+    public void Container(Translator translator, GameInstaller gameInstaller)
     {
         Translator = translator;
+        GameInstaller = gameInstaller;
     }
 }

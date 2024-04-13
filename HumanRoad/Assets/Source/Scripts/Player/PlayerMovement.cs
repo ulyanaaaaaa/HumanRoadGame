@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
 {
    private KeyboardInput _keyboardInput;
    private SwipeDetection _swipeDetection;
-   private Animator _animator;
    
    public Action<float> OnScoreChanged;
    
@@ -16,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
    {
        _keyboardInput = GetComponent<KeyboardInput>();
        _swipeDetection = GetComponent<SwipeDetection>();
-       _animator = GetComponentInChildren<Animator>();
    }
 
    private void OnEnable()
@@ -68,7 +66,12 @@ public class PlayerMovement : MonoBehaviour
 
    private void Move(Vector3 difference)
    {
-       _animator.SetTrigger("IsJump");
+       Animator[] animators = GetComponentsInChildren<Animator>();
+       foreach (Animator animator in animators)
+       {
+           if (!animator.GetComponent<Camera>())
+               animator.SetTrigger("IsJump");
+       }
        transform.DOJump(transform.position + difference, 1f, 1, 0.2f);
    }
 }

@@ -102,7 +102,7 @@ public class GameInstaller : MonoInstaller
             null);
         MenuCreated.transform.SetParent(_canvas.transform, false);
         MenuCreated.transform.position = _menuPosition.GetComponent<RectTransform>().position;
-        MenuCreated.Container(Container.Resolve<Translator>());
+        MenuCreated.Container(Container.Resolve<Translator>(), this);
         MenuCreated.GetComponentInChildren<Wallet>().Container(_saveService, this);
     }
 
@@ -131,7 +131,7 @@ public class GameInstaller : MonoInstaller
         ShopCreated.GetComponent<Transform>().localPosition =
             _shop.GetComponent<Transform>().localPosition;
         
-        ShopCreated.Container(Container.Resolve<Wallet>(), _saveService, _translator);
+        ShopCreated.Container(Container.Resolve<Wallet>(), _saveService, _translator, PlayerCreated);
     }
 
     private void ScoreCounterBind()

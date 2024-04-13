@@ -73,15 +73,13 @@ public class Player : MonoBehaviour, ISaveData
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += () =>
             transform.position = _gameInstaller.PlayerStartPosition.position;
         Load();
-        //ChangeSkin(_currentSkin);
     }
     
-    private void ChangeSkin(string newSkin)
+    public void ChangeSkin(string newSkin)
     {
-        //Debug.Log("nEWsKIN: " + newSkin);
         foreach (GameObject skin in _skins)
         {
-            if (skin.name == newSkin)
+            if (skin.name.Trim() == newSkin.Trim())
             {
                 skin.gameObject.SetActive(true);
                 _currentSkin = newSkin;

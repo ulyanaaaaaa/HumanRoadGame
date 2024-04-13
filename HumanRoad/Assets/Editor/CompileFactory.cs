@@ -13,7 +13,7 @@ public static class CompileFactory
     [MenuItem("AutoBuild/CompileForAndroid")]
     private static void CompileForAndroid()
     {
-        ICompileFactory compileFactory = new SimpleWinCompileFactory();
+        ICompileFactory compileFactory = new SimpleAndroidCompileFactory();
         compileFactory.Compile();
     }
 

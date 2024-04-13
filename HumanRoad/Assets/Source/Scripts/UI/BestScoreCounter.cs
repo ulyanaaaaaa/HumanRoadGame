@@ -10,22 +10,23 @@ public class BestScoreCounter : MonoBehaviour
 
     private void Awake()
     {
+        if (!PlayerPrefs.HasKey("BestScore"))
+            PlayerPrefs.SetInt("BestScore", 0);
+        
         _textTranslator = GetComponent<TextTranslator>();
         _textTranslator.Id = "best_score";
-        _textTranslator.TranslateText += UpdateCounter;
         _counter = GetComponent<TextMeshProUGUI>();
     }
     
     private void Start()
     {
+        _textTranslator.TranslateText += UpdateCounter;
+        GetComponentInParent<Menu>().GameInstaller.PlayerCreated.OnDie += UpdateCounter;
         UpdateCounter();
     }
 
     private void UpdateCounter()
     {
-        if (PlayerPrefs.HasKey("BestScore"))
-        {
-            _counter.text =  _textTranslator.Translate(_textTranslator.Id) + '\n' + PlayerPrefs.GetInt("BestScore");
-        }
+        _counter.text = _textTranslator.Translate(_textTranslator.Id) + '\n' + PlayerPrefs.GetInt("BestScore");
     }
 }
