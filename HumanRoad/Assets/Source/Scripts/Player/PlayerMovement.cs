@@ -1,20 +1,29 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(KeyboardInput))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPause
 {
-   private KeyboardInput _keyboardInput;
-   private SwipeDetection _swipeDetection;
+    [SerializeField]private KeyboardInput _keyboardInput;
+   [SerializeField]private SwipeDetection _swipeDetection;
+   [SerializeField]private PauseService _pauseService;
+   [SerializeField] private bool _isPause;
    
    public Action<float> OnScoreChanged;
    
+   [Inject]
+   public void Container(PauseService pauseService)
+   {
+       _pauseService = pauseService;
+   }
+
    private void Awake()
    {
        _keyboardInput = GetComponent<KeyboardInput>();
-       _swipeDetection = GetComponent<SwipeDetection>();
+       _swipeDetection = GetComponent<SwipeDetection>();   
    }
 
    private void OnEnable()
@@ -29,18 +38,20 @@ public class PlayerMovement : MonoBehaviour
        _swipeDetection.OnLeftSwipe += LeftStep;
        _swipeDetection.OnRightSwipe += RightStep;
    }
-   
-   private void OnDisable()
-   {
-       _keyboardInput.OnLeftCliked -= LeftStep;
-       _keyboardInput.OnRightCliked -= RightStep;
-       _keyboardInput.OnRunCliked -= Run;
-       _keyboardInput.OnBackCliKed -= GoBack;
 
-       _swipeDetection.OnBackSwipe -= GoBack;
-       _swipeDetection.OnRunSwipe -= Run;
-       _swipeDetection.OnLeftSwipe -= LeftStep;
-       _swipeDetection.OnRightSwipe -= RightStep;
+   private void Start()
+   {
+       _pauseService.AddPause(this);
+   }
+   
+   public void Pause()
+   {
+       _isPause = true;
+   }
+
+   public void Resume()
+   {
+       _isPause = false;
    }
    
    private void Run()
@@ -66,6 +77,9 @@ public class PlayerMovement : MonoBehaviour
 
    private void Move(Vector3 difference)
    {
+       if (_isPause)
+           return;
+       
        Animator[] animators = GetComponentsInChildren<Animator>();
        foreach (Animator animator in animators)
        {
@@ -73,5 +87,18 @@ public class PlayerMovement : MonoBehaviour
                animator.SetTrigger("IsJump");
        }
        transform.DOJump(transform.position + difference, 1f, 1, 0.2f);
+   }
+   
+   private void OnDisable()
+   {
+       _keyboardInput.OnLeftCliked -= LeftStep;
+       _keyboardInput.OnRightCliked -= RightStep;
+       _keyboardInput.OnRunCliked -= Run;
+       _keyboardInput.OnBackCliKed -= GoBack;
+
+       _swipeDetection.OnBackSwipe -= GoBack;
+       _swipeDetection.OnRunSwipe -= Run;
+       _swipeDetection.OnLeftSwipe -= LeftStep;
+       _swipeDetection.OnRightSwipe -= RightStep;
    }
 }

@@ -6,11 +6,13 @@ public class PauseMenu : MonoBehaviour
 {
     public Action OnPlay;
     public Translator Translator;
+    [SerializeField] private PauseService _pauseService;
 
     [Inject]
-    public void Container(Translator translator)
+    public void Container(Translator translator, PauseService pauseService)
     {
         Translator = translator;
+        _pauseService = pauseService;
     }
 
     private void Start()
@@ -20,7 +22,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Click()
     {
-        Time.timeScale = 1;
         OnPlay?.Invoke();
+        _pauseService.Resume();
     }
 }

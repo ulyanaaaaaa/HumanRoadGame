@@ -3,16 +3,16 @@ using Zenject;
 
 public class GameInstaller : MonoInstaller
 {
+    [SerializeField] private RectTransform _pausePosition;
+    [SerializeField] public Transform PlayerStartPosition;
     [SerializeField] private Translator _translator;
     [SerializeField] private Canvas _canvas;
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private SaveService _saveService;
-    [SerializeField] public Transform PlayerStartPosition;
     [SerializeField] private Transform _scoreCounterPosition;
     [SerializeField] private RectTransform _timerPosition;
     [SerializeField] private RectTransform _menuPosition;
     [SerializeField] private EntryPoint _entryPoint;
-    [SerializeField] private Wallet _wallet;
+    [SerializeField] private PauseService _pauseService;
     
     public Menu MenuCreated;
     public Player PlayerCreated;
@@ -24,6 +24,11 @@ public class GameInstaller : MonoInstaller
     private ScoreCounter _scoreCounter;
     private Timer _timer;
     private Player _player;
+    private Wallet _wallet;
+    private PauseButton _pauseButton;
+    public PauseButton PauseButtonCreated;
+    private PauseMenu _pauseMenu;
+    public PauseMenu PauseMenuCreated;
 
     public override void InstallBindings()
     {
@@ -34,13 +39,13 @@ public class GameInstaller : MonoInstaller
         Container.Bind<AudioSource>()
             .FromInstance(_audioSource)
             .AsSingle();
-
-        Container.Bind<SaveService>()
-            .FromInstance(_saveService)
-            .AsSingle(); 
         
         Container.Bind<Translator>()
             .FromInstance(_translator)
+            .AsSingle();
+        
+        Container.Bind<PauseService>()
+            .FromInstance(_pauseService)
             .AsSingle();
         
         MenuBind();
@@ -49,7 +54,8 @@ public class GameInstaller : MonoInstaller
             .FromInstance(MenuCreated.GetComponentInChildren<Wallet>())
             .AsSingle();
         
-        
+        PauseBind();
+        PauseMenuBind();
         TimerBind();
         PlayerBind();
         
@@ -89,8 +95,9 @@ public class GameInstaller : MonoInstaller
             .FromInstance(PlayerCreated)
             .AsSingle();
         
-        TimerCreated.Container(Container.Resolve<Player>(), this);
-        PlayerCreated.Container(Container.Resolve<Timer>(), _saveService, this);
+        TimerCreated.Container(Container.Resolve<Player>(), this, _pauseService);
+        PlayerCreated.Container(Container.Resolve<Timer>(), this);
+        PlayerCreated.GetComponent<PlayerMovement>().Container(_pauseService);
     }
 
     private void MenuBind()
@@ -103,7 +110,7 @@ public class GameInstaller : MonoInstaller
         MenuCreated.transform.SetParent(_canvas.transform, false);
         MenuCreated.transform.position = _menuPosition.GetComponent<RectTransform>().position;
         MenuCreated.Container(Container.Resolve<Translator>(), this);
-        MenuCreated.GetComponentInChildren<Wallet>().Container(_saveService, this);
+        MenuCreated.GetComponentInChildren<Wallet>().Container(this);
     }
 
     private void TimerBind()
@@ -131,7 +138,7 @@ public class GameInstaller : MonoInstaller
         ShopCreated.GetComponent<Transform>().localPosition =
             _shop.GetComponent<Transform>().localPosition;
         
-        ShopCreated.Container(Container.Resolve<Wallet>(), _saveService, _translator, PlayerCreated);
+        ShopCreated.Container(Container.Resolve<Wallet>(), _translator, PlayerCreated);
     }
 
     private void ScoreCounterBind()
@@ -145,6 +152,29 @@ public class GameInstaller : MonoInstaller
         ScoreCounterCreated.GetComponent<RectTransform>().localPosition =
             _scoreCounterPosition.GetComponent<RectTransform>().localPosition;
         ScoreCounterCreated.Constructor(Container.Resolve<PlayerMovement>());
+    }
+    
+    private void PauseBind()
+    {
+        _pauseButton = Resources.Load<PauseButton>(AssetsPath.Pause);
+        PauseButtonCreated = Instantiate(_pauseButton,
+            _pausePosition.GetComponent<RectTransform>().position,
+            Quaternion.identity,
+            _canvas.transform); 
+        PauseButtonCreated.Constructor(_pauseService);
+    }
+
+    private void PauseMenuBind()
+    { 
+        _pauseMenu = Resources.Load<PauseMenu>(AssetsPath.PauseMenu);
+        PauseMenuCreated = Instantiate(_pauseMenu,
+            _pauseMenu.GetComponent<RectTransform>().localPosition,
+            Quaternion.identity,
+            null);
+        PauseMenuCreated.transform.SetParent(_canvas.transform, false);
+        PauseMenuCreated.GetComponent<RectTransform>().localPosition =
+            _pauseMenu.GetComponent<RectTransform>().localPosition;
+        PauseMenuCreated.Container(_translator, _pauseService);
     }
 
     private void CreateGame()

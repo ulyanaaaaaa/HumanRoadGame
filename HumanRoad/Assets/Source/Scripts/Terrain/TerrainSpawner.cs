@@ -6,14 +6,18 @@ public class TerrainSpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _terrains = new List<GameObject>();
     private Vector3 _currentPosition = new Vector3(1, 0, 0);
-    [SerializeField] private KeyboardInput _keyboardInput;
-    private DiContainer _container;
+    private KeyboardInput _keyboardInput; 
+    private PauseService _pauseService;
 
     [Inject]
-    public void Container(KeyboardInput keyboardInput, DiContainer container)
+    public void Container(KeyboardInput keyboardInput)
     {
         _keyboardInput = keyboardInput;
-        _container = container;
+    }
+
+    private void Awake()
+    {
+        _pauseService = GetComponent<PauseService>();
     }
 
     private void Start()
@@ -23,13 +27,22 @@ public class TerrainSpawner : MonoBehaviour
 
     public void CreateTerrain()
     {
-        Vector3 newPosition = new Vector3(_currentPosition.x, 
-            _currentPosition.y, 
+        Vector3 newPosition = new Vector3(_currentPosition.x,
+            _currentPosition.y,
             _currentPosition.z + Random.Range(-15, 15));
+
+        GameObject newTerrain = _terrains[Random.Range(0, _terrains.Count)];
         
-        Instantiate(_terrains[Random.Range(0, _terrains.Count)], newPosition, Quaternion.identity);
+        IPauseServiceConsumer[] pauseServiceConsumers = newTerrain.GetComponents<IPauseServiceConsumer>();
+
+        foreach (var consumer in pauseServiceConsumers)
+            consumer.SetPauseService(_pauseService);
+        
+        Instantiate(newTerrain, newPosition, Quaternion.identity);
+
         _currentPosition.x++;
     }
+
 
     public void CreateGround()
     {

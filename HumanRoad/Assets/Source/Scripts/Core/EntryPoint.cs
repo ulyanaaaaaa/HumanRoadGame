@@ -2,20 +2,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(SaveService))]
 [RequireComponent(typeof(AudioSource))]
-public class EntryPoint : WindowsBrain
+public class EntryPoint : ObjectActivity
 {
     [SerializeField] private List<Hurt> _hurts;
     [SerializeField] private List<Hurt> _looseHurts;
-
+    
     [SerializeField] private Canvas _canvas;
     [SerializeField] private RectTransform _hurtsPosition;
-    [SerializeField] private RectTransform _pausePosition;
     [SerializeField] private RectTransform _coinsCounterPosition;
     [SerializeField] private RectTransform _scoreCounterPosition;
     [SerializeField] private RectTransform _menuPosition;
-    
     [SerializeField] private AudioSource _soundSource;
     [SerializeField] private GameInstaller _gameInstaller;
 
@@ -28,10 +25,6 @@ public class EntryPoint : WindowsBrain
     private CoinsCounter _coinsCounter;
     private CoinsCounter _coinsCounterCreated;
     private ShopButton _shopButton;
-    private Pause _pause;
-    private Pause _pauseCreated;
-    private PauseMenu _pauseMenu;
-    private PauseMenu _pauseMenuCreated;
     private SoundMenu _soundMenu;
     private SoundMenu _soundMenuCreated;
     private LanguageMenu _languageMenu;
@@ -43,18 +36,18 @@ public class EntryPoint : WindowsBrain
     {
         _container = container;
     }
-
+    
     private void OnEnable()
     {
         _gameInstaller.PlayerCreated.OnLooseHurt += CreateLooseHurt;
-        _gameInstaller.PlayerCreated.OnDie += () => OpenWindow(_gameInstaller.MenuCreated.gameObject);
+        _gameInstaller.PlayerCreated.OnDie += () => EnableObject(_gameInstaller.MenuCreated.gameObject);
         _gameInstaller.PlayerCreated.OnDie += DestroyLevel;
     }
 
     private void Start()
     {
         DisableGame();
-        OpenWindow(_gameInstaller.MenuCreated.gameObject);
+        EnableObject(_gameInstaller.MenuCreated.gameObject);
     }
     
     private void CreateSoundMenu()
@@ -68,7 +61,7 @@ public class EntryPoint : WindowsBrain
         _soundMenuCreated.GetComponent<RectTransform>().localPosition =
             _soundMenu.GetComponent<RectTransform>().localPosition;
         _soundMenuCreated.GetComponentInChildren<ExitButton>().OnExit += 
-            () => CloseWindow( _soundMenuCreated.gameObject);
+            () => DisableObject( _soundMenuCreated.gameObject);
     }
 
     private void CreateCoinsCounter()
@@ -111,54 +104,34 @@ public class EntryPoint : WindowsBrain
     private void SettingMenuButtons()
     {
         _gameInstaller.MenuCreated.GetComponentInChildren<ShopButton>().OnPlay += 
-            () => OpenWindow(_gameInstaller.ShopCreated.gameObject);
+            () => EnableObject(_gameInstaller.ShopCreated.gameObject);
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
-            () => CloseWindow(_gameInstaller.MenuCreated.gameObject);
+            () => DisableObject(_gameInstaller.MenuCreated.gameObject);
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
-            () => OpenWindow(_gameInstaller.PlayerCreated.gameObject);
+            () => EnableObject(_gameInstaller.PlayerCreated.gameObject);
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
-            () => OpenWindow(_gameInstaller.ScoreCounterCreated.gameObject);
+            () => EnableObject(_gameInstaller.ScoreCounterCreated.gameObject);
+        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay +=
+            () => EnableObject(_gameInstaller.PauseButtonCreated.gameObject);
 
         foreach (Hurt hurt in _hurts)
             _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay +=
-                () => OpenWindow(_hurt.gameObject);
+                () => EnableObject(_hurt.gameObject);
         
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
-            () => OpenWindow(_pauseCreated.gameObject);
+            () => EnableObject(_coinsCounterCreated.gameObject);
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
-            () => OpenWindow(_coinsCounterCreated.gameObject);
-        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
-            () => OpenWindow(_gameInstaller.TimerCreated.gameObject);
+            () => EnableObject(_gameInstaller.TimerCreated.gameObject);
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay +=
             () => CreateHurts();
 
         _gameInstaller.MenuCreated.GetComponentInChildren<SoundButton>().OnPlay += 
-            () => OpenWindow(_soundMenuCreated.gameObject);
+            () => EnableObject(_soundMenuCreated.gameObject);
         _gameInstaller.MenuCreated.GetComponentInChildren<LanguageButton>().OnClick += 
-            () => OpenWindow(_languageMenuCreated.gameObject);
-    }
+            () => EnableObject(_languageMenuCreated.gameObject);
 
-    private void CreatePause()
-    {
-        _pause = Resources.Load<Pause>(AssetsPath.Pause);
-        _pauseCreated = Instantiate(_pause,
-            _pausePosition.GetComponent<RectTransform>().position,
-            Quaternion.identity,
-            _canvas.transform);
-        _pauseCreated.OnPause += () => OpenWindow(_pauseMenuCreated.gameObject);
-    }
-
-    private void CreatePauseMenu()
-    { 
-        _pauseMenu = Resources.Load<PauseMenu>(AssetsPath.PauseMenu);
-        _pauseMenuCreated = _container.InstantiatePrefabForComponent<PauseMenu>(_pauseMenu,
-            _pauseMenu.GetComponent<RectTransform>().localPosition,
-            Quaternion.identity,
-            null);
-        _pauseMenuCreated.transform.SetParent(_canvas.transform, false);
-        _pauseMenuCreated.GetComponent<RectTransform>().localPosition =
-            _pauseMenu.GetComponent<RectTransform>().localPosition;
-        _pauseMenuCreated.OnPlay += () => CloseWindow(_pauseMenuCreated.gameObject);
+        _gameInstaller.PauseButtonCreated.OnPause += () => EnableObject(_gameInstaller.PauseMenuCreated.gameObject);
+        _gameInstaller.PauseMenuCreated.OnPlay += () => DisableObject(_gameInstaller.PauseMenuCreated.gameObject);
     }
 
     private void CreateLanguageMenu()
@@ -172,12 +145,12 @@ public class EntryPoint : WindowsBrain
         _languageMenuCreated.GetComponent<RectTransform>().localPosition =
             _languageMenu.GetComponent<RectTransform>().localPosition;
         _languageMenuCreated.GetComponentInChildren<ExitButton>().OnExit +=
-            () => CloseWindow(_languageMenuCreated.gameObject);
+            () => DisableObject(_languageMenuCreated.gameObject);
     }
 
     private void CloseShop()
     {
-        _gameInstaller.ShopCreated.GetComponentInChildren<ExitButton>().OnExit += () => CloseWindow(_gameInstaller.ShopCreated.gameObject);
+        _gameInstaller.ShopCreated.GetComponentInChildren<ExitButton>().OnExit += () => DisableObject(_gameInstaller.ShopCreated.gameObject);
     }
 
     private void DestroyLevel()
@@ -190,35 +163,33 @@ public class EntryPoint : WindowsBrain
             Destroy(looseHurt.gameObject);
         _looseHurts.Clear();
         
-        CloseWindow(_gameInstaller.PlayerCreated.gameObject);
-        CloseWindow(_gameInstaller.ScoreCounterCreated.gameObject);
-        CloseWindow(_coinsCounterCreated.gameObject);
-        CloseWindow(_gameInstaller.TimerCreated.gameObject);
-        CloseWindow(_pauseCreated.gameObject);
+        DisableObject(_gameInstaller.PlayerCreated.gameObject);
+        DisableObject(_gameInstaller.ScoreCounterCreated.gameObject);
+        DisableObject(_coinsCounterCreated.gameObject);
+        DisableObject(_gameInstaller.TimerCreated.gameObject);
+        DisableObject(_gameInstaller.PauseButtonCreated.gameObject);
     }
 
     public void CreateGame()
     {
-        SettingMenuButtons();
-        CreatePause();
         CloseShop();
         CreateCoinsCounter();
         CreateLanguageMenu();
-        CreatePauseMenu();
         CreateSoundMenu();
+        SettingMenuButtons();
     }
 
     private void DisableGame()
     {
-        CloseWindow(_gameInstaller.PlayerCreated.gameObject);
-        CloseWindow(_pauseCreated.gameObject);
-        CloseWindow(_gameInstaller.ScoreCounterCreated.gameObject);
-        CloseWindow(_gameInstaller.ShopCreated.gameObject);
-        CloseWindow(_soundMenuCreated.gameObject);
-        CloseWindow(_coinsCounterCreated.gameObject);
-        CloseWindow(_languageMenuCreated.gameObject);
-        CloseWindow(_gameInstaller.MenuCreated.gameObject);
-        CloseWindow(_pauseMenuCreated.gameObject);
-        CloseWindow(_gameInstaller.TimerCreated.gameObject);
+        DisableObject(_gameInstaller.PlayerCreated.gameObject);
+        DisableObject(_gameInstaller.ScoreCounterCreated.gameObject);
+        DisableObject(_gameInstaller.ShopCreated.gameObject);
+        DisableObject(_soundMenuCreated.gameObject);
+        DisableObject(_coinsCounterCreated.gameObject);
+        DisableObject(_languageMenuCreated.gameObject);
+        DisableObject(_gameInstaller.MenuCreated.gameObject);
+        DisableObject(_gameInstaller.TimerCreated.gameObject);
+        DisableObject(_gameInstaller.PauseButtonCreated.gameObject);
+        DisableObject(_gameInstaller.PauseMenuCreated.gameObject);
     }
 }

@@ -8,7 +8,7 @@ using Zenject;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerWallet))]
-public class Player : MonoBehaviour, ISaveData
+public class Player : MonoBehaviour
 {
     public Action OnLooseHurt;
     public Action OnDie;
@@ -24,37 +24,17 @@ public class Player : MonoBehaviour, ISaveData
     private Volume _volume;
     private Vignette _vignette;
     private Timer _timer;
-    private SaveService _saveService;
     private GameInstaller _gameInstaller;
 
     [Inject]
-    public void Container(Timer timer, SaveService saveService, GameInstaller gameInstaller)
+    public void Container(Timer timer, GameInstaller gameInstaller)
     {
-        _saveService = saveService;
         _timer = timer;
         _gameInstaller = gameInstaller;
-    }
-
-    public void Save()
-    {
-        _saveService.SaveData.AddData(Id, new PlayerSaveData(Id, typeof(Player), _currentSkin));
-        //Debug.Log("SavePLayer " + _currentSkin);
-        _saveService.Save();
-    }
-
-    public void Load()
-    {
-        //Debug.Log("Load");
-        if (_saveService.SaveData.TryGetData(Id, out PlayerSaveData playerSaveData))
-        {
-            _currentSkin = playerSaveData.Skin;
-            //Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + _currentSkin);
-        }
     }
     
     private void OnEnable()
     {
-        OnDie += Save;
         OnDie += Revival;
     }
 
@@ -72,7 +52,6 @@ public class Player : MonoBehaviour, ISaveData
     {
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += () =>
             transform.position = _gameInstaller.PlayerStartPosition.position;
-        Load();
     }
     
     public void ChangeSkin(string newSkin)
@@ -134,13 +113,3 @@ public class Player : MonoBehaviour, ISaveData
     }
 }
 
-[Serializable]
-public class PlayerSaveData : SaveData
-{
-    public string Skin;
-    
-    public PlayerSaveData(string id, Type type, string skin) : base(id, type)
-    {
-        Skin = skin;
-    }
-}

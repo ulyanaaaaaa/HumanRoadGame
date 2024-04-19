@@ -1,9 +1,10 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Car : MonoBehaviour
+public class Car : MonoBehaviour, IPause
 {
     [SerializeField] private float _speed;
+    private float _tempSpeed;
     private Rigidbody _rigidbody;
 
     private void Awake()
@@ -19,6 +20,7 @@ public class Car : MonoBehaviour
     public Car SetSpeed(float speed)
     {
         _speed = speed;
+        _tempSpeed = speed;
         return this;
     }
     
@@ -28,5 +30,15 @@ public class Car : MonoBehaviour
         {
             player.TakeDamage();
         }
+    }
+
+    public void Pause()
+    {
+        _speed = 0;
+    }
+
+    public void Resume()
+    {
+        _speed = _tempSpeed;
     }
 }

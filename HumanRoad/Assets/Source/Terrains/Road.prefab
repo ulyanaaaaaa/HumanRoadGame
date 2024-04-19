@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPosition: {fileID: 2973856851554080496}
+  _pauseService: {fileID: 0}
 --- !u!1 &2495778036652250130
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,11 @@ public class TerrainFactory : MonoBehaviour
 
     private void Start()
     {
+        CreateSafeZone();
+    }
+
+    private void CreateSafeZone()
+    {
         for (int i = 0; i < SaveZoneSize - 1; i++)
             _terrainSpawner.CreateGround();
 

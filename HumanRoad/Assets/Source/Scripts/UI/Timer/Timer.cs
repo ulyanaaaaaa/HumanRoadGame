@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Zenject;
 
-public class Timer : MonoBehaviour
+public class Timer : MonoBehaviour, IPause
 {
     public Action<float,float> OnDurationChanged;
     public bool IsTook { get; private set; }
@@ -12,26 +12,35 @@ public class Timer : MonoBehaviour
     private float _duration;
     private Coroutine _timerTick;
     private Player _player;
-    [SerializeField] private GameInstaller _gameInstaller;
+    private PauseService _pauseService;
+    private GameInstaller _gameInstaller;
 
     [Inject]
-    public void Container(Player player, GameInstaller gameInstaller)
+    public void Container(Player player, GameInstaller gameInstaller, PauseService pauseService)
     {
+        _pauseService = pauseService;
         _player = player;
         _gameInstaller = gameInstaller;
     }
     
     private void Start()
     {
+        _pauseService.AddPause(this);
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += StartTimer;
     }
 
     private void StartTimer()
     {
         _duration = _startDuration;
+        gameObject.SetActive(true); 
         _timerTick = StartCoroutine(TimerTick());
-        _gameInstaller.PlayerCreated.OnDie += () => StopCoroutine(_timerTick);
+        _gameInstaller.PlayerCreated.OnDie += () =>
+        {
+            StopCoroutine(_timerTick);
+            gameObject.SetActive(false); 
+        };
     }
+
 
     public IEnumerator StopTimerCoroutine(float time)
     {
@@ -51,5 +60,15 @@ public class Timer : MonoBehaviour
             OnDurationChanged?.Invoke(_duration, _startDuration);
         }
         _player.OnDie?.Invoke();
+    }
+
+    public void Pause()
+    {
+        StopCoroutine(_timerTick);
+    }
+
+    public void Resume()
+    {
+        _timerTick = StartCoroutine(TimerTick());
     }
 }
