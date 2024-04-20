@@ -1,11 +1,19 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class PlayerWallet : MonoBehaviour
 {
     public Action<int> OnChangeCoins;
     private List<Coin> _coins = new List<Coin>();
+    private GameInstaller _gameInstaller;
+
+    [Inject]
+    public void Constructor(GameInstaller gameInstaller)
+    {
+        _gameInstaller = gameInstaller;
+    }
     
     public int PlayerWalletCoins()
     {
@@ -14,7 +22,10 @@ public class PlayerWallet : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Player>().OnDie += () => _coins.Clear();
+        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += () 
+            => _coins.Clear();
+        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += () 
+            => PlayerPrefs.SetInt("Coins", _coins.Count);
     }
 
     private void AddCoin(Coin coin)

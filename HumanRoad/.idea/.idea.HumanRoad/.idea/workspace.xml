@@ -18,6 +18,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Source/Scripts/Core/ObjectActivity.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Source/Scripts/Pause/IPause.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Source/Scripts/Pause/IPauseServiceConsumer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Source/Scripts/Save/SaveService.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -177,7 +178,8 @@
       <workItem from="1713515894603" duration="597000" />
       <workItem from="1713516740420" duration="17103000" />
       <workItem from="1713553331620" duration="7005000" />
-      <workItem from="1713560471587" duration="2678000" />
+      <workItem from="1713560471587" duration="6230000" />
+      <workItem from="1713606187641" duration="3408000" />
     </task>
     <servers />
   </component>

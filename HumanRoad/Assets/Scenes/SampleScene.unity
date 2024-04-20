@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 705508005}
   - component: {fileID: 705508006}
   - component: {fileID: 705508007}
+  - component: {fileID: 705508008}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -382,8 +383,6 @@ MonoBehaviour:
   - {fileID: 5530417479398166627, guid: 5988a849d71966c479b282482c005d57, type: 3}
   - {fileID: 860489201201965994, guid: e903c21a48c0e86438727eb4701232bd, type: 3}
   - {fileID: 1833245748396694024, guid: 3abbc993f6dd8c24789e6353bc2a1d28, type: 3}
-  _keyboardInput: {fileID: 0}
-  _pauseService: {fileID: 0}
 --- !u!114 &705508000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,6 +641,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3d8b125145b8c4eb0cd6a9e75a6d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &705508008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e46e3f549766614195dce02ce99dbd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _filePath: 
+  <CurrentSaveData>k__BackingField:
+    Id: 
+    <Language>k__BackingField: 0
 --- !u!1 &1055378259
 GameObject:
   m_ObjectHideFlags: 0

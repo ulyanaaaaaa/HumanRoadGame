@@ -97,7 +97,8 @@ public class GameInstaller : MonoInstaller
         
         TimerCreated.Container(Container.Resolve<Player>(), this, _pauseService);
         PlayerCreated.Container(Container.Resolve<Timer>(), this);
-        PlayerCreated.GetComponent<PlayerMovement>().Container(_pauseService);
+        PlayerCreated.GetComponent<PlayerMovement>().Constructor(_pauseService);
+        PlayerCreated.GetComponent<PlayerWallet>().Constructor(this);
     }
 
     private void MenuBind()

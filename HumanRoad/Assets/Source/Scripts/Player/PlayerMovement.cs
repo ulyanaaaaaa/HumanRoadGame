@@ -7,15 +7,15 @@ using Zenject;
 [RequireComponent(typeof(KeyboardInput))]
 public class PlayerMovement : MonoBehaviour, IPause
 {
-    [SerializeField]private KeyboardInput _keyboardInput;
-   [SerializeField]private SwipeDetection _swipeDetection;
-   [SerializeField]private PauseService _pauseService;
-   [SerializeField] private bool _isPause;
+   private KeyboardInput _keyboardInput;
+   private SwipeDetection _swipeDetection;
+   private PauseService _pauseService;
+   private bool _isPause;
    
    public Action<float> OnScoreChanged;
    
    [Inject]
-   public void Container(PauseService pauseService)
+   public void Constructor(PauseService pauseService)
    {
        _pauseService = pauseService;
    }
