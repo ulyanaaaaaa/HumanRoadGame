@@ -36,7 +36,17 @@ public class Wallet : MonoBehaviour
         
         Id = "wallet";
         _textTranslator.Id = Id;
-        Load();
+
+        if (!_saveService.Exists(Id))
+        {
+            CoinsCount = 0;
+            Save();
+        }
+        else
+        {
+            Load();
+        }
+
         UpdateCounter();
     }
     

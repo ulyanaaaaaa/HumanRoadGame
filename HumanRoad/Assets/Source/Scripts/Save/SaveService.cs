@@ -30,6 +30,12 @@ public class SaveService : ISaveService
             callback.Invoke(data);
         }
     }
+    
+    public bool Exists(string id)
+    {
+        string path = BuildPath(id);
+        return File.Exists(path); 
+    }
 
     private string BuildPath(string id)
     {
