@@ -21,8 +21,10 @@ public class Player : MonoBehaviour
     private Volume _volume;
     private Vignette _vignette;
     private Timer _timer;
+    private SaveService _saveService;
     private GameInstaller _gameInstaller; 
     private int _health;
+    private string _currentSkin;
 
     [Inject]
     public void Constructor(Timer timer, GameInstaller gameInstaller)
@@ -46,11 +48,23 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        _saveService = new SaveService();
+        
+        if (!_saveService.Exists(Id))
+        {
+            _currentSkin = "Remy";
+            Save();
+        }
+        else
+        {
+            Load();
+        }
+        
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += () =>
             transform.position = _gameInstaller.PlayerStartPosition.position;
 
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += () =>
-            ChangeSkin(PlayerPrefs.GetString("CurrentSkin"));
+            ChangeSkin(_currentSkin);
     }
     
     public void ChangeSkin(string newSkin)
@@ -60,7 +74,8 @@ public class Player : MonoBehaviour
             if (skin.name.Trim() == newSkin.Trim())
             {
                 skin.gameObject.SetActive(true);
-                PlayerPrefs.SetString("CurrentSkin", newSkin);
+                _currentSkin = newSkin;
+                Save();
             }
             else
             {
@@ -101,6 +116,21 @@ public class Player : MonoBehaviour
     {
         _health = 3;
     }
+    
+    private void Save()
+    {
+        PlayerSaveData e = new PlayerSaveData();
+        e.CurrentSkin = _currentSkin;
+        _saveService.Save(Id, e);
+    }
+
+    private void Load()
+    {
+        _saveService.Load<PlayerSaveData>(Id, e =>
+        {
+            _currentSkin = e.CurrentSkin;
+        });
+    }
 
     private void OnTriggerEnter(Collider collider)
     {
@@ -115,5 +145,10 @@ public class Player : MonoBehaviour
     {
         OnDie -= Revival;
     }
+}
+
+public class PlayerSaveData
+{
+    public string CurrentSkin;
 }
 
