@@ -32,7 +32,7 @@ public class EntryPoint : ObjectActivity
     private DiContainer _container;
 
     [Inject]
-    public void Container(DiContainer container)
+    public void Constructor(DiContainer container)
     {
         _container = container;
     }
@@ -50,9 +50,18 @@ public class EntryPoint : ObjectActivity
         EnableObject(_gameInstaller.MenuCreated.gameObject);
     }
     
+    public void CreateGame()
+    {
+        CloseShop();
+        CreateCoinsCounter();
+        CreateLanguageMenu();
+        CreateSoundMenu();
+        SettingMenuButtons();
+    }
+    
     private void CreateSoundMenu()
     {
-        _soundMenu = Resources.Load<SoundMenu>(AssetsPath.SoundMenu);
+        _soundMenu = Resources.Load<SoundMenu>(AssetsPath.MenuPath.SoundMenu);
         _soundMenuCreated = _container.InstantiatePrefabForComponent<SoundMenu>(_soundMenu,
             _soundMenu.GetComponent<RectTransform>().localPosition,
             Quaternion.identity,
@@ -66,7 +75,7 @@ public class EntryPoint : ObjectActivity
 
     private void CreateCoinsCounter()
     {
-        _coinsCounter = Resources.Load<CoinsCounter>(AssetsPath.CoinsCounter);
+        _coinsCounter = Resources.Load<CoinsCounter>(AssetsPath.UiPath.CoinsCounter);
         _coinsCounterCreated = _container.InstantiatePrefabForComponent<CoinsCounter>(_coinsCounter,
             _coinsCounterPosition.GetComponent<RectTransform>().localPosition,
             Quaternion.identity,
@@ -80,7 +89,7 @@ public class EntryPoint : ObjectActivity
     {
         for (int i = 0; i < 3; i++)
         {
-            _hurt = Resources.Load<Hurt>(AssetsPath.Hurt);
+            _hurt = Resources.Load<Hurt>(AssetsPath.UiPath.Hurt);
             _hurtCreated = Instantiate(_hurt,
                 _hurtsPosition.GetComponent<RectTransform>().position - new Vector3(_distanceBetweenHurts * i, 0, 0),
                 Quaternion.identity,
@@ -91,7 +100,7 @@ public class EntryPoint : ObjectActivity
 
     private void CreateLooseHurt()
     {
-        _looseHurt = Resources.Load<Hurt>(AssetsPath.LooseHurt);
+        _looseHurt = Resources.Load<Hurt>(AssetsPath.UiPath.LooseHurt);
         _looseHurtCreated = Instantiate(_looseHurt,
         _hurts[0].GetComponent<RectTransform>().position,
             Quaternion.identity,
@@ -136,7 +145,7 @@ public class EntryPoint : ObjectActivity
 
     private void CreateLanguageMenu()
     {
-        _languageMenu = Resources.Load<LanguageMenu>(AssetsPath.LanguageMenu);
+        _languageMenu = Resources.Load<LanguageMenu>(AssetsPath.MenuPath.LanguageMenu);
         _languageMenuCreated = _container.InstantiatePrefabForComponent<LanguageMenu>(_languageMenu,
             _languageMenu.GetComponent<RectTransform>().localPosition,
             Quaternion.identity,
@@ -168,15 +177,6 @@ public class EntryPoint : ObjectActivity
         DisableObject(_coinsCounterCreated.gameObject);
         DisableObject(_gameInstaller.TimerCreated.gameObject);
         DisableObject(_gameInstaller.PauseButtonCreated.gameObject);
-    }
-
-    public void CreateGame()
-    {
-        CloseShop();
-        CreateCoinsCounter();
-        CreateLanguageMenu();
-        CreateSoundMenu();
-        SettingMenuButtons();
     }
 
     private void DisableGame()

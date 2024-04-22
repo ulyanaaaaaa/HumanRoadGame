@@ -6,18 +6,18 @@ public class LanguageMenu : MonoBehaviour
     public Translator Translator;
 
     [Inject]
-    public void Container(Translator translator)
+    public void Constructor(Translator translator)
     {
         Translator = translator;
     }
 
     public void RussianClick()
     {
-        Translator.ChangeLanguage(Language.ru);
+        Translator.ChangeLanguage(Language.Russian);
     }
     
     public void EnglishClick()
     {
-        Translator.ChangeLanguage(Language.eng);
+        Translator.ChangeLanguage(Language.English);
     }
 }

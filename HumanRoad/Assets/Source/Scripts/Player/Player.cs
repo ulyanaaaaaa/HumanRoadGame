@@ -10,27 +10,33 @@ using Zenject;
 [RequireComponent(typeof(PlayerWallet))]
 public class Player : MonoBehaviour
 {
+    [SerializeField] private List<GameObject> _skins = new List<GameObject>();
+    
     public Action OnLooseHurt;
     public Action OnDie;
+
+    public string Id { get; set; } = "Player";
     
-    public string Id { get; set; }
-    
-    [SerializeField] private List<GameObject> _skins = new List<GameObject>();
-    private string _currentSkin;
-    
-    [SerializeField] private int _health;
     [SerializeField] private int _maxHealth;
-    
     private Volume _volume;
     private Vignette _vignette;
     private Timer _timer;
-    private GameInstaller _gameInstaller;
+    private GameInstaller _gameInstaller; 
+    private int _health;
 
     [Inject]
-    public void Container(Timer timer, GameInstaller gameInstaller)
+    public void Constructor(Timer timer, GameInstaller gameInstaller)
     {
         _timer = timer;
         _gameInstaller = gameInstaller;
+    }
+
+    private void Awake()
+    {
+        _volume = GetComponentInChildren<Camera>().GetComponent<Volume>();
+        
+        if (_volume.profile.TryGet(out Vignette vignette))
+            _vignette = vignette;
     }
     
     private void OnEnable()
@@ -38,20 +44,13 @@ public class Player : MonoBehaviour
         OnDie += Revival;
     }
 
-    private void Awake()
-    {
-        Id = "Player";
-        _volume = GetComponentInChildren<Camera>().GetComponent<Volume>();
-        
-        if (_volume.profile.TryGet(out Vignette vignette))
-            _vignette = vignette;
-        
-    }
-
     private void Start()
     {
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += () =>
             transform.position = _gameInstaller.PlayerStartPosition.position;
+
+        _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += () =>
+            ChangeSkin(PlayerPrefs.GetString("CurrentSkin"));
     }
     
     public void ChangeSkin(string newSkin)
@@ -61,7 +60,7 @@ public class Player : MonoBehaviour
             if (skin.name.Trim() == newSkin.Trim())
             {
                 skin.gameObject.SetActive(true);
-                _currentSkin = newSkin;
+                PlayerPrefs.SetString("CurrentSkin", newSkin);
             }
             else
             {
@@ -97,7 +96,12 @@ public class Player : MonoBehaviour
             });
         });
     }
-    
+
+    private void Revival()
+    {
+        _health = 3;
+    }
+
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.TryGetComponent(out TimeCoin coin))
@@ -106,10 +110,10 @@ public class Player : MonoBehaviour
             Destroy(coin.gameObject);
         }
     }
-
-    private void Revival()
+    
+    private void OnDisable()
     {
-        _health = 3;
+        OnDie -= Revival;
     }
 }
 

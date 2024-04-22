@@ -4,9 +4,9 @@ using UnityEngine;
 public class Log : MonoBehaviour, IPause
 {
     [SerializeField] private float _speed;
-    private float _tempSpeed;
     private Rigidbody _rigidbody;
-
+    private float _tempSpeed;
+    
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -24,14 +24,6 @@ public class Log : MonoBehaviour, IPause
         return this;
     }
     
-    private void OnColliderEnter(Collider collider)
-    {
-        if (collider.gameObject.TryGetComponent(out Player player))
-        {
-            transform.parent = player.transform;
-        }
-    }
-
     public void Pause()
     {
         _speed = 0;
@@ -40,5 +32,13 @@ public class Log : MonoBehaviour, IPause
     public void Resume()
     {
         _speed = _tempSpeed;
+    }
+    
+    private void OnColliderEnter(Collider collider)
+    {
+        if (collider.gameObject.TryGetComponent(out Player player))
+        {
+            transform.parent = player.transform;
+        }
     }
 }

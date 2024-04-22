@@ -3,8 +3,8 @@ using Zenject;
 
 public class GameInstaller : MonoInstaller
 {
-    [SerializeField] private RectTransform _pausePosition;
     [SerializeField] public Transform PlayerStartPosition;
+    [SerializeField] private RectTransform _pausePosition;
     [SerializeField] private Translator _translator;
     [SerializeField] private Canvas _canvas;
     [SerializeField] private AudioSource _audioSource;
@@ -84,7 +84,7 @@ public class GameInstaller : MonoInstaller
 
     private void PlayerBind()
     {
-        _player = Resources.Load<Player>(AssetsPath.Player);
+        _player = Resources.Load<Player>(AssetsPath.PlayerPath.Player);
         
         PlayerCreated = Instantiate(_player
             ,PlayerStartPosition.GetComponent<Transform>().position
@@ -95,28 +95,28 @@ public class GameInstaller : MonoInstaller
             .FromInstance(PlayerCreated)
             .AsSingle();
         
-        TimerCreated.Container(Container.Resolve<Player>(), this, _pauseService);
-        PlayerCreated.Container(Container.Resolve<Timer>(), this);
+        TimerCreated.Constructor(Container.Resolve<Player>(), this, _pauseService);
+        PlayerCreated.Constructor(Container.Resolve<Timer>(), this);
         PlayerCreated.GetComponent<PlayerMovement>().Constructor(_pauseService);
         PlayerCreated.GetComponent<PlayerWallet>().Constructor(this);
     }
 
     private void MenuBind()
     {
-        _menu = Resources.Load<Menu>(AssetsPath.Menu);
+        _menu = Resources.Load<Menu>(AssetsPath.MenuPath.Menu);
         MenuCreated = Instantiate(_menu,
             _menuPosition.GetComponent<RectTransform>().position,
             Quaternion.identity,
             null);
         MenuCreated.transform.SetParent(_canvas.transform, false);
         MenuCreated.transform.position = _menuPosition.GetComponent<RectTransform>().position;
-        MenuCreated.Container(Container.Resolve<Translator>(), this);
-        MenuCreated.GetComponentInChildren<Wallet>().Container(this);
+        MenuCreated.Constructor(Container.Resolve<Translator>(), this);
+        MenuCreated.GetComponentInChildren<Wallet>().Constructor(this);
     }
 
     private void TimerBind()
     {
-        _timer = Resources.Load<Timer>(AssetsPath.Timer);
+        _timer = Resources.Load<Timer>(AssetsPath.UiPath.Timer);
         TimerCreated = Instantiate(_timer,
             _timerPosition.GetComponent<RectTransform>().position, 
             Quaternion.identity,
@@ -130,7 +130,7 @@ public class GameInstaller : MonoInstaller
 
     private void ShopBind()
     {
-        _shop = Resources.Load<Shop>(AssetsPath.Shop);
+        _shop = Resources.Load<Shop>(AssetsPath.ShopPath.Shop);
         ShopCreated = Instantiate(_shop,
             _shop.GetComponent<Transform>().localPosition,
             Quaternion.identity,
@@ -139,12 +139,12 @@ public class GameInstaller : MonoInstaller
         ShopCreated.GetComponent<Transform>().localPosition =
             _shop.GetComponent<Transform>().localPosition;
         
-        ShopCreated.Container(Container.Resolve<Wallet>(), _translator, PlayerCreated);
+        ShopCreated.Constructor(Container.Resolve<Wallet>(), _translator, PlayerCreated);
     }
 
     private void ScoreCounterBind()
     {
-        _scoreCounter = Resources.Load<ScoreCounter>(AssetsPath.ScoreCounter);
+        _scoreCounter = Resources.Load<ScoreCounter>(AssetsPath.UiPath.ScoreCounter);
         ScoreCounterCreated = Instantiate(_scoreCounter,
             _scoreCounterPosition.GetComponent<RectTransform>().position,
             Quaternion.identity,
@@ -157,7 +157,7 @@ public class GameInstaller : MonoInstaller
     
     private void PauseBind()
     {
-        _pauseButton = Resources.Load<PauseButton>(AssetsPath.Pause);
+        _pauseButton = Resources.Load<PauseButton>(AssetsPath.UiPath.Pause);
         PauseButtonCreated = Instantiate(_pauseButton,
             _pausePosition.GetComponent<RectTransform>().position,
             Quaternion.identity,
@@ -167,7 +167,7 @@ public class GameInstaller : MonoInstaller
 
     private void PauseMenuBind()
     { 
-        _pauseMenu = Resources.Load<PauseMenu>(AssetsPath.PauseMenu);
+        _pauseMenu = Resources.Load<PauseMenu>(AssetsPath.MenuPath.PauseMenu);
         PauseMenuCreated = Instantiate(_pauseMenu,
             _pauseMenu.GetComponent<RectTransform>().localPosition,
             Quaternion.identity,
@@ -175,12 +175,12 @@ public class GameInstaller : MonoInstaller
         PauseMenuCreated.transform.SetParent(_canvas.transform, false);
         PauseMenuCreated.GetComponent<RectTransform>().localPosition =
             _pauseMenu.GetComponent<RectTransform>().localPosition;
-        PauseMenuCreated.Container(_translator, _pauseService);
+        PauseMenuCreated.Constructor(_translator, _pauseService);
     }
 
     private void CreateGame()
     {
-        _entryPoint.Container(Container.Resolve<DiContainer>());
+        _entryPoint.Constructor(Container.Resolve<DiContainer>());
         _entryPoint.CreateGame();
     }
 }

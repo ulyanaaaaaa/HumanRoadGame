@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class ObjectActivity : MonoBehaviour
 {
-    public void DisableObject(GameObject gameObject)
+    protected void DisableObject(GameObject gameObject)
     {
         gameObject.SetActive(false);
     }
 
-    public void EnableObject(GameObject gameObject)
+    protected void EnableObject(GameObject gameObject)
     {
         gameObject.SetActive(true);
     }

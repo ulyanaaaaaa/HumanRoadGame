@@ -6,15 +6,17 @@ using Zenject;
 public class TextTranslator : MonoBehaviour
 {
     public Action TranslateText;
-    [SerializeField] private bool NotTranslateOnStart;
+    
     [SerializeField] private Language _language;
     [SerializeField] private Translator _translator;
     [SerializeField] public string Id;
+    [SerializeField] private bool _notTranslateOnStart;
+  
     private TextMeshProUGUI _textMesh;
     private string _result;
 
     [Inject]
-    public void Container(Translator translator)
+    public void Constructor(Translator translator)
     {
         _translator = translator;
     }
@@ -35,14 +37,17 @@ public class TextTranslator : MonoBehaviour
         
         if (_translator == null && GetComponentInParent<ShopItem>())
             _translator = GetComponentInParent<ShopItem>().GetComponentInParent<Shop>().Translator;
-        
+
+        if (_translator == null)
+            throw new Exception("Translator is null");
+            
         _language = _translator.Language;
         
         _translator.OnLanguageChanged += language =>
         {
             _language = language;
             
-            if (!NotTranslateOnStart)
+            if (!_notTranslateOnStart)
                 Translate();
             
             TranslateText?.Invoke();
@@ -60,13 +65,13 @@ public class TextTranslator : MonoBehaviour
         if(_textMesh == null)
             return;
         
-        if (!NotTranslateOnStart)
+        if (!_notTranslateOnStart)
             Translate();
     }
 
     private void Translate()
     {
-        TextAsset textAsset = Resources.Load<TextAsset>(AssetsPath.Dictionary);
+        TextAsset textAsset = Resources.Load<TextAsset>(AssetsPath.DictionaryPath.Dictionary);
         string[] data = textAsset.text.Split(new char[] {'\n'});
         for (int i = 0; i < data.Length; i++)
         {
@@ -105,9 +110,12 @@ public class TextTranslator : MonoBehaviour
         if (_translator == null && GetComponentInParent<ShopItem>())
             _translator = GetComponentInParent<ShopItem>().GetComponentInParent<Shop>().Translator;
         
+        if (_translator == null)
+            throw new Exception("Translator is null");
+        
         _language = _translator.Language;
         
-        TextAsset textAsset = Resources.Load<TextAsset>(AssetsPath.Dictionary);
+        TextAsset textAsset = Resources.Load<TextAsset>(AssetsPath.DictionaryPath.Dictionary);
         string[] data = textAsset.text.Split(new char[] {'\n'});
         for (int i = 0; i < data.Length; i++)
         {
@@ -131,6 +139,6 @@ public class TextTranslator : MonoBehaviour
 
 public enum Language
 {
-    ru = 0,
-    eng = 1
+    Russian = 0,
+    English = 1
 }

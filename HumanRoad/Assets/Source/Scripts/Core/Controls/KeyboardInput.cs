@@ -11,9 +11,7 @@ public class KeyboardInput : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.W))
-        {
             OnRunCliked?.Invoke();
-        }
 
         if (Input.GetKeyDown(KeyCode.D))
             OnRightCliked?.Invoke();

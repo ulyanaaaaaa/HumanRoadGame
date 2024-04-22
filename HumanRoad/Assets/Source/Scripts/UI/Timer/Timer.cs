@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour, IPause
     private GameInstaller _gameInstaller;
 
     [Inject]
-    public void Container(Player player, GameInstaller gameInstaller, PauseService pauseService)
+    public void Constructor(Player player, GameInstaller gameInstaller, PauseService pauseService)
     {
         _pauseService = pauseService;
         _player = player;
@@ -27,6 +27,25 @@ public class Timer : MonoBehaviour, IPause
     {
         _pauseService.AddPause(this);
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += StartTimer;
+    }
+    
+    public void Pause()
+    {
+        StopCoroutine(_timerTick);
+    }
+
+    public void Resume()
+    {
+        _timerTick = StartCoroutine(TimerTick());
+    }
+    
+    public IEnumerator StopTimerCoroutine(float time)
+    {
+        IsTook = true;
+        StopCoroutine(_timerTick);
+        yield return new WaitForSeconds(time);
+        IsTook = false;
+        _timerTick = StartCoroutine(TimerTick());
     }
 
     private void StartTimer()
@@ -41,16 +60,6 @@ public class Timer : MonoBehaviour, IPause
         };
     }
 
-
-    public IEnumerator StopTimerCoroutine(float time)
-    {
-        IsTook = true;
-        StopCoroutine(_timerTick);
-        yield return new WaitForSeconds(time);
-        IsTook = false;
-        _timerTick = StartCoroutine(TimerTick());
-    }
-
     private IEnumerator TimerTick()
     {
         while (_duration > 0)
@@ -60,15 +69,5 @@ public class Timer : MonoBehaviour, IPause
             OnDurationChanged?.Invoke(_duration, _startDuration);
         }
         _player.OnDie?.Invoke();
-    }
-
-    public void Pause()
-    {
-        StopCoroutine(_timerTick);
-    }
-
-    public void Resume()
-    {
-        _timerTick = StartCoroutine(TimerTick());
     }
 }

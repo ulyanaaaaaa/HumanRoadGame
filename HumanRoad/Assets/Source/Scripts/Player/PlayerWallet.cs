@@ -14,11 +14,6 @@ public class PlayerWallet : MonoBehaviour
     {
         _gameInstaller = gameInstaller;
     }
-    
-    public int PlayerWalletCoins()
-    {
-        return _coins.Count;
-    }
 
     private void Start()
     {
@@ -26,6 +21,11 @@ public class PlayerWallet : MonoBehaviour
             => _coins.Clear();
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += () 
             => PlayerPrefs.SetInt("Coins", _coins.Count);
+    }
+
+    public int PlayerWalletCoins()
+    {
+        return _coins.Count;
     }
 
     private void AddCoin(Coin coin)

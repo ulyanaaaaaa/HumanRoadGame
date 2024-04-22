@@ -8,16 +8,15 @@ public class BestScoreCounter : MonoBehaviour
     private TextMeshProUGUI _counter;
     private TextTranslator _textTranslator;
     private SaveService _saveService;
-    private string _id;
+    private string _id = "best_score";
     private int _bestScore;
 
     private void Awake()
     {
-        _saveService = new SaveService();
-        _textTranslator = GetComponent<TextTranslator>();
-        _id = "best_score";
-        _textTranslator.Id = _id;
         _counter = GetComponent<TextMeshProUGUI>();
+        _textTranslator = GetComponent<TextTranslator>();
+        _saveService = new SaveService();
+        _textTranslator.Id = _id;
     }
     
     private void Start()

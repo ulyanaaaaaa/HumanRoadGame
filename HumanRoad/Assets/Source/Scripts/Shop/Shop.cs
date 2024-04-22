@@ -8,7 +8,7 @@ public class Shop : MonoBehaviour
     public Player Player;
 
     [Inject]
-    public void Container(Wallet wallet, Translator translator, Player player)
+    public void Constructor(Wallet wallet, Translator translator, Player player)
     {
         Translator = translator;
         Wallet = wallet;

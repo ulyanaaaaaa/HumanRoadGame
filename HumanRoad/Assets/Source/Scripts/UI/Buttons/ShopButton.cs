@@ -7,14 +7,14 @@ using UnityEngine.UI;
 public class ShopButton : MonoBehaviour
 {
     public Action OnPlay;
-
-    public void Click()
-    {
-        OnPlay?.Invoke();
-    }
     
     private void Awake()
     {
         GetComponent<TextTranslator>().Id = "shop";
+    }
+    
+    public void Click()
+    {
+        OnPlay?.Invoke();
     }
 }

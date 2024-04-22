@@ -4,9 +4,9 @@ using UnityEngine;
 public class Car : MonoBehaviour, IPause
 {
     [SerializeField] private float _speed;
-    private float _tempSpeed;
     private Rigidbody _rigidbody;
-
+    private float _tempSpeed;
+    
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -24,14 +24,6 @@ public class Car : MonoBehaviour, IPause
         return this;
     }
     
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.TryGetComponent(out Player player))
-        {
-            player.TakeDamage();
-        }
-    }
-
     public void Pause()
     {
         _speed = 0;
@@ -40,5 +32,11 @@ public class Car : MonoBehaviour, IPause
     public void Resume()
     {
         _speed = _tempSpeed;
+    }
+    
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.TryGetComponent(out Player player))
+            player.TakeDamage();
     }
 }

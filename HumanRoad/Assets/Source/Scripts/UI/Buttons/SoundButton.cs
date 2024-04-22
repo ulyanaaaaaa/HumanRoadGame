@@ -7,14 +7,14 @@ using UnityEngine.UI;
 public class SoundButton : MonoBehaviour
 {
     public Action OnPlay;
-
-    public void Click()
-    {
-        OnPlay?.Invoke();
-    }
     
     private void Awake()
     {
         GetComponent<TextTranslator>().Id = "sound_button";
+    }
+    
+    public void Click()
+    {
+        OnPlay?.Invoke();
     }
 }

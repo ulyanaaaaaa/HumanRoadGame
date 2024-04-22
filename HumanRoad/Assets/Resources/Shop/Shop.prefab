@@ -124,7 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6eff9bb2e1e4aa49ac8254b8ef19a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaveService: {fileID: 0}
   Translator: {fileID: 0}
   Player: {fileID: 0}
 --- !u!1 &6898708115411205067
@@ -343,6 +342,10 @@ PrefabInstance:
     - target: {fileID: 3456493410022919624, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
       propertyPath: m_fontSizeBase
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4840856122082175022, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+      propertyPath: _id
+      value: RemyPrice
       objectReference: {fileID: 0}
     - target: {fileID: 4840856122082175022, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
       propertyPath: _textTranslator
@@ -583,6 +586,10 @@ PrefabInstance:
     - target: {fileID: 3456493410022919624, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
       propertyPath: m_fontSizeBase
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4840856122082175022, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
+      propertyPath: _id
+      value: MariaPrice
       objectReference: {fileID: 0}
     - target: {fileID: 4840856122082175022, guid: 15ada8481624cff42bd559bfcc3362c8, type: 3}
       propertyPath: _textTranslator

@@ -14,6 +14,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/53aac14d88ba4477acc998b039cfd73a15ae00/7e/042def82/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/76/d1cb475f/Action.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Editor/CompileFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Source/Scripts/Core/Assets/AssetsPath.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Source/Scripts/Core/GameInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Source/Scripts/Core/ObjectActivity.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Source/Scripts/Pause/IPause.cs" root0="FORCE_HIGHLIGHTING" />
@@ -74,6 +75,9 @@
       <option value="$PROJECT_DIR$/Assets/Source/Scripts/Core/GameInstaller.cs" />
       <option value="$PROJECT_DIR$/Assets/Source/Scripts/Core/EntryPoint.cs" />
     </changedPaths>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -179,7 +183,11 @@
       <workItem from="1713516740420" duration="17103000" />
       <workItem from="1713553331620" duration="7005000" />
       <workItem from="1713560471587" duration="6230000" />
-      <workItem from="1713606187641" duration="7737000" />
+      <workItem from="1713606187641" duration="8102000" />
+      <workItem from="1713634538937" duration="1798000" />
+      <workItem from="1713737731491" duration="3215000" />
+      <workItem from="1713741011963" duration="24000" />
+      <workItem from="1713741056009" duration="6056000" />
     </task>
     <servers />
   </component>

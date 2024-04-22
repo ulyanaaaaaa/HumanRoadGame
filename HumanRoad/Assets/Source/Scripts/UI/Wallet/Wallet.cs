@@ -8,7 +8,7 @@ using Zenject;
 [RequireComponent(typeof(TextTranslator))]
 public class Wallet : MonoBehaviour
 {
-    public string Id { get; set; }
+    public string Id { get; set; } = "wallet";
     
     private TextMeshProUGUI _counter;
     private TextTranslator _textTranslator;
@@ -17,7 +17,7 @@ public class Wallet : MonoBehaviour
     [field: SerializeField] public int CoinsCount { get; private set; }
 
     [Inject]
-    public void Container(GameInstaller gameInstaller)
+    public void Constructor(GameInstaller gameInstaller)
     {
         _gameInstaller = gameInstaller;
     }
@@ -34,7 +34,6 @@ public class Wallet : MonoBehaviour
         _gameInstaller.PlayerCreated.OnDie += AddPlayerCoins;
         _textTranslator.TranslateText += UpdateCounter;
         
-        Id = "wallet";
         _textTranslator.Id = Id;
 
         if (!_saveService.Exists(Id))
@@ -91,7 +90,6 @@ public class Wallet : MonoBehaviour
     private void Save()
     {
         WalletSaveData e = new WalletSaveData();
-        e.StringParameter = "Wallet";
         e.CoinsCount = CoinsCount;
         _saveService.Save(Id, e);
     }
@@ -107,8 +105,6 @@ public class Wallet : MonoBehaviour
 
 public class WalletSaveData
 {
-    [JsonProperty(PropertyName = "str")]
-    public string StringParameter { get; set; }
     [JsonProperty(PropertyName = "count")]
     public int CoinsCount { get; set; }
 }

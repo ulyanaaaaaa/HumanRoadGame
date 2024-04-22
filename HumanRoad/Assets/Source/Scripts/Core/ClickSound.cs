@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SoundPlay : MonoBehaviour
+public class ClickSound : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
 

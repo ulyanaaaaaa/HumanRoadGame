@@ -7,14 +7,14 @@ using UnityEngine.UI;
 public class LanguageButton : MonoBehaviour
 {
     public Action OnClick;
-
-    public void Click()
-    {
-        OnClick?.Invoke();
-    }
     
     private void Awake()
     {
         GetComponent<TextTranslator>().Id = "language_button";
+    }
+    
+    public void Click()
+    {
+        OnClick?.Invoke();
     }
 }

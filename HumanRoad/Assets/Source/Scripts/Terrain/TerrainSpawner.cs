@@ -10,7 +10,7 @@ public class TerrainSpawner : MonoBehaviour
     private PauseService _pauseService;
 
     [Inject]
-    public void Container(KeyboardInput keyboardInput)
+    public void Constructor(KeyboardInput keyboardInput)
     {
         _keyboardInput = keyboardInput;
     }

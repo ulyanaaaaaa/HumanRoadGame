@@ -6,33 +6,62 @@ using Zenject;
 public class SoundSlider : MonoBehaviour
 {
     private Slider _slider;
+    private ISaveService _saveService;
     private AudioSource _audioSource;
-
+    private string _id = "sound";
+    
     [Inject]
-    public void Container(AudioSource audioSource)
+    public void Constructor(AudioSource audioSource)
     {
         _audioSource = audioSource;
     }
     
     private void Awake()
     {
-        GetComponent<TextTranslator>().Id = "sound";
+        GetComponent<TextTranslator>().Id = _id;
         _slider = GetComponentInChildren<Slider>();
         _slider.onValueChanged.AddListener(delegate { ChangeSoundVolume(); });
+    }
+    
+    private void Start()
+    {
+        _saveService = new SaveService();
         
-        if (PlayerPrefs.HasKey("SoundVolume"))
+        if (!_saveService.Exists(_id))
         {
-            _slider.value = PlayerPrefs.GetFloat("SoundVolume");
-            ChangeSoundVolume(); 
+            _audioSource.volume = 50f;
+            Save();
+        }
+        else
+        {
+            Load();
         }
     }
     
-    public void ChangeSoundVolume()
+    private void ChangeSoundVolume()
     {
-        if (_audioSource == null)
-            return;
-        
-        PlayerPrefs.SetFloat("SoundVolume", _slider.value);
-        _audioSource.volume = PlayerPrefs.GetFloat("SoundVolume");
+        _audioSource.volume = _slider.value;
+        Save();
     }
+    
+    private void Save()
+    {
+        SoundSliderSaveData e = new SoundSliderSaveData();
+        e.SoundSliderValue = _slider.value;
+        _saveService.Save(_id, e);
+    }
+
+    private void Load()
+    {
+        _saveService.Load<SoundSliderSaveData>(_id, e =>
+        {
+            _audioSource.volume = e.SoundSliderValue;
+        });
+        _slider.value = _audioSource.volume;
+    }
+}
+
+public class SoundSliderSaveData
+{
+    public float SoundSliderValue { get; set; }
 }

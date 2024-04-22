@@ -8,13 +8,13 @@ public class PlayButton : MonoBehaviour
 {
     public Action OnPlay;
 
-    public void Click()
-    {
-        OnPlay?.Invoke();
-    }
-
     private void Awake()
     {
         GetComponent<TextTranslator>().Id = "main_play";
+    }
+    
+    public void Click()
+    {
+        OnPlay?.Invoke();
     }
 }

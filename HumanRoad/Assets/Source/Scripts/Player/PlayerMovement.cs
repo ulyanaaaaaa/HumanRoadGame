@@ -6,13 +6,13 @@ using Zenject;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(KeyboardInput))]
 public class PlayerMovement : MonoBehaviour, IPause
-{
-   private KeyboardInput _keyboardInput;
-   private SwipeDetection _swipeDetection;
-   private PauseService _pauseService;
-   private bool _isPause;
-   
-   public Action<float> OnScoreChanged;
+{ 
+    public Action<float> OnScoreChanged;
+    
+    private KeyboardInput _keyboardInput;
+    private SwipeDetection _swipeDetection;
+    private PauseService _pauseService;
+    private bool _isPause;
    
    [Inject]
    public void Constructor(PauseService pauseService)

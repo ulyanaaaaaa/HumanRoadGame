@@ -7,7 +7,7 @@ public class Menu : MonoBehaviour
     public GameInstaller GameInstaller;
     
     [Inject]
-    public void Container(Translator translator, GameInstaller gameInstaller)
+    public void Constructor(Translator translator, GameInstaller gameInstaller)
     {
         Translator = translator;
         GameInstaller = gameInstaller;

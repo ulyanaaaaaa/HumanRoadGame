@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
+[RequireComponent(typeof(ShopItem))]
 public class ShopItemViewer : MonoBehaviour
 {
     public Action OnUpdatePrice;
@@ -12,7 +13,7 @@ public class ShopItemViewer : MonoBehaviour
     [SerializeField] private TextTranslator _textTranslator;
     private ShopItem _shopItem;
 
-    private void Start()
+    private void Awake()
     {
         _shopItem = GetComponent<ShopItem>();
     }

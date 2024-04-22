@@ -8,7 +8,7 @@ public class ShopItem : MonoBehaviour
     [field: SerializeField] public int Price { get; private set; }
     [SerializeField] private TextMeshProUGUI _skinName;
     [SerializeField] private TextTranslator _textTranslator;
-    private int _id;
+    [SerializeField] private string _id;
     private Wallet _wallet;
     private ShopItemViewer _shopItemViewer;
     private Shop _shop;
@@ -16,18 +16,21 @@ public class ShopItem : MonoBehaviour
     private Player _player;
     private ISaveService _saveService;
 
-    private void Start()
+    private void Awake()
     {
-        _id = 15;
-        _saveService = new SaveService();
         _button = GetComponent<Button>();
         _shop = GetComponentInParent<Shop>();
         _shopItemViewer = GetComponent<ShopItemViewer>();
+    }
+
+    private void Start()
+    {
+        _saveService = new SaveService();
         _player = _shop.Player;
         _wallet = _shop.Wallet;
         _button.onClick.AddListener(TryBuy);
         
-        if (!_saveService.Exists($"{_id}"))
+        if (!_saveService.Exists(_id))
             Save(); 
         else
             Load(); 
@@ -50,12 +53,12 @@ public class ShopItem : MonoBehaviour
     {
         ShopItemSaveData e = new ShopItemSaveData();
         e.Price = Price;
-        _saveService.Save($"{_id}", e);
+        _saveService.Save(_id, e);
     }
 
     private void Load()
     {
-        _saveService.Load<ShopItemSaveData>($"{_id}", e =>
+        _saveService.Load<ShopItemSaveData>(_id, e =>
         {
             Price = e.Price;
         });

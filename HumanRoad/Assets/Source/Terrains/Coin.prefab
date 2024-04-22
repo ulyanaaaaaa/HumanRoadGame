@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8583146858647884491}
   - component: {fileID: 4661978792321391982}
   - component: {fileID: 7446238312083777956}
-  - component: {fileID: 7394711667855661918}
   - component: {fileID: 5030351612936480101}
+  - component: {fileID: 2529468293904287639}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -85,18 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7394711667855661918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8959531281939941489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a71cb6fb6a26f242aec67ac8ff1c11a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &5030351612936480101
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110,3 +98,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.23475802, y: 0.8496845, z: 0.13733579}
   m_Center: {x: 0.015322695, y: -0.06850332, z: 0}
+--- !u!114 &2529468293904287639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8959531281939941489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d58455830a8104284e4dbfd1fd1b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

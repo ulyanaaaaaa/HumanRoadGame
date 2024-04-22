@@ -4,12 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(LogFactory))]
 public class LogSpawner : MonoBehaviour, IPause, IPauseServiceConsumer
 {
+    [SerializeField] private PauseService _pauseService;
     [SerializeField] private Transform _spawnPosition;
     private LogFactory _logFactory;
     private Coroutine _spawnTick;
     private float _logSpeed;
-    [SerializeField] private PauseService _pauseService;
-
+    
     private void Awake()
     {
         _logFactory = GetComponent<LogFactory>();
@@ -21,17 +21,7 @@ public class LogSpawner : MonoBehaviour, IPause, IPauseServiceConsumer
         _spawnTick = StartCoroutine(SpawnTick());
         _pauseService.AddPause(this);
     }
-
-    private IEnumerator SpawnTick()
-    {
-        while (true)
-        {
-            Log log = _logFactory.CreateLog(_spawnPosition.position, _logSpeed);
-            _pauseService.AddPause(log);
-            yield return new WaitForSeconds(Random.Range(0.8f, 2f));
-        }
-    }
-
+    
     public void Pause()
     {
         if (_spawnTick != null)
@@ -48,6 +38,16 @@ public class LogSpawner : MonoBehaviour, IPause, IPauseServiceConsumer
     public void SetPauseService(PauseService pauseService)
     {
         _pauseService = pauseService;
+    }
+
+    private IEnumerator SpawnTick()
+    {
+        while (true)
+        {
+            Log log = _logFactory.CreateLog(_spawnPosition.position, _logSpeed);
+            _pauseService.AddPause(log);
+            yield return new WaitForSeconds(Random.Range(0.8f, 2f));
+        }
     }
 }
 

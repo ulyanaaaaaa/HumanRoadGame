@@ -11,8 +11,8 @@ public class SwipeDetection : MonoBehaviour
    private Vector2 _fingerDownPosition;
    private Vector2 _fingerUpPosition;
    
+   private const float _swipeThreshold = 20f;
    private bool _isTouch;
-   private float _swipeThreshold = 20f;
 
    private void Update()
    {
