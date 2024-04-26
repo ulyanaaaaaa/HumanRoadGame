@@ -58,7 +58,6 @@ public class Wallet : MonoBehaviour
         }
         else
         {
-            throw new Exception("Not enough coins!");
             return false;
         }
     }

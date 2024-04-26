@@ -71,6 +71,7 @@ public class EntryPoint : ObjectActivity
             _soundMenu.GetComponent<RectTransform>().localPosition;
         _soundMenuCreated.GetComponentInChildren<ExitButton>().OnExit += 
             () => DisableObject( _soundMenuCreated.gameObject);
+        _soundMenuCreated.GetComponentInChildren<SoundSlider>().Setup(_soundSource);
     }
 
     private void CreateCoinsCounter()

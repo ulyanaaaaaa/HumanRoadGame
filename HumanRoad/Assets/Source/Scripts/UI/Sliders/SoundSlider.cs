@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 [RequireComponent(typeof(TextTranslator))]
 public class SoundSlider : MonoBehaviour
@@ -9,9 +8,8 @@ public class SoundSlider : MonoBehaviour
     private ISaveService _saveService;
     private AudioSource _audioSource;
     private string _id = "sound";
-    
-    [Inject]
-    public void Constructor(AudioSource audioSource)
+
+    public void Setup(AudioSource audioSource)
     {
         _audioSource = audioSource;
     }
@@ -39,8 +37,7 @@ public class SoundSlider : MonoBehaviour
     }
     
     private void ChangeSoundVolume()
-    {
-        _audioSource.volume = _slider.value;
+    {        _audioSource.volume = _slider.value;
         Save();
     }
     

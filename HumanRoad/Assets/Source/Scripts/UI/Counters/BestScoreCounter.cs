@@ -27,6 +27,7 @@ public class BestScoreCounter : MonoBehaviour
         if (!_saveService.Exists(_id))
         {
             _bestScore = 0;
+            PlayerPrefs.SetInt("BestScore", _bestScore);
             Save();
         }
         else

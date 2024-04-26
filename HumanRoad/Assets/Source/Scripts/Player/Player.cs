@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     
     private void OnEnable()
     {
-        OnDie += Revival;
+        OnDie += Restart;
     }
 
     private void Start()
@@ -67,14 +67,14 @@ public class Player : MonoBehaviour
             ChangeSkin(_currentSkin);
     }
     
-    public void ChangeSkin(string newSkin)
+    public void ChangeSkin(string newSkinId)
     {
         foreach (GameObject skin in _skins)
         {
-            if (skin.name.Trim() == newSkin.Trim())
+            if (skin.name.Trim() == newSkinId.Trim())
             {
                 skin.gameObject.SetActive(true);
-                _currentSkin = newSkin;
+                _currentSkin = newSkinId;
                 Save();
             }
             else
@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
     {
         VignetteEffect();
         OnLooseHurt?.Invoke();
-        Camera.main.GetComponent<Animator>().SetTrigger("IsShake");
+        Camera.main.GetComponent<Animator>().SetTrigger("IsShake"); //
         _health--;
 
         if (_health == 0)
@@ -112,23 +112,23 @@ public class Player : MonoBehaviour
         });
     }
 
-    private void Revival()
+    private void Restart()
     {
-        _health = 3;
+        _health = _maxHealth;
     }
     
     private void Save()
     {
-        PlayerSaveData e = new PlayerSaveData();
-        e.CurrentSkin = _currentSkin;
-        _saveService.Save(Id, e);
+        PlayerSaveData data = new PlayerSaveData();
+        data.CurrentSkin = _currentSkin;
+        _saveService.Save(Id, data);
     }
 
     private void Load()
     {
-        _saveService.Load<PlayerSaveData>(Id, e =>
+        _saveService.Load<PlayerSaveData>(Id, data =>
         {
-            _currentSkin = e.CurrentSkin;
+            _currentSkin = data.CurrentSkin;
         });
     }
 
@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
     
     private void OnDisable()
     {
-        OnDie -= Revival;
+        OnDie -= Restart;
     }
 }
 

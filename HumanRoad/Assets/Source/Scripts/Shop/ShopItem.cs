@@ -44,23 +44,23 @@ public class ShopItem : MonoBehaviour
         {
             Price = 0;
             Save();
-            _player.ChangeSkin(_textTranslator.Id);
+            _player.ChangeSkin(_id);
             _shopItemViewer.OnUpdatePrice?.Invoke();
         }
     }
     
     private void Save()
     {
-        ShopItemSaveData e = new ShopItemSaveData();
-        e.Price = Price;
-        _saveService.Save(_id, e);
+        ShopItemSaveData data = new ShopItemSaveData();
+        data.Price = Price;
+        _saveService.Save(_id, data);
     }
 
     private void Load()
     {
-        _saveService.Load<ShopItemSaveData>(_id, e =>
+        _saveService.Load<ShopItemSaveData>(_id, data =>
         {
-            Price = e.Price;
+            Price = data.Price;
         });
     }
 }
