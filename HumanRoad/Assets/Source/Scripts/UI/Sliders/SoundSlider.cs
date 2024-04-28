@@ -18,11 +18,11 @@ public class SoundSlider : MonoBehaviour
     {
         GetComponent<TextTranslator>().Id = _id;
         _slider = GetComponentInChildren<Slider>();
-        _slider.onValueChanged.AddListener(delegate { ChangeSoundVolume(); });
     }
     
     private void Start()
     {
+        _slider.onValueChanged.AddListener(delegate { ChangeSoundVolume(); });
         _saveService = new SaveService();
         
         if (!_saveService.Exists(_id))
@@ -37,7 +37,8 @@ public class SoundSlider : MonoBehaviour
     }
     
     private void ChangeSoundVolume()
-    {        _audioSource.volume = _slider.value;
+    {        
+        _audioSource.volume = _slider.value;
         Save();
     }
     

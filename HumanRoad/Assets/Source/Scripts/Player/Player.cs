@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private Vignette _vignette;
     private Timer _timer;
     private SaveService _saveService;
-    private GameInstaller _gameInstaller; 
+    private GameInstaller _gameInstaller;
     private int _health;
     private string _currentSkin;
 
@@ -88,8 +88,12 @@ public class Player : MonoBehaviour
     {
         VignetteEffect();
         OnLooseHurt?.Invoke();
-        Camera.main.GetComponent<Animator>().SetTrigger("IsShake"); //
-        _health--;
+        
+        if (Camera.main != null)
+        {
+            Camera.main.GetComponent<Animator>().SetTrigger("IsShake");
+            _health--;
+        }
 
         if (_health == 0)
             OnDie?.Invoke();

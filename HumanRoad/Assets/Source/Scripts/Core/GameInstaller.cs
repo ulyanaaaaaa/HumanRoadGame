@@ -5,6 +5,7 @@ public class GameInstaller : MonoInstaller
 {
     [SerializeField] public Transform PlayerStartPosition;
     [SerializeField] private RectTransform _pausePosition;
+    [SerializeField] private RectTransform _pauseMenuPosition;
     [SerializeField] private Translator _translator;
     [SerializeField] private Canvas _canvas;
     [SerializeField] private AudioSource _audioSource;
@@ -127,6 +128,18 @@ public class GameInstaller : MonoInstaller
             .FromInstance(TimerCreated)
             .AsSingle();
     }
+    
+    private void PauseMenuBind()
+    { 
+        _pauseMenu = Resources.Load<PauseMenu>(AssetsPath.MenuPath.PauseMenu);
+        PauseMenuCreated = Instantiate(_pauseMenu,
+            _pauseMenuPosition.GetComponent<RectTransform>().position, 
+            Quaternion.identity,
+            null);
+        PauseMenuCreated.transform.SetParent(_canvas.transform, false);
+        PauseMenuCreated.transform.position = _pauseMenuPosition.GetComponent<RectTransform>().position;
+        PauseMenuCreated.Constructor(_translator, _pauseService);
+    }
 
     private void ShopBind()
     {
@@ -138,7 +151,6 @@ public class GameInstaller : MonoInstaller
         ShopCreated.transform.SetParent(_canvas.transform, false);
         ShopCreated.GetComponent<Transform>().localPosition =
             _shop.GetComponent<Transform>().localPosition;
-        
         ShopCreated.Constructor(Container.Resolve<Wallet>(), _translator, PlayerCreated);
     }
 
@@ -163,19 +175,6 @@ public class GameInstaller : MonoInstaller
             Quaternion.identity,
             _canvas.transform); 
         PauseButtonCreated.Constructor(_pauseService);
-    }
-
-    private void PauseMenuBind()
-    { 
-        _pauseMenu = Resources.Load<PauseMenu>(AssetsPath.MenuPath.PauseMenu);
-        PauseMenuCreated = Instantiate(_pauseMenu,
-            _pauseMenu.GetComponent<RectTransform>().localPosition,
-            Quaternion.identity,
-            null);
-        PauseMenuCreated.transform.SetParent(_canvas.transform, false);
-        PauseMenuCreated.GetComponent<RectTransform>().localPosition =
-            _pauseMenu.GetComponent<RectTransform>().localPosition;
-        PauseMenuCreated.Constructor(_translator, _pauseService);
     }
 
     private void CreateGame()

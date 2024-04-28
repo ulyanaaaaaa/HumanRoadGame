@@ -20,11 +20,11 @@ public class MusicSlider : MonoBehaviour
     {
         GetComponent<TextTranslator>().Id = _id;
         _slider = GetComponentInChildren<Slider>();
-        _slider.onValueChanged.AddListener(delegate { ChangeMusicVolume(); });
     }
 
     private void Start()
     {
+        _slider.onValueChanged.AddListener(delegate { ChangeMusicVolume(); });
         _saveService = new SaveService();
         
         if (!_saveService.Exists(_id))

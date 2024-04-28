@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using Zenject;
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour, IPause
     private SwipeDetection _swipeDetection;
     private PauseService _pauseService;
     private bool _isPause;
+    [SerializeField] private bool _isRun;
    
    [Inject]
    public void Constructor(PauseService pauseService)
@@ -37,6 +39,8 @@ public class PlayerMovement : MonoBehaviour, IPause
        _swipeDetection.OnRunSwipe += Run;
        _swipeDetection.OnLeftSwipe += LeftStep;
        _swipeDetection.OnRightSwipe += RightStep;
+
+       GetComponent<Player>().OnDie += Reset;
    }
 
    private void Start()
@@ -56,30 +60,48 @@ public class PlayerMovement : MonoBehaviour, IPause
    
    private void Run()
    {
-       Move(new Vector3(1,0,0));
+       if (_isPause)
+           return;
+       if (_isRun)
+           return;
+       
+       StartCoroutine(Move(new Vector3(1,0,0)));
        OnScoreChanged?.Invoke(transform.position.x);
    }
 
    private void LeftStep()
    {
-       Move(new Vector3(0,0,1));
+       if (_isPause)
+           return;
+       if (_isRun)
+           return;
+       
+       StartCoroutine(Move(new Vector3(0,0,1)));
    }
 
    private void RightStep()
    {
-       Move(new Vector3(0,0,-1));
+       if (_isPause)
+           return;
+       if (_isRun)
+           return;
+       
+       StartCoroutine(Move(new Vector3(0,0,-1)));
    }
 
    private void GoBack()
    {
-       Move(new Vector3(-1,0,0));
-   }
-
-   private void Move(Vector3 difference)
-   {
        if (_isPause)
            return;
+       if (_isRun)
+           return;
        
+       StartCoroutine(Move(new Vector3(-1,0,0)));
+   }
+
+   private IEnumerator Move(Vector3 difference)
+   {
+       _isRun = true;
        Animator[] animators = GetComponentsInChildren<Animator>();
        foreach (Animator animator in animators)
        {
@@ -87,6 +109,13 @@ public class PlayerMovement : MonoBehaviour, IPause
                animator.SetTrigger("IsJump");
        }
        transform.DOJump(transform.position + difference, 1f, 1, 0.2f);
+       yield return new WaitForSeconds(0.2f);
+       _isRun = false;
+   }
+
+   private void Reset()
+   {
+       _isRun = false;
    }
    
    private void OnDisable()
@@ -100,5 +129,7 @@ public class PlayerMovement : MonoBehaviour, IPause
        _swipeDetection.OnRunSwipe -= Run;
        _swipeDetection.OnLeftSwipe -= LeftStep;
        _swipeDetection.OnRightSwipe -= RightStep;
+       
+       GetComponent<Player>().OnDie -= Reset;
    }
 }

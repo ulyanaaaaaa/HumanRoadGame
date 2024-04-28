@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1171619129828049597}
   - component: {fileID: 1171619129828049569}
   - component: {fileID: 1171619129828049568}
-  - component: {fileID: 1171619129828049571}
   - component: {fileID: 1171619129828049574}
   m_Layer: 5
   m_Name: EnglisnText
@@ -35,10 +34,10 @@ RectTransform:
   m_Father: {fileID: 3925416758290284508}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5577696, y: 0.48456615}
-  m_AnchorMax: {x: 0.9445383, y: 0.64622056}
-  m_AnchoredPosition: {x: -220, y: -1}
-  m_SizeDelta: {x: -275.9177, y: 3.196106}
+  m_AnchorMin: {x: 0.5577696, y: 0.4846138}
+  m_AnchorMax: {x: 0.89300007, y: 0.64622056}
+  m_AnchoredPosition: {x: -144, y: -1}
+  m_SizeDelta: {x: -123.917694, y: 3.196106}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1171619129828049569
 CanvasRenderer:
@@ -95,8 +94,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 115
-  m_fontSizeBase: 115
+  m_fontSize: 200
+  m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -137,22 +136,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1171619129828049571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1171619129828049596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e767be7969e1fd4d9ad071f751f536e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NotTranslateOnStart: 0
-  _language: 0
-  _translator: {fileID: 0}
-  Id: english
 --- !u!114 &1171619129828049574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,10 +225,10 @@ RectTransform:
   m_Father: {fileID: 3925416758290284508}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.075}
-  m_AnchorMax: {x: 0.9445383, y: 1}
-  m_AnchoredPosition: {x: 12.973389, y: 0.6191101}
-  m_SizeDelta: {x: -63.6289, y: -29.419098}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -12.06189, y: 3.3833008}
+  m_SizeDelta: {x: 89.386, y: 110.8134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1671580121325317501
 CanvasRenderer:
@@ -296,7 +279,6 @@ GameObject:
   - component: {fileID: 3925416756603197223}
   - component: {fileID: 3925416756603197217}
   - component: {fileID: 3925416756603197216}
-  - component: {fileID: 1162023643873346658}
   - component: {fileID: 8646542519226188450}
   m_Layer: 5
   m_Name: RussianText
@@ -321,9 +303,9 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.369}
   m_AnchorMin: {x: 0.15969197, y: 0.45600003}
-  m_AnchorMax: {x: 0.5075379, y: 0.63100004}
-  m_AnchoredPosition: {x: -20, y: 21}
-  m_SizeDelta: {x: -97.0822, y: -6.533}
+  m_AnchorMax: {x: 0.4901771, y: 0.63100004}
+  m_AnchoredPosition: {x: 13, y: 21}
+  m_SizeDelta: {x: -31.0822, y: -6.533}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3925416756603197217
 CanvasRenderer:
@@ -353,7 +335,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Russian
+  m_text: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -380,8 +362,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 115
-  m_fontSizeBase: 115
+  m_fontSize: 200
+  m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -422,22 +404,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1162023643873346658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3925416756603197222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e767be7969e1fd4d9ad071f751f536e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NotTranslateOnStart: 0
-  _language: 0
-  _translator: {fileID: 0}
-  Id: russian
 --- !u!114 &8646542519226188450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,10 +496,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.057840448, y: 0.052}
-  m_AnchorMax: {x: 0.9695798, y: 0.8897095}
-  m_AnchoredPosition: {x: 50, y: 6.3967285}
-  m_SizeDelta: {x: -14.5986, y: 12.7933}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.21398926, y: 0.09899902}
+  m_SizeDelta: {x: 0.47999573, y: -0.11999512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7612262588721579002
 MonoBehaviour:
@@ -583,10 +549,10 @@ RectTransform:
   m_Father: {fileID: 3925416758290284508}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.036128134, y: 0.818}
-  m_AnchorMax: {x: 0.08612814, y: 0.9382622}
-  m_AnchoredPosition: {x: 28.145996, y: -5.833073}
-  m_SizeDelta: {x: 2.6938, y: -0.33389997}
+  m_AnchorMin: {x: 0.03342152, y: 0.818}
+  m_AnchorMax: {x: 0.10578126, y: 0.94661117}
+  m_AnchoredPosition: {x: 24.824951, y: -10.832944}
+  m_SizeDelta: {x: -9.947899, y: -10.3339}
   m_Pivot: {x: 0.5, y: 0.50000066}
 --- !u!222 &3609083186484588968
 CanvasRenderer:

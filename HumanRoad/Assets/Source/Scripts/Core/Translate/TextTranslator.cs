@@ -32,8 +32,8 @@ public class TextTranslator : MonoBehaviour
         if(_translator == null && GetComponentInParent<LanguageMenu>())
             _translator = GetComponentInParent<LanguageMenu>().Translator;
         
-        if(_translator == null &&  GetComponentInParent<PauseMenu>())
-            _translator = GetComponentInParent<PauseMenu>().Translator;
+        if(_translator == null &&  GetComponent<PauseMenu>())
+            _translator = GetComponent<PauseMenu>().Translator;
         
         if (_translator == null && GetComponentInParent<ShopItem>())
             _translator = GetComponentInParent<ShopItem>().GetComponentInParent<Shop>().Translator;

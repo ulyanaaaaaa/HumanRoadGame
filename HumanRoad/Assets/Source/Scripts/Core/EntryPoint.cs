@@ -70,7 +70,9 @@ public class EntryPoint : ObjectActivity
         _soundMenuCreated.GetComponent<RectTransform>().localPosition =
             _soundMenu.GetComponent<RectTransform>().localPosition;
         _soundMenuCreated.GetComponentInChildren<ExitButton>().OnExit += 
-            () => DisableObject( _soundMenuCreated.gameObject);
+            () => DisableObject(_soundMenuCreated.gameObject);
+        _soundMenuCreated.GetComponentInChildren<ExitButton>().OnExit += 
+            () => EnableObject(_gameInstaller.MenuCreated.gameObject);
         _soundMenuCreated.GetComponentInChildren<SoundSlider>().Setup(_soundSource);
     }
 
@@ -102,8 +104,13 @@ public class EntryPoint : ObjectActivity
     private void CreateLooseHurt()
     {
         _looseHurt = Resources.Load<Hurt>(AssetsPath.UiPath.LooseHurt);
+        if (_hurts.Count == 1)
+        {
+            _gameInstaller.PlayerCreated.OnDie?.Invoke();
+            return;
+        }
         _looseHurtCreated = Instantiate(_looseHurt,
-        _hurts[0].GetComponent<RectTransform>().position,
+            _hurts[0].GetComponent<RectTransform>().position,
             Quaternion.identity,
             _canvas.transform);
         Destroy(_hurts[0].gameObject);
@@ -115,6 +122,8 @@ public class EntryPoint : ObjectActivity
     {
         _gameInstaller.MenuCreated.GetComponentInChildren<ShopButton>().OnPlay += 
             () => EnableObject(_gameInstaller.ShopCreated.gameObject);
+        _gameInstaller.MenuCreated.GetComponentInChildren<ShopButton>().OnPlay += 
+            () => DisableObject(_gameInstaller.MenuCreated.gameObject);
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
             () => DisableObject(_gameInstaller.MenuCreated.gameObject);
         _gameInstaller.MenuCreated.GetComponentInChildren<PlayButton>().OnPlay += 
@@ -137,8 +146,12 @@ public class EntryPoint : ObjectActivity
 
         _gameInstaller.MenuCreated.GetComponentInChildren<SoundButton>().OnPlay += 
             () => EnableObject(_soundMenuCreated.gameObject);
+        _gameInstaller.MenuCreated.GetComponentInChildren<SoundButton>().OnPlay +=
+            () => DisableObject(_gameInstaller.MenuCreated.gameObject);
         _gameInstaller.MenuCreated.GetComponentInChildren<LanguageButton>().OnClick += 
             () => EnableObject(_languageMenuCreated.gameObject);
+        _gameInstaller.MenuCreated.GetComponentInChildren<LanguageButton>().OnClick += 
+            () => DisableObject(_gameInstaller.MenuCreated.gameObject);
 
         _gameInstaller.PauseButtonCreated.OnPause += () => EnableObject(_gameInstaller.PauseMenuCreated.gameObject);
         _gameInstaller.PauseMenuCreated.OnPlay += () => DisableObject(_gameInstaller.PauseMenuCreated.gameObject);
@@ -156,11 +169,16 @@ public class EntryPoint : ObjectActivity
             _languageMenu.GetComponent<RectTransform>().localPosition;
         _languageMenuCreated.GetComponentInChildren<ExitButton>().OnExit +=
             () => DisableObject(_languageMenuCreated.gameObject);
+        _languageMenuCreated.GetComponentInChildren<ExitButton>().OnExit +=
+            () => EnableObject(_gameInstaller.MenuCreated.gameObject);
     }
 
     private void CloseShop()
     {
-        _gameInstaller.ShopCreated.GetComponentInChildren<ExitButton>().OnExit += () => DisableObject(_gameInstaller.ShopCreated.gameObject);
+        _gameInstaller.ShopCreated.GetComponentInChildren<ExitButton>().OnExit += () 
+            => EnableObject(_gameInstaller.MenuCreated.gameObject);
+        _gameInstaller.ShopCreated.GetComponentInChildren<ExitButton>().OnExit += ()
+            => DisableObject(_gameInstaller.ShopCreated.gameObject);
     }
 
     private void DestroyLevel()
