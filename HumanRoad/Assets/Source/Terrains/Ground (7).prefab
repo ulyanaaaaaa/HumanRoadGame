@@ -505,8 +505,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.13733578, y: 1.4555322, z: 0.13733576}
-  m_Center: {x: 0.000000059599667, y: 0.042416874, z: 0}
+  m_Size: {x: 0.32384625, y: 1.8170305, z: 0.13733576}
+  m_Center: {x: 0.09325525, y: 0.22316618, z: 0}
 --- !u!4 &7638168932310398422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8583146858647884491, guid: 7eee15c1ed9c15f41b8a6f402bce8d02, type: 3}
@@ -1433,5 +1433,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.13733578, y: 1.4051309, z: 0.13733576}
-  m_Center: {x: 0.000000059582888, y: 0.047789965, z: 0}
+  m_Size: {x: 0.31196594, y: 2.4465265, z: 0.13733576}
+  m_Center: {x: 0.08731505, y: -0.1731891, z: 0}

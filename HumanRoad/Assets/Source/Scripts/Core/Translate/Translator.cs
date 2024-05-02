@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using YG;
 
 public class Translator : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Translator : MonoBehaviour
     private const string _id = "translator";
     
     [field:SerializeField] public Language Language { get;private set; }
+    
 
     private void Start()
     {

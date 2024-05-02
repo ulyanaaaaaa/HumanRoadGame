@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour, IPause
     private SwipeDetection _swipeDetection;
     private PauseService _pauseService;
     private bool _isPause;
-    [SerializeField] private bool _isRun;
+    private bool _isRun;
    
    [Inject]
    public void Constructor(PauseService pauseService)
