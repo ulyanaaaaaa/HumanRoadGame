@@ -26,14 +26,15 @@ public class ShopItem : MonoBehaviour
     private void Start()
     {
         _saveService = new SaveService();
-        _player = _shop.Player;
-        _wallet = _shop.Wallet;
-        _button.onClick.AddListener(TryBuy);
         
         if (!_saveService.Exists(_id))
             Save(); 
         else
             Load(); 
+        
+        _player = _shop.Player;
+        _wallet = _shop.Wallet;
+        _button.onClick.AddListener(TryBuy);
         
         _shopItemViewer.OnUpdatePrice?.Invoke();
     }
@@ -46,6 +47,7 @@ public class ShopItem : MonoBehaviour
             Save();
             _player.ChangeSkin(_id);
             _shopItemViewer.OnUpdatePrice?.Invoke();
+            Save();
         }
     }
     

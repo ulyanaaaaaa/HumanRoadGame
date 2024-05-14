@@ -11,6 +11,7 @@ public class Timer : MonoBehaviour, IPause
     [SerializeField] private float _startDuration;
     private float _duration;
     private Coroutine _timerTick;
+    private Coroutine _stopTimerTick;
     private Player _player;
     private PauseService _pauseService;
     private GameInstaller _gameInstaller;
@@ -38,18 +39,29 @@ public class Timer : MonoBehaviour, IPause
     {
         _timerTick = StartCoroutine(TimerTick());
     }
+
+    public void StopTimer(float time)
+    {
+        if(_stopTimerTick != null)
+            StopCoroutine(_stopTimerTick);
+        
+        _stopTimerTick = StartCoroutine(StopTimerCoroutine(time));
+    }
     
-    public IEnumerator StopTimerCoroutine(float time)
+    private IEnumerator StopTimerCoroutine(float time)
     {
         IsTook = true;
+        Debug.Log("Stop");
         StopCoroutine(_timerTick);
         yield return new WaitForSeconds(time);
         IsTook = false;
         _timerTick = StartCoroutine(TimerTick());
+        Debug.Log("Start");
     }
 
     private void StartTimer()
     {
+        Debug.Log("Start");
         _duration = _startDuration;
         gameObject.SetActive(true); 
         _timerTick = StartCoroutine(TimerTick());

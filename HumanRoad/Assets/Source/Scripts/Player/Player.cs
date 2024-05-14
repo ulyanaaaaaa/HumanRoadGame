@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
     {
         if (collider.gameObject.TryGetComponent(out TimeCoin coin))
         {
-            StartCoroutine(_timer.StopTimerCoroutine(coin.Time));
+            _timer.StopTimer(coin.Time);
             Destroy(coin.gameObject);
         }
     }
